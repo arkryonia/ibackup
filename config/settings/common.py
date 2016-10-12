@@ -19,6 +19,11 @@ PUBLIC_DIR = ROOT_DIR.path('public')
 env = environ.Env()
 
 
+# SECRET CONFIGURATION
+# ------------------------------------------------------------------------------
+SECRET_KEY = env("DJANGO_SECRET_KEY", default='dc3kl5+hv^tz0#o2)afmnqciiq*qf9x7_oo_+93650y3x5a22v')
+
+
 # APP CONFIGURATION
 # ------------------------------------------------------------------------------
 
