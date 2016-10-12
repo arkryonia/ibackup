@@ -22,7 +22,7 @@ INSTALLED_APPS +=('gunicorn',)
 # ------------------------------------------------------------------------------
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = "mail.gandi.net"
-EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
+EMAIL_HOST_PASSWORD = "4CDLrr000"
 EMAIL_HOST_USER = "noreply@irgibafrica.university"
 EMAIL_PORT = 465
 EMAIL_SUBJECT_PREFIX = "[IRGIB-AFRICA] "
