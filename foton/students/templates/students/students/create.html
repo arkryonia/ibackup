@@ -1,0 +1,9 @@
+{% extends "theme/form.html" %}
+{% load i18n %}
+
+{% block title %}Inscription{% endblock title %}
+{% block maintitle %} {% trans "Inscription" %} {% endblock maintitle %}
+	{% block reinscription %}
+		{# <a href="{% url "students:registration" %}">{% trans "Re-Enrolment" %}</a> #}
+	{% endblock reinscription %}
+{% block value %} {% trans "Register" %} {% endblock value %}

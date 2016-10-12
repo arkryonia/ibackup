@@ -1,0 +1,88 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-08-24 17:12+0100\n"
+"PO-Revision-Date: 2016-08-24 18:27+0014\n"
+"Last-Translator: b'  <>'\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Translated-Using: django-rosetta 0.7.11\n"
+
+#: templates/degrees/bachelor_list.html:3
+#: templates/degrees/bachelor_list.html:4
+msgid "Program Bachelor"
+msgstr "Programme Licence"
+
+#: templates/degrees/bachelors/create.html:4
+#: templates/degrees/bachelors/create.html:6
+#: templates/degrees/bachelors/list.html:9
+msgid "Create License"
+msgstr "Ajouter une Licence"
+
+#: templates/degrees/bachelors/list.html:4
+msgid "Licenses"
+msgstr "Licence"
+
+#: templates/degrees/bachelors/list.html:14
+#: templates/degrees/masters/list.html:14
+#: templates/degrees/masters/options_list.html:14
+#: templates/degrees/masters/speciality_list.html:14
+msgid "Name"
+msgstr "Nom"
+
+#: templates/degrees/bachelors/list.html:15
+#: templates/degrees/masters/list.html:16
+msgid "Program File"
+msgstr "Programme en pdf"
+
+#: templates/degrees/bachelors/update.html:4
+#: templates/degrees/bachelors/update.html:5
+#: templates/degrees/masters/update.html:4
+#: templates/degrees/masters/update.html:5
+msgid "Update License"
+msgstr "Modifier la Licence"
+
+#: templates/degrees/masters/create.html:4
+#: templates/degrees/masters/create.html:6
+#: templates/degrees/masters/list.html:9
+#: templates/degrees/masters/options_list.html:9
+#: templates/degrees/masters/speciality_list.html:9
+msgid "Create Master"
+msgstr "Ajouter  un Master"
+
+#: templates/degrees/masters/list.html:4
+msgid "Masters"
+msgstr "Masters"
+
+#: templates/degrees/masters/list.html:15
+msgid "Speciality"
+msgstr "Spécialité"
+
+#: templates/degrees/masters/list.html:29
+msgid "No Master available!"
+msgstr "Pas de Master"
+
+#: templates/degrees/masters/options_list.html:4
+#: templates/degrees/masters/speciality_list.html:4
+msgid "Masters Options"
+msgstr "Options de Masters"
+
+#: templates/degrees/masters/options_list.html:25
+#: templates/degrees/masters/speciality_list.html:25
+msgid "No License available!"
+msgstr "Pas de Licence"
+
+#: templates/degrees/masters_list.html:3 templates/degrees/masters_list.html:4
+msgid "Programs Master"
+msgstr "Programme Master"

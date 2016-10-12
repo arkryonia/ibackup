@@ -1,0 +1,23 @@
+{% extends "theme/backend/base.html" %}
+{% load i18n %}
+
+{% block title %} {% trans "Sommary List" %} {% endblock title %}
+{% block content %}
+<div class="dataTable_wrapper">
+ 	<table class="table table-striped table-bordered table-hover" id="dataTables-example">
+		<thead>
+		  <tr>
+	    	<th>{% trans " Title " %}</th>
+		  </tr>
+		</thead>
+		<tbody>
+		{% for sommary in sommaries %}  
+			<tr class="odd gradeX">
+				<td>{{ sommary.title }} </td>
+				<td class="text-center"> <a href="{% url "ejournal:update-sommary"           sommary.pk  %}"><i class="fa fa-edit fa-fw"></i></a> </td>
+			</tr>
+		{% endfor %}
+		</tbody>
+  	</table>
+</div>
+{% endblock content %}

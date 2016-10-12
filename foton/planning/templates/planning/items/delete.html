@@ -1,0 +1,8 @@
+{% extends "theme/backend/form.html" %}
+{% load i18n staticfiles %}
+
+{% block entype %}enctype="multipart/form-data"{% endblock entype %}
+{% block text %} <h4>{% trans "Are you sure you want to delete this planning item ?" %}</h4>{% endblock text %}
+{% block title %}{% trans "Delete this planning Item" %}{% endblock title %}
+{% block value %}{% trans "Delete Item" %}{% endblock value %}
+{% block class %}btn-danger{% endblock class %}

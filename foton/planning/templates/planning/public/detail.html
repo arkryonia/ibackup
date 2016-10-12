@@ -1,0 +1,97 @@
+{% extends "theme/default.html" %}
+{% load staticfiles i18n %}
+
+{% block title %}{% trans "Planning" %}{% endblock title %}
+
+{% block maintitle %}{% trans "Planning of " %}{{ planning }}{% endblock maintitle %}
+
+{% block content %}
+			<div class="col-md-2 panel panel-info">
+					<div class="panel-heading">Lundi</div>
+					{% for i in items %}
+						{% if i.day == "lundi" %}
+								<div class="panel-body">
+										{{i.start}}h - {{ i.end }}h <br>
+										{{i.course}}<br>
+										{{i.venue}}<br>
+										<hr>
+								</div>
+						{% endif %}
+					{% endfor %}
+			</div>
+			<div class="col-md-2 panel panel-info">
+					<div class="panel-heading">Mardi</div>
+					{% for i in items %}
+						{% if i.day == "mardi" %}
+
+								<div class="panel-body">
+										{{i.start}}h - {{ i.end }}h <br>
+										{{i.course}}<br>
+										{{i.venue}}<br>
+										<hr>
+								</div>
+
+						{% endif %}
+					{% endfor %}
+			</div>
+			<div class="col-md-2 panel panel-info">
+					<div class="panel-heading">Mercredi</div>
+					{% for i in items %}
+						{% if i.day == "mercredi" %}
+
+								<div class="panel-body">
+										{{i.start}}h - {{ i.end }}h <br>
+										{{i.course}}<br>
+										{{i.venue}}<br>
+                    <hr>
+								</div>
+
+						{% endif %}
+					{% endfor %}
+			</div>
+			<div class="col-md-2 panel panel-info">
+					<div class="panel-heading">Jeudi</div>
+					{% for i in items %}
+						{% if i.day == "jeudi" %}
+
+								<div class="panel-body">
+										{{i.start}}h - {{ i.end }}h <br>
+										{{i.course}}<br>
+										{{i.venue}}<br>
+                    <hr>
+								</div>
+
+						{% endif %}
+					{% endfor %}
+			</div>
+			<div class="col-md-2 panel panel-info">
+					<div class="panel-heading">Vendredi</div>
+					{% for i in items %}
+						{% if i.day == "vendredi" %}
+
+								<div class="panel-body">
+										{{i.start}}h - {{ i.end }}h <br>
+										{{i.course}}<br>
+										{{i.venue}}<br>
+                    <hr>
+								</div>
+
+						{% endif %}
+					{% endfor %}
+			</div>
+			<div class="col-md-2 panel panel-info">
+					<div class="panel-heading">Samedi</div>
+					{% for i in items %}
+						{% if i.day == "samedi" %}
+
+								<div class="panel-body">
+										{{i.start}}h - {{ i.end }}h <br>
+										{{i.course}}<br>
+										{{i.venue}}<br>
+                    <hr>
+								</div>
+
+						{% endif %}
+					{% endfor %}
+			</div>
+{% endblock content %}

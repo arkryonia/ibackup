@@ -1,0 +1,33 @@
+{% extends "theme/backend/base.html" %}
+{% load i18n thumbnail staticfiles%}
+
+{% block title %}{{ publication.title }}{% endblock title %}
+
+{% block content %}
+
+  <div class="col-md-8">
+    {% if perms.users.is_commercial %}
+
+      <p class="mbl">
+        {% thumbnail publication.picture 460x300 crop as pic %}
+          <img src="{% static pic.url %}" alt="{{ publication.title }}">
+      </p>
+
+      {% autoescape off %}
+        {{publication.content}}
+      {% endautoescape %}
+
+      <div>
+      <br>
+      <a href="{% url "publication:update-publication" publication.id %}" class="btn btn-primary" >{% trans "Edit" %}</button>
+      </a>
+
+      </div>
+
+    {% else %}
+      <span class="em">{% trans "I'm afraid you're kidding! Action Denied!" %}</span>
+    {% endif %}
+
+  </div>
+
+{% endblock content %}

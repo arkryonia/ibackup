@@ -1,0 +1,54 @@
+{% extends "cicanon/theme/base_admin.html" %}
+{% load staticfiles i18n thumbnail %}
+
+{% block title %}
+	{% if perms.users.is_commercial %}
+		{{ post.title }}
+	{% else %}
+		{% trans "Action Denied!" %}
+	{% endif %}
+
+{% endblock title %}
+
+{% block content %}
+
+	<div class="col-md-8">
+		{% if perms.users.is_commercial %}
+
+			<p class="mbl">
+				{% thumbnail post.picture 650x300 crop as pic %}
+				{% if post.picture %}
+					<img src="{% static pic.url %}" alt="{{ post.title }}">
+				{% endif %}
+			</p>
+
+			<div class="text-justify">
+				{% autoescape off %}
+					{{post.content}}
+				{% endautoescape %}
+			</div>
+
+			<p>
+				<br>
+				{{ post.author.get_full_name }} — {{ post.created|date:"l j N o"|capfirst }}
+			</p>
+
+			<div>
+				{% if not post.pub %}
+					<a href="{% url "cicanon:pub-post" post.id %}" class="btn btn-primary">{% trans "Activate" %}</a>
+				{% else %}
+					<a href="{% url "cicanon:pub-post" post.id %}" class="btn btn-primary">{% trans "Deactivate" %}</a>
+				{% endif %}
+
+				<a href="{% url "cicanon:update-post" post.slug %}" class="btn btn-primary" >{% trans "Edit" %}</button>
+				</a>
+
+			</div>
+
+		{% else %}
+			<span class="em">{% trans "I'm afraid you're kidding! Action Denied!" %}</span>
+		{% endif %}
+		<br>
+	</div>
+
+{% endblock content %}

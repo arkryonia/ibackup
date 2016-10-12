@@ -1,0 +1,58 @@
+
+// css code for backend templates
+
+// form
+
+label{
+	width: 100%!important;
+}
+
+input, select, textarea{
+	width: 100%!important;
+	background: none;
+	border: 1px #ccc solid;
+	border-radius: 5px;
+	padding-left: 10px;
+	font-size: 1.1em;
+	outline: none;
+}
+
+input, select{
+	height: 40px;
+}
+
+.page-header{
+	color: #003380;
+}
+
+div.logout{
+	margin-left: 23px;
+	color: red;
+}
+
+div.logout button{
+	background: none;
+	border-style: none;
+	outline: none;
+}
+
+div.logout:hover{
+	color: rgba(200, 10, 10, 1);
+}
+
+div.login_page label{
+	color: #555;
+}
+
+div.login_page input{
+	margin-bottom: 15px;
+}
+
+div.welcome{
+	margin-top: 80px;
+	font-size: 2em;
+	background-color: #f8f8f8;
+	color: #777;
+	padding: 20px;
+	border-radius: 10px;
+}

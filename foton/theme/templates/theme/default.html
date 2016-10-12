@@ -1,0 +1,80 @@
+{% extends "theme/base_site.html" %}
+
+{% load staticfiles thumbnail %}
+
+{% block seo %}
+	{# stuff: define your seo from here #}
+
+{% endblock seo %}
+
+{% block main %}
+<section class="main-section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 clo-xs-12 col-sm-12 main" class="">
+
+				<h2 class="mainTitle">{% block maintitle %}{% endblock maintitle %}</h2>
+
+	      {% block content %}
+
+	      {% endblock content %}
+
+    	</div>
+
+			<div class="col-md-4 clo-xs-12 col-sm-12 aside">
+				{% block aside %}
+					<a href= ><h5>{{ GALLERY.name }}</h5></a>
+
+					<hr class="aside-hr">
+
+					<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+						<div class="carousel-inner" role="listbox">
+							<div class="item active">
+								{% thumbnail GALLERY.image 360x216 crop as thumb %}
+                				<a href={% url 'galleries:list-photos' GALLERY.slug %} ><img src="{{ thumb.url }}" class="img-responsive" alt="{{ GALLERY.name }}" /></a>
+								<div class="carousel-caption">
+									{{ GALLERY.name}}
+								</div>
+							</div>
+							{% for photo in PHOTOS %}
+								<div class="item">
+									{% thumbnail photo.image 360x216 crop as pic %}
+	                <a href={% url 'galleries:detail-photo' photo.gallery.slug photo.pk %}><img src="{{ pic.url }}" class="img-responsive" alt="{{ photo.title }}" /> </a>
+									<div class="carousel-caption">
+										{{ photo.title }}
+									</div>
+								</div>
+							{% endfor %}
+						</div>
+						<br>
+						<div class='store'>
+						<a href="https://play.google.com/store/apps/details?id=mouhrakib.irg&hl=fr" class="store"><img src="{% static "theme/img/svg/playstore.svg" %}" alt=""></a>
+					</div>
+				{% endblock aside %}
+
+				{% block video %}
+					<h5>IRGIB Africa Videos</h5>
+					<hr class="aside-hr">
+					<div class="">
+						<iframe width="360" height="280" src="https://www.youtube.com/embed/videoseries?list=PLdc4dG1_g5JEELT3nMoLMDzF6eABbzt9N" frameborder="0" allowfullscreen></iframe>
+					</div>
+					<br>
+				{% endblock video %}
+
+				{% block timeline %}
+
+					<!-- div class="timeline">
+						<h5>TWITTER TIMELINE</h5>
+						<hr class="aside-hr">
+
+					</div -->
+
+				{% endblock timeline %}
+	    </div>
+	</div>
+	</div>
+</section>
+{% endblock main %}
+
+</body>
+</html>

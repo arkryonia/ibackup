@@ -1,0 +1,66 @@
+/* ---------- digisity BLOG DESIGN ---------- */
+header {
+  height: 120px;
+  line-height: 120px; }
+  header img.logo {
+    max-height: 100px; }
+  header form input {
+    outline: #f5f5f5 !important; }
+  header form input.check {
+    background-color: #F5F5F5; }
+    header form input.check:hover {
+      background-color: #e8e8e8; }
+
+nav {
+  height: 60px;
+  line-height: 60px;
+  background-color: #444547;
+  color: #fff; }
+  nav ul {
+    padding-left: 0 !important; }
+    nav ul li {
+      list-style: none;
+      display: inline-block; }
+      nav ul li a {
+        color: #fff; }
+  nav div.social li {
+    padding-left: 10px;
+    padding-right: 10px; }
+  nav div.nav a {
+    font-size: 1.2em;
+    padding-right: 20px; }
+
+img {
+  max-width: 100%; }
+
+section h4.post-title {
+  color: #00737f; }
+section p.post-abstract {
+  padding-top: 10px;
+  text-align: justify; }
+section .btn-large {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 30px; }
+section div.info i {
+  margin-right: 30px;
+  font-style: italic;
+  color: #00737f; }
+section img.post-img{
+  height: 250px!important;
+  width: 100%!important;
+}
+
+.aside {
+  margin-top: 60px; }
+  .aside div.last-posts {
+    min-height: 300px; }
+
+footer {
+  height: 80px;
+  line-height: 80px;
+  background-color: #192324;
+  color: #fff;
+  font-style: italic; }
+
+/*# sourceMappingURL=blog.css.map */

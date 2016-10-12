@@ -1,0 +1,227 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-09-15 17:29+0100\n"
+"PO-Revision-Date: 2016-09-15 17:19+0014\n"
+"Last-Translator: b'  <>'\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Translated-Using: django-rosetta 0.7.11\n"
+
+#: forms.py:46
+msgid "Password"
+msgstr ""
+
+#: models.py:74 models.py:132
+msgid "Class"
+msgstr ""
+
+#: models.py:75
+msgid "Classes"
+msgstr ""
+
+#: models.py:83
+msgid "Choose your gender"
+msgstr ""
+
+#: models.py:84
+msgid "Female"
+msgstr ""
+
+#: models.py:85
+msgid "Male"
+msgstr ""
+
+#: models.py:88
+msgid "Choose your type"
+msgstr ""
+
+#: models.py:89
+msgid "Regular Student"
+msgstr ""
+
+#: models.py:94
+msgid "Choose your marital status"
+msgstr ""
+
+#: models.py:95
+msgid "Single"
+msgstr ""
+
+#: models.py:96
+msgid "Maried"
+msgstr ""
+
+#: models.py:99
+msgid "Gender"
+msgstr ""
+
+#: models.py:100
+msgid "Type"
+msgstr ""
+
+#: models.py:101
+msgid "(select country)"
+msgstr ""
+
+#: models.py:101
+msgid "Nationality"
+msgstr ""
+
+#: models.py:103
+msgid "Place of Birth"
+msgstr ""
+
+#: models.py:104
+msgid "Academic Year"
+msgstr ""
+
+#: models.py:108
+msgid "Marital Status"
+msgstr ""
+
+#: models.py:110
+msgid "Sponsor or guardian full name"
+msgstr ""
+
+#: models.py:111
+msgid "Relationship with Sponsor or Guardian"
+msgstr ""
+
+#: models.py:111
+msgid "Relation to Applicant"
+msgstr ""
+
+#: models.py:112
+msgid "Sponsor or Guardian Address"
+msgstr ""
+
+#: models.py:112
+msgid "Sponsor or Guardian Permanent Address"
+msgstr ""
+
+#: models.py:113
+msgid "Occupation"
+msgstr ""
+
+#: models.py:114
+msgid "Sponsor or Guardian Telphone"
+msgstr ""
+
+#: models.py:115
+msgid "Sponsor or Guardian Email"
+msgstr ""
+
+#: models.py:138
+msgid "Registred"
+msgstr ""
+
+#: models.py:139
+msgid "Registreds"
+msgstr ""
+
+#: templates/students/classes/create.html:4
+#: templates/students/classes/create.html:5
+#: templates/students/classes/list.html:8
+msgid "Create Class"
+msgstr ""
+
+#: templates/students/classes/list.html:4
+msgid "Classes List"
+msgstr ""
+
+#: templates/students/classes/list.html:13
+msgid " Classes "
+msgstr ""
+
+#: templates/students/classes/update.html:4
+#: templates/students/classes/update.html:5
+msgid "Update Class"
+msgstr ""
+
+#: templates/students/registred/class_list.html:4
+#: templates/students/registred/list.html:4
+#: templates/students/students/list.html:4
+msgid "Students"
+msgstr ""
+
+#: templates/students/registred/class_list.html:8
+msgid "Admission "
+msgstr ""
+
+#: templates/students/registred/create.html:3
+#: templates/students/registred/create.html:5
+msgid "Add Student"
+msgstr ""
+
+#: templates/students/registred/list.html:10
+msgid " Matricule "
+msgstr ""
+
+#: templates/students/registred/list.html:11
+msgid " Students "
+msgstr ""
+
+#: templates/students/registred/list.html:12
+msgid " Class "
+msgstr ""
+
+#: templates/students/registred/registration.html:4
+msgid "Registration"
+msgstr ""
+
+#: templates/students/registred/student_update.html:4
+#: templates/students/registred/student_update.html:5
+#: templates/students/registred/update.html:4
+#: templates/students/registred/update.html:6
+msgid "Update Student"
+msgstr ""
+
+#: templates/students/students/create.html:5
+msgid "Inscription"
+msgstr ""
+
+#: templates/students/students/create.html:9
+msgid "Register"
+msgstr ""
+
+#: templates/students/students/list.html:9
+#: templates/students/students/list.html:10
+msgid "Search"
+msgstr ""
+
+#: templates/students/students/list.html:17
+msgid " Admission list "
+msgstr ""
+
+#: templates/students/students/success.html:3
+msgid "Admission Succes"
+msgstr ""
+
+#: templates/students/students/success.html:7
+msgid "Admission Success"
+msgstr ""
+
+#: templates/students/students/success.html:9
+msgid "Félicitation Mr"
+msgstr "Congratulations Mr"
+
+#: templates/students/students/success.html:9
+msgid ""
+"Vous venez de vous inscrire avec succès nous vous prions de bien vouloir "
+"imprimé le formulaire d'inscription afin de finaliser votre inscription  "
+msgstr ""
+
+#: templates/students/students/success.html:12
+msgid " Print Admission Form"
+msgstr ""

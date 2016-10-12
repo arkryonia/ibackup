@@ -1,0 +1,137 @@
+{% extends "theme/backend/base.html" %}
+{% load i18n %}
+
+{% load thumbnail %}
+
+{% for i in items  %}
+
+{% block title %}{% trans "Planning of " %}{{ planning }}{% endblock title %}
+
+{% endfor %}
+
+
+{% block content %}
+
+		<div class="my-wrapper">
+			<div class="col-md-2">
+				<div class="panel panel-info">
+					<div class="panel-heading">Lundi</div>
+					{% for i in items %}
+						{% if i.day == "lundi" %}
+
+								<div class="panel-body">
+										{{i.start}}h - {{ i.end }}h <br>
+										{{i.course}}<br>
+										{{i.venue}}<br>
+										<a href={% url 'planning:update-item' i.pk %}><i class="fa fa-edit"></i></a>
+										<a href={% url 'planning:delete-item' i.pk %}><i class="fa fa-trash"></i></a>
+										<hr>
+								</div>
+
+						{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="panel panel-info">
+					<div class="panel-heading">Mardi</div>
+					{% for i in items %}
+						{% if i.day == "mardi" %}
+
+								<div class="panel-body">
+										{{i.start}}h - {{ i.end }}h <br>
+										{{i.course}}<br>
+										{{i.venue}}<br>
+										<a href={% url 'planning:update-item' i.pk %}><i class="fa fa-edit"></i></a>
+										<a href={% url 'planning:delete-item' i.pk %}><i class="fa fa-trash"></i></a>
+										<hr>
+								</div>
+
+						{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="panel panel-info">
+					<div class="panel-heading">Mercredi</div>
+					{% for i in items %}
+						{% if i.day == "mercredi" %}
+
+								<div class="panel-body">
+										{{i.start}}h - {{ i.end }}h <br>
+										{{i.course}}<br>
+										{{i.venue}}<br>
+										<a href={% url 'planning:update-item' i.pk %}><i class="fa fa-edit"></i></a>
+										<a href={% url 'planning:delete-item' i.pk %}><i class="fa fa-trash"></i></a>
+										<hr>
+								</div>
+
+						{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="panel panel-info">
+					<div class="panel-heading">Jeudi</div>
+					{% for i in items %}
+						{% if i.day == "jeudi" %}
+
+								<div class="panel-body">
+										{{i.start}}h - {{ i.end }}h <br>
+										{{i.course}}<br>
+										{{i.venue}}<br>
+										<a href={% url 'planning:update-item' i.pk %}><i class="fa fa-edit"></i></a>
+										<a href={% url 'planning:delete-item' i.pk %}><i class="fa fa-trash"></i></a>
+										<hr>
+								</div>
+
+						{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="panel panel-info">
+					<div class="panel-heading">Vendredi</div>
+					{% for i in items %}
+						{% if i.day == "vendredi" %}
+
+								<div class="panel-body">
+										{{i.start}}h - {{ i.end }}h <br>
+										{{i.course}}<br>
+										{{i.venue}}<br>
+										<a href={% url 'planning:update-item' i.pk %}><i class="fa fa-edit"></i></a>
+										<a href={% url 'planning:delete-item' i.pk %}><i class="fa fa-trash"></i>d</a>
+										<hr>
+								</div>
+
+						{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="panel panel-info">
+					<div class="panel-heading">Samedi</div>
+					{% for i in items %}
+						{% if i.day == "samedi" %}
+
+								<div class="panel-body">
+										{{i.start}}h - {{ i.end }}h <br>
+										{{i.course}}<br>
+										{{i.venue}}<br>
+										<a href={% url 'planning:update-item' i.pk %}><i class="fa fa-edit"></i></a>
+										<a href={% url 'planning:delete-item' i.pk %}><i class="fa fa-trash"></i></a>
+										<hr>
+								</div>
+
+						{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+
+		<p class="text-right">
+				<a href={% url 'planning:create-item' planning.pk %} class="btn btn-primary">{% trans "Add Item" %}</a>
+		</p>
+
+{% endblock content %}

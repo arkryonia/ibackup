@@ -1,0 +1,21 @@
+{% extends "cicanon/theme/base_public.html" %}
+{% load staticfiles i18n %}
+
+{% block title %}	
+	{{ post.title }}	
+{% endblock title %}
+
+
+{% block maintitle %}	
+	{{ post.title }}	
+{% endblock maintitle %}
+	
+
+{% block mainbody %}	
+	
+	<p>{{ obj.description }}</p>
+
+	<hr class="w90 center">	
+
+{% endblock mainbody %}
+

@@ -1,0 +1,98 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-08-24 17:11+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: models.py:8 models.py:25
+msgid "title"
+msgstr ""
+
+#: models.py:9
+msgid "abstract"
+msgstr ""
+
+#: models.py:11
+msgid "issue"
+msgstr ""
+
+#: models.py:26
+msgid "author"
+msgstr ""
+
+#: models.py:27
+msgid "page"
+msgstr ""
+
+#: models.py:28
+msgid "keywords"
+msgstr ""
+
+#: templates/ejournal/detail.html:15
+msgid "By"
+msgstr ""
+
+#: templates/ejournal/list.html:6
+msgid "Our Scientific Journal"
+msgstr ""
+
+#: templates/ejournal/list.html:17
+msgid "Read More"
+msgstr ""
+
+#: templates/ejournal/list.html:42
+msgid "Recent Publications"
+msgstr ""
+
+#: templates/ejournal/magasine/create.html:4
+#: templates/ejournal/magasine/create.html:8
+msgid "Create Magasine"
+msgstr ""
+
+#: templates/ejournal/magasine/list.html:4
+msgid "Publications List"
+msgstr ""
+
+#: templates/ejournal/magasine/list.html:8
+msgid "Create Publication"
+msgstr ""
+
+#: templates/ejournal/magasine/list.html:13
+msgid " Publications "
+msgstr ""
+
+#: templates/ejournal/magasine/update.html:4
+#: templates/ejournal/magasine/update.html:7
+msgid "Update Publication"
+msgstr ""
+
+#: templates/ejournal/sommary/create.html:4
+#: templates/ejournal/sommary/create.html:8
+msgid "Create Sommary"
+msgstr ""
+
+#: templates/ejournal/sommary/list.html:4
+msgid "Sommary List"
+msgstr ""
+
+#: templates/ejournal/sommary/list.html:10
+msgid " Title "
+msgstr ""
+
+#: templates/ejournal/sommary/update.html:4
+#: templates/ejournal/sommary/update.html:7
+msgid "Update Magasine"
+msgstr ""

@@ -1,0 +1,13 @@
+{% extends "theme/default.html" %}
+{% load i18n %}
+{% block title %} {% trans "Classes " %} {% endblock title %}
+{% block maintitle %} {% trans "Classes" %} {% endblock maintitle %}
+{% block content %}
+    {% for class in classes %}
+    <div class="col-md-2">
+		<p>
+			<a href={% url "notes:class-detail" class.pk %} class="btn btn-success"> {{class}} </a>
+		</p>
+    </div>
+	{% endfor %}
+{% endblock content %}

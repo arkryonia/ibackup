@@ -1,0 +1,30 @@
+{% extends "cicanon/theme/base_public.html" %}
+{% load staticfiles i18n %}
+
+{% block maintitle %}{% trans "Posts List" %}{% endblock maintitle %}
+
+{% block content %}
+		<hr>
+		{% for p in posts  %}
+
+				<a href="{% url "cicanon:public-detail-post" p.slug %}"><h4 class="post-title"><i class="fa fa-angle-right"></i> {{ p.title }}</h4></a>
+				<img src="{{ p.picture.url }}" class="post-img" alt="" />
+				<p class="post-abstract">
+					{% autoescape off %}
+						{{ p.content|truncatechars_html:300 }}
+					{% endautoescape %}		
+				</p>
+				<div class="info">
+					<i class="fa fa-calendar"> {{ p.created }}</i>
+					<i class="fa fa-user"> {{ p.author }}</i>
+				</div>
+				<a href="{% url "cicanon:public-detail-post" p.slug %}" class="btn btn-large btn-warning">Continue reading</a>
+
+		{% empty %}
+			<div class="push">
+				{% trans "Sorry! No Post available." %}
+			</div>
+			
+		{% endfor %}
+
+{% endblock content %}

@@ -1,0 +1,150 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-08-24 17:10+0100\n"
+"PO-Revision-Date: 2016-09-21 18:53+0014\n"
+"Last-Translator: b'  <>'\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Translated-Using: django-rosetta 0.7.11\n"
+
+#: feeds.py:50
+msgid "DrXos Blog Lastest Post"
+msgstr ""
+
+#: models.py:57
+msgid "Name"
+msgstr "Nom"
+
+#: models.py:58 models.py:74
+msgid "Slug"
+msgstr "Slug"
+
+#: models.py:61
+msgid "Category"
+msgstr "Catégorie"
+
+#: models.py:62 templates/cicanon/theme/categories/list.html.py:34
+#: templates/cicanon/theme/posts/list.html:34
+msgid "Categories"
+msgstr "Catégories"
+
+#: models.py:73
+msgid "Title"
+msgstr "Titre"
+
+#: models.py:76
+msgid "Content"
+msgstr "Contenu"
+
+#: models.py:82
+msgid "Post"
+msgstr "Billet"
+
+#: models.py:83 templates/cicanon/theme/posts/list.html.py:33
+msgid "Posts"
+msgstr "Billets"
+
+#: templates/cicanon/theme/base_public.html:4
+msgid "Blog"
+msgstr "Blog"
+
+#: templates/cicanon/theme/base_public.html:9
+msgid "CATEGORIES"
+msgstr "CATÉGORIES"
+
+#: templates/cicanon/theme/categories/create.html:7
+#: templates/cicanon/theme/categories/create.html:14
+#: templates/cicanon/theme/categories/list.html:29
+msgid "Create Category"
+msgstr "Ajouter une Catégorie"
+
+#: templates/cicanon/theme/categories/create.html:9
+#: templates/cicanon/theme/categories/list.html:9
+#: templates/cicanon/theme/posts/detail.html:8
+#: templates/cicanon/theme/posts/list.html:9
+msgid "Action Denied!"
+msgstr "Action Interdite"
+
+#: templates/cicanon/theme/categories/detail-public.html:5
+msgid "List of "
+msgstr "Liste de "
+
+#: templates/cicanon/theme/categories/detail-public.html:5
+msgid " Posts"
+msgstr "Publications"
+
+#: templates/cicanon/theme/categories/list-public.html:5
+msgid "Categories List"
+msgstr "Catégories"
+
+#: templates/cicanon/theme/categories/list-public.html:17
+#: templates/cicanon/theme/posts/list-public.html:23
+#: templates/cicanon/theme/posts/list.html:25
+msgid "Sorry! No Post available."
+msgstr "Pas de Billet"
+
+#: templates/cicanon/theme/categories/list.html:7
+msgid "List Category"
+msgstr "Catégories"
+
+#: templates/cicanon/theme/categories/list.html:22
+msgid "Sorry! No category available."
+msgstr "pas de Catégories"
+
+#: templates/cicanon/theme/categories/list.html:50
+#: templates/cicanon/theme/form.html:25
+#: templates/cicanon/theme/posts/detail.html:49
+#: templates/cicanon/theme/posts/list.html:70
+msgid "I'm afraid you're kidding! Action Denied!"
+msgstr "Vous blagez! Action Interdite"
+
+#: templates/cicanon/theme/categories/update.html:4
+#: templates/cicanon/theme/categories/update.html:6
+msgid "Update Category"
+msgstr "Modifier la Catégorie"
+
+#: templates/cicanon/theme/form.html:22
+msgid "Submit"
+msgstr "Valider"
+
+#: templates/cicanon/theme/posts/create.html:4
+#: templates/cicanon/theme/posts/create.html:8
+#: templates/cicanon/theme/posts/list.html:18
+msgid "Create Post"
+msgstr "Ajouter un Billet"
+
+#: templates/cicanon/theme/posts/detail.html:38
+msgid "Activate"
+msgstr "Activez"
+
+#: templates/cicanon/theme/posts/detail.html:40
+msgid "Deactivate"
+msgstr "Désactivez"
+
+#: templates/cicanon/theme/posts/detail.html:43
+msgid "Edit"
+msgstr "Éditer"
+
+#: templates/cicanon/theme/posts/list-public.html:4
+msgid "Posts List"
+msgstr "Liste des Billets"
+
+#: templates/cicanon/theme/posts/list.html:7
+msgid "List Post"
+msgstr "Liste des Billet"
+
+#: templates/cicanon/theme/posts/list.html:35
+msgid "Activation Statut"
+msgstr "Statut"

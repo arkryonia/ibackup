@@ -1,0 +1,26 @@
+{% extends "theme/backend/base.html" %}
+{% load i18n %}
+
+{% block title %} {% trans "Classes List" %} {% endblock title %}
+{% block content %}
+<div class="dataTable_wrapper">
+	<p class="text-right">
+		<a href="{% url "students:create-classes" %}" class="btn btn-primary">{% trans "Create Class" %}</a>
+	</p>
+ 	<table class="table table-striped table-bordered table-hover" id="dataTables-example">
+		<thead>
+		  <tr>
+	    	<th>{% trans " Classes " %}</th>
+		  </tr>
+		</thead>
+		<tbody>
+		{% for class in classes %}  
+			<tr class="odd gradeX">
+				<td>{{ class.name }} {{class.level}} </td>
+				<td class="text-center"> <a href="{% url "students:update-classes" class.id %}"><i class="fa fa-edit fa-fw"></i></a> </td>
+			</tr>
+		{% endfor %}
+		</tbody>
+  	</table>
+</div>
+{% endblock content %}

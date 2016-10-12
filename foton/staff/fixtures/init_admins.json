@@ -1,0 +1,39 @@
+[{
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$24000$HhwBYSe8nPgZ$XZjinzFjsXaw3zfbrEKZklPhJqLElF5c9kJAUG/O4r4=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "major",
+        "first_name": "",
+        "last_name": "",
+        "email": "hodonou@sounton.me",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2016-05-17T11:59:12.226Z",
+        "residence": "",
+        "phone": "",
+        "groups": [1],
+        "user_permissions": []
+    }
+}, {
+    "model": "users.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$24000$7ZamabXyciqQ$qC1W3i0rkjMG48BzHxro8/FRSlsluHy5cYduXxju6ZA=",
+        "last_login": "2016-05-17T12:32:27.016Z",
+        "is_superuser": true,
+        "username": "iker",
+        "first_name": "",
+        "last_name": "",
+        "email": "sounton@gmail.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2016-05-17T12:00:17.605Z",
+        "residence": "",
+        "phone": "",
+        "groups": [],
+        "user_permissions": []
+    }
+}]

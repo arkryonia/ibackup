@@ -1,0 +1,53 @@
+{% extends "cicanon/theme/base_admin.html" %}
+{% load staticfiles i18n %}
+
+{% block title %}
+
+	{% if perms.users.is_commercial %}
+		{% trans "List Category" %}
+	{% else %}
+		{% trans "Action Denied!" %}
+	{% endif %}
+
+{% endblock title %}
+
+{% block content %}
+
+	{% if perms.users.is_commercial %}
+
+		{% for c in cats %}
+
+			<div>
+				{% empty %}
+				{% trans "Sorry! No category available." %}
+			</div>
+
+		{% endfor %}
+
+			<div class="dataTable_wrapper">
+			  <p class="text-right">
+			    <a href={% url 'cicanon:create-cat' %} class="btn btn-primary">{% trans "Create Category" %}</a>
+			  </p>
+			  <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+			      <thead>
+			          <tr>
+			              <th>{% trans "Categories" %}</th>
+			          </tr>
+			      </thead>
+			      <tbody>
+			        {% for c in cats  %}
+			          <tr class="odd gradeX">
+			              <td>{{ c.name }}</td>
+			              <td class="text-center"><a href={% url 'cicanon:update-cat' c.slug %}><i class="fa fa-edit"></i></a></td>
+			          </tr>
+			        {% endfor %}
+			      </tbody>
+			  </table>
+			</div>
+
+
+	{% else %}
+		<span class="em">{% trans "I'm afraid you're kidding! Action Denied!" %}</span>
+	{% endif %}
+
+{% endblock content %}

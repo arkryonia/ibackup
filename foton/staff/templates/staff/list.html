@@ -1,0 +1,83 @@
+{% extends "theme/backend/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Staff Members" %}{% endblock title %}
+
+{% block content %}
+<div class="dataTable_wrapper">
+  <p class="text-right">
+    <a href={% url 'staff:add-scolar' %} class="btn btn-primary">{% trans "Add Scolar " %}</a>
+    <a href={% url 'staff:add-commercial' %} class="btn btn-primary">{% trans "Add Commercial " %}</a>
+  </p>
+  <h3>{% trans 'Scolarity Members List' %}</h3>
+  <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+      <thead>
+          <tr>
+              <th>{% trans "Name" %}</th>
+              <th>{% trans "Email" %}</th>
+              <th>{% trans "Phone" %}</th>
+              <th>{% trans "Residence" %}</th>
+          </tr>
+      </thead>
+      <tbody>
+        {% for scolar in scolars  %}
+          <tr class="odd gradeX">
+              <td>{{ scolar.get_complete_name }} </td>
+              <td>{{ scolar.email }}</td>
+              <td>{{ scolar.phone }} </td>
+              <td class="center">{{ scolar.residence }}</td>
+              <td class="text-center">
+                <a href={% url 'staff:update-scolar' scolar.pk %}><i class="fa fa-edit fa-fw"></i>  </a>
+              </td>
+              <td class="text-center">
+                {% if scolar.is_active %}
+                    <a class="text-center" href="{% url "staff:scolar-activate" scolar.pk %}"><i class="fa fa-user fa-fw"></i></a>
+                {% else %}
+                  <a class="text-danger" href="{% url "staff:scolar-activate" scolar.pk %}"><i class="fa fa-user-times fa-fw"></i></a>
+                {% endif %}
+              </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+  </table>
+
+  <br>
+
+  <h3>{% trans 'Commercials List' %}</h3>
+
+
+  <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+      <thead>
+          <tr>
+              <th>{% trans "Name" %}</th>
+              <th>{% trans "Email" %}</th>
+              <th>{% trans "Phone" %}</th>
+              <th>{% trans "Residence" %}</th>
+          </tr>
+      </thead>
+      <tbody>
+        {% for commercial in commercials  %}
+          <tr class="odd gradeX">
+              <td>{{ commercial.get_complete_name }} </td>
+              <td>{{ commercial.email }}</td>
+              <td>{{ commercial.phone }} </td>
+              <td class="center">{{ commercial.residence }}</td>
+              <td class="text-center">
+              <a href={% url 'staff:update-commercial' commercial.pk %}><i class="fa fa-edit fa-fw"></i>  </a>
+              </td>
+              <td class="text-center">
+                {% if commercial.is_active %}
+                    <a class="text-center" href="{% url "staff:activate" commercial.pk %}"><i class="fa fa-user fa-fw"></i></a>
+                {% else %}
+                  <a class="text-danger text-center" href="{% url "staff:activate" commercial.pk %}"><i class="fa fa-user-times fa-fw"></i></a>
+                {% endif %}
+              </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+  </table>
+  <p class = "text-right">
+    <a href={% url 'staff:list-year' %} class="btn btn-primary">{% trans "Academic Year" %}</a>
+  </p>
+</div>
+{% endblock content %}

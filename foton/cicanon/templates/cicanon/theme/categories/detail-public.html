@@ -1,0 +1,15 @@
+{% extends "cicanon/theme/base_public.html" %}
+{% load staticfiles i18n %}
+
+
+{% block maintitle %}{% trans "List of " %}{{ category.name }}{% trans " Posts" %}{% endblock maintitle %}
+
+{% block content %}
+
+{% for p in posts  %}
+
+  <h4><a href="{% url "cicanon:public-detail-post" p.slug %}" >{{ p.title }}</a></h4>
+
+{% endfor %}
+
+{% endblock content %}

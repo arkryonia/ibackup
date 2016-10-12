@@ -1,0 +1,55 @@
+{% extends "theme/default.html" %}
+{% load i18n thumbnail %}
+
+{% block title %}E-Journal{% endblock title %}
+{% block content %}
+    <h2>{% trans "Our Scientific Journal" %}</h2>
+    
+    {% for magasine in magasines %}
+    	<div class="col-md-12 text-justify">
+    		<hr>
+    		<h4>{{magasine.title}}</h4>
+    		<div class="col-md-3">
+    			{% thumbnail magasine.image 150x100 crop as thumb %}
+        		<img src="{{ thumb.url }}" width="{{ thumb.width }}" height="{{ thumb.height }}" class="img-responsive thumbnail" alt="{{ magasine.title}}" />
+    		</div>
+    		<div class="col-md-9">
+    			<p>
+                    {% autoescape off %}
+                        {{magasine.abstract | truncatewords:40}} 
+                    {% endautoescape %}     
+                    <a href="{% url "ejournal:detail" magasine.pk %}"> {% trans "Read More" %} </a>
+                </p>
+    			
+    		</div>
+    	</div>
+    {% endfor %}
+
+    <div class="">
+        <span class="">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="">
+                Page {{ page_obj.number }} of {{ paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+            {% endif %}
+        </span>
+    </div>
+{% endblock content %}
+
+{% block aside %}
+	<div class="journal">
+		<h4> {% trans "Recent Publications" %} </h4>
+		<hr>
+		<div class="list">
+			{% for mag in mags %}
+				<a href="{% url "ejournal:detail" mag.pk %}" title=""> {{mag.title}} </a><br>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock aside %}

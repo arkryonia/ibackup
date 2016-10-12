@@ -1,0 +1,23 @@
+{% extends "cicanon/theme/base_public.html" %}
+{% load staticfiles i18n %}
+
+{% block maintitle %}
+	{% trans "Categories List" %}
+{% endblock maintitle %}
+
+{% block content %}
+
+		<hr>
+		{% for c in cats  %}
+			<div class="mbs">
+				<a href={% url "cicanon:cat-post-list" c.slug %}>{{ c.name }}</a>
+		 </div>
+			{% empty %}
+				<div class="push">
+					{% trans "Sorry! No Post available." %}
+				</div>
+
+		{% endfor %}
+
+
+{% endblock content %}

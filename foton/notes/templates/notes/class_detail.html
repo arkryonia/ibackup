@@ -1,0 +1,15 @@
+{% extends "notes/class_list.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Students list" %}{% endblock title %}
+{% block maintitle %} {% trans "Students list" %} {% endblock maintitle %}
+{% block content %}
+	<hr>
+    <div class="list-group">
+    {% for student in registers%}
+		<a href="{% url "notes:notes" student.pk %}" class="list-group-item col-md-4 "> {{student.student.first_name}} {{student.student.last_name}} </a>
+    {% empty %}
+    	<p> Any student in this Class </p>
+    {% endfor %}
+	</div>
+{% endblock content %}

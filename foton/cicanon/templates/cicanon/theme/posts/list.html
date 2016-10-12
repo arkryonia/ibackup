@@ -1,0 +1,73 @@
+{% extends "cicanon/theme/base_admin.html" %}
+{% load staticfiles i18n %}
+
+{% block title %}
+
+	{% if perms.users.is_commercial %}
+		{% trans "List Post" %}
+	{% else %}
+		{% trans "Action Denied!" %}
+	{% endif %}
+
+{% endblock title %}
+
+{% block content %}
+	{% if perms.users.is_commercial %}
+
+	<p class="text-right">
+		<a href={% url 'cicanon:create-post' %} class="btn btn-primary">{% trans "Create Post" %}</a>
+	</p>
+
+	{% for p in posts  %}
+
+		<div class="">
+			{% empty %}
+			{% trans "Sorry! No Post available." %}
+		</div>
+	{% endfor %}
+
+		<div class="dataTable_wrapper">
+			<table class="table table-striped table-bordered table-hover" id="dataTables-example">
+					<thead>
+							<tr>
+									<th>{% trans "Posts" %}</th>
+									<th>{% trans "Categories" %}</th>
+									<th>{% trans "Activation Statut" %}</th>
+							</tr>
+					</thead>
+					{% for p in posts  %}
+					<tbody>
+							<tr class="odd gradeX">
+									<td>{{ p.title }}</td>
+									<td>{{ p.category }}</td>
+									<td>{{ p.pub }}</td>
+									<td class="text-center"><a href={% url 'cicanon:detail-post' p.slug %}><i class="fa fa-plus"></i> Detail</a></td>
+									<td class="text-center"><a href={% url 'cicanon:update-post' p.slug %}><i class="fa fa-edit"></i></a></td>
+							</tr>
+					</tbody>
+					{% endfor %}
+			</table>
+		</div>
+
+
+	<!-- div class="pagination">
+				<span class="step-links">
+						{% if page_obj.has_previous %}
+								<a href="?page={{ page_obj.previous_page_number }}">previous</a>
+						{% endif %}
+
+						<span class="current">
+								Page {{ page_obj.number }} of {{ paginator.num_pages }}.
+						</span>
+
+						{% if page_obj.has_next %}
+								<a href="?page={{ page_obj.next_page_number }}">next</a>
+						{% endif %}
+				</span>
+		</div -->
+
+	{% else %}
+		<span class="em">{% trans "I'm afraid you're kidding! Action Denied!" %}</span>
+	{% endif %}
+
+{% endblock content %}

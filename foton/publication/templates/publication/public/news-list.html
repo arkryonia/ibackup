@@ -1,0 +1,33 @@
+{% extends "theme/default.html" %}
+{% load i18n thumbnail staticfiles %}
+
+{% block maintitle %}{% trans "Irgib News" %}{% endblock maintitle %}
+{% block title %}{% trans "News" %}{% endblock title %}
+
+{% block content %}
+<hr>
+
+{% for pub in publications %}
+
+    {% if pub.category == 'news' %}
+        <div class="row items">
+          <div class="pull-left">
+            {% thumbnail pub.picture 220x150 crop as pic %}
+              <img src="{% static pic.url %}" alt="{{ pub.title }}" class="mrs">
+          </div>
+          <div class="text-justify">
+            <h4>{{ pub.title }}</h4>
+            {% autoescape off %}
+              {{ pub.content|truncatechars_html:300 }}
+            {% endautoescape %}
+            <div class="myBtn">
+              <a href= {% url 'publication:public-detail-publication' pub.pk %} >{% trans "Learn more" %}</a>
+            </div>
+          </div>
+        </div>
+    {% endif %}
+
+{% endfor %}
+
+
+{% endblock content %}

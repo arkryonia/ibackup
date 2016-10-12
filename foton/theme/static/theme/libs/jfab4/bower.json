@@ -1,0 +1,30 @@
+{
+  "name": "jfab4",
+  "authors": [
+    "Kevin Clarens"
+  ],
+  "description": "Package JQuery, Font-Awesome and  Bootstrap 4",
+  "main": "",
+  "keywords": [
+    "JQuery",
+    "Font-Awesome",
+    "Bootstrap",
+    "4",
+    "package"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "package.json"
+  ],
+  "dependencies": {
+    "font-awesome": "^4.6.0",
+    "bootstrap": "v4.0.0-alpha.2",
+    "jquery": "^2.2.3"
+  }
+}

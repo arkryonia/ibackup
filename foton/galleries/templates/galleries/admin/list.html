@@ -1,0 +1,28 @@
+{% extends "theme/backend/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Galleries List" %}{% endblock title %}
+
+{% block content %}
+<div class="dataTable_wrapper">
+  <p class="text-right">
+      <a href={% url 'galleries:create-gallery' %} class="btn btn-primary">{% trans "New Gallery" %}</a>
+  </p>
+  <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+      <thead>
+          <tr>
+              <th>{% trans "Galleries" %}</th>
+          </tr>
+      </thead>
+      <tbody>
+        {% for gallery in galleries  %}
+          <tr class="odd gradeX">
+              <td>{{ gallery.name }}</td>
+              <td class="text-center"><a href={% url 'galleries:admin-detail-gallery' gallery.slug %} ><i class="fa fa-list fa-fw"></i></a></td>
+              <td class="text-center"><a href={% url 'galleries:update-gallery' gallery.slug %}><i class="fa fa-edit"></i></a></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+  </table>
+</div>
+{% endblock content %}

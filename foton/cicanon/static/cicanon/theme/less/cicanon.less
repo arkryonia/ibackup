@@ -1,0 +1,90 @@
+/* As hex codes */
+
+@color-primary-0: #749C77;	/* Main Primary color */
+@color-primary-1: #F7F9F7;
+@color-primary-2: #B5CDB7;
+@color-primary-3: #467249;
+@color-primary-4: #1C491F;
+
+
+
+/* As RGBa codes */
+
+@rgba-primary-0: rgba(116,156,119,1);	/* Main Primary color */
+@rgba-primary-1: rgba(247,249,247,1);
+@rgba-primary-2: rgba(181,205,183,1);
+@rgba-primary-3: rgba( 70,114, 73,1);
+@rgba-primary-4: rgba( 28, 73, 31,1);
+
+body{
+	background-color: @color-primary-2;
+}
+.side{
+	min-height: 655px;	
+}
+
+.ls{
+	background-color: @color-primary-4;
+	color: white;
+	nav{
+		a{
+			color: #fff;
+			text-decoration: none;
+			text-transform: uppercase;
+			&:hover{
+				text-decoration: underline;
+			}
+		}
+	}
+}
+
+.rs{
+	background-color: @color-primary-2;
+
+	.main{		
+		min-height: 580px;		
+		background-color: @color-primary-1;
+		box-shadow: 1px #fff;
+		.pt{
+			text-transform: capitalize;
+			color: @color-primary-3;
+		}
+	}
+}
+.main-body{
+	p{
+		text-align: justify;
+	}
+}
+
+.btn{
+	a{
+		text-decoration: none;
+		text-transform: capitalize;
+	}
+}
+
+.form{
+	label, input[type=submit], input{
+		width: 100%;
+		margin-bottom: 1em;
+	}
+	input{
+		padding: .5em;	
+	}
+}
+
+.menu{
+	ul{
+		li{
+			list-style: none;
+		}
+	}
+	a{
+		// font-size: 1.3em;
+	}
+}
+
+.em{
+	color: orange;
+}

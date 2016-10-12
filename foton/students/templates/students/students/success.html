@@ -1,0 +1,15 @@
+{% extends "theme/default.html" %}
+{% load i18n %}
+{% block title %} {% trans "Admission Succes" %} {% endblock title %}
+{% block content %}
+
+	<div>
+		<h3>{% trans "Admission Success" %}</h3>
+		<p>
+			{% trans "Félicitation Mr" %} <i>{{student.first_name}}{{student.last_name}} </i>{% trans "Vous venez de vous inscrire avec succès nous vous prions de bien vouloir imprimé le formulaire d'inscription afin de finaliser votre inscription  " %}
+		</p>
+		<p class="text-right">
+			<a href="{% url "students:admission_form" student.pk %}" class="btn btn-primary">{% trans " Print Admission Form" %}</a>
+		</p>
+	</div>
+{% endblock content %}

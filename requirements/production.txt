@@ -1,0 +1,9 @@
+-r base.txt
+
+whitenoise==2.0.6
+dj-static==0.0.6
+gunicorn==19.4.5
+
+# Mailgun Support
+# ---------------
+django-mailgun==0.8.0

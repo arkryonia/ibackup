@@ -1,0 +1,36 @@
+{% extends "theme/backend/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ domain.name|capfirst }}{% endblock title %}
+
+{% block content %}
+<div class="dataTable_wrapper">
+  <p class="text-right">
+    <a href={% url 'programs:option-add' domain.pk %} class="btn btn-primary"> {% trans "Add Option" %}</a>
+  </p>
+
+  <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+      <thead>
+          <tr>
+              <th>{% trans "Name" %}</th>
+          </tr>
+      </thead>
+      <tbody>
+        {% for option in options  %}
+          <tr class="odd gradeX">
+              <td>{{ option.name }} </td>
+              <td class="center">
+                <a href={% url 'programs:option-update' option.domain.id option.id %}><i class="fa fa-edit fa-fw"></i>  </a>
+              </td>
+              <td class="center">
+                <a href={% url 'programs:speciality-list' option.domain.id option.id %}><i class="fa fa-list fa-fw"></i>  </a>
+              </td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td class="text-warning">No Domain available</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+  </table>
+{% endblock content %}

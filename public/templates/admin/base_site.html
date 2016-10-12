@@ -1,0 +1,13 @@
+{% extends "admin/base.html" %}
+
+{% block extrahead %}
+  
+{% endblock %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Lectorium Rosicrucianum Benin') }}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">Digisity Administration</a></h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "theme/default.html" %}
+{% load staticfiles i18n %}
+
+{% block title %}{% trans "Planning" %}{% endblock title %}
+
+{% block maintitle %}{% trans "Plannings list" %}{% endblock maintitle %}
+
+{% block content %}
+<div class="dataTable_wrapper">
+  <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+      <thead>
+          <tr>
+              <th>{% trans "Classes" %}</th>
+          </tr>
+      </thead>
+      <tbody>
+        {% for planning in plannings  %}
+          <tr class="odd gradeX">
+              <td>{{ planning }}</td>
+              <td class="text-center"><a href={% url 'planning:public-detail-planning' planning.pk %} ><i class="fa fa-plus fa-fw"></i> Planning</a></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+  </table>
+</div>
+{% endblock content %}

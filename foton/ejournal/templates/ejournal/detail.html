@@ -1,0 +1,26 @@
+{% extends "theme/default.html" %}
+{% load i18n thumbnail%}
+
+{% block title %}{{magasine.title}}{% endblock title %}
+{% block content %}
+    <div class="text-justify">
+        <h4> {{magasine.title}}</h4>
+        {% thumbnail magasine.image 540x280 crop as thumb %}
+        <img src="{{ thumb.url }}" width="{{ thumb.width }}" height="{{ thumb.height }}" class="img-responsive thumbnail" alt="{{ magasine.title}}" />
+        <p>
+            {% autoescape off %}
+                {{magasine.abstract}}
+            {% endautoescape %}     
+        </p>
+        
+        {% for s in sommaries %}
+            <h4> Page {{s.page}}: {{s.title}} {% trans "By" %} {{s.author}}  </h4>
+        {% endfor %}
+
+        {% if magasine.free == True %}
+        	<a href="{{ magasine.file.url }}" target="_blank" > Download <i class="fa fa-download"></i> </a>
+        {% endif %}
+    </div>
+   
+   
+{% endblock content %}

@@ -1,0 +1,71 @@
+{% extends "theme/base.html" %}
+{% load i18n %}
+
+{% block title %}Contact{% endblock title %}
+{% block main %}
+  <div class="container">
+      <h2>{% trans "Contact Irgib Africa University" %}</h2>
+      <h4>{% trans "General Contact Informations" %}</h4>
+      <hr>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="row contactSection">
+          <br>
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-4">
+                <i class="fa fa-phone fa-4x"></i>
+              </div>
+              <div class="col-md-8">
+                <h5>{% trans "Phones" %}</h5>
+                <div>
+                  {% trans "+229 67 29 64 64" %} <br>
+                  {% trans "+229 68 69 41 42" %} <br>
+                  {% trans "+229 21 33 31 78" %}
+                </div>
+              </div>
+            </div><br>
+          </div>
+          <div class="col-md-12">
+            <br>
+            <div class="row">
+              <div class="col-md-4">
+                <i class="fa fa-envelope fa-4x"></i>
+              </div>
+              <div class="col-md-8">
+                <h5>{% trans "Addresses" %}</h5>
+                <div>
+                  {% trans "07BP 231 Cotonou" %} <br>
+                  {% trans "contact@irgibafrica.university" %} <br>
+                </div>
+              </div>
+            </div><br>
+          </div>
+          <div class="col-md-12">
+            <br>
+            <div class="row">
+              <div class="col-md-4">
+                <i class="fa fa-home fa-4x"></i>
+              </div>
+              <div class="col-md-8">
+                <h5>{%trans "Location" %}</h5>
+                <div>
+                  {% trans "Derrière Immeuble Air France" %} <br>
+                  {% trans "Route de l'Aéroport de Cotonou" %} <br>
+                </div>
+              </div>
+            </div><br>
+            </div>
+        </div>
+        <div class="social">
+          <a href="https://www.twitter.com/IrgibAfrica" class="btn btn-block btn-primary"><i class="fa fa-twitter"></i> {% trans "follow on twitter" %}</a>
+          <a href="https://www.facebook.com/IrgibAfricaUniversity/" class="btn btn-block btn-primary"><i class="fa fa-facebook"></i> {% trans "follow on facebook" %}</a>
+        </div>
+      </div>
+      <div  id="map-container" class="col-md-8" style="height:400px; margin-bottom:30px;">
+
+      </div>
+    </div>
+  </div>
+
+{% endblock main %}

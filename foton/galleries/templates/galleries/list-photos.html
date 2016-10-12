@@ -1,0 +1,68 @@
+{% extends "theme/base.html" %}
+
+{% load staticfiles thumbnail i18n %}
+
+{% block seo %}
+	{# stuff: define your seo from here #}
+
+{% endblock seo %}
+
+{% block title %}{% trans "Photos" %}{% endblock title %}
+
+{% block main %}
+<section class="main-section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-7 mygallery">
+				<h3 class="mainTitle">{{ gallery.name }}</h3>
+				<hr class="noSpace">
+				<p>
+					{{ gallery.description }}
+				</p>
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div id="jssor_1" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 960px; height: 480px; overflow: hidden; visibility: hidden; background-color: #24262e;">
+					<!-- Loading Screen -->
+					<div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
+							<div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
+							<div style="position:absolute;display:block;background:url('img/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
+					</div>
+					<div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 240px; width: 720px; height: 480px; overflow: hidden;">
+							{% for photo in photos %}
+							<div data-p="150.00" style="display: none;">
+									{% thumbnail photo.image 1000x600 crop as pic %}
+									{% thumbnail photo.image 80x50 crop as p %}
+									<a href={% url 'galleries:detail-photo' photo.gallery.slug photo.pk %}><img data-u="image" src="{% static pic.url %}" /></a>									
+									<img data-u="thumb" src="{% static p.url %}" />
+							</div>
+							{% endfor %}
+							<a data-u="add" href="http://www.jssor.com" style="display:none">Jssor Slider</a>
+
+					</div>
+					<!-- Thumbnail Navigator -->
+					<div data-u="thumbnavigator" class="jssort01-99-66" style="position:absolute;left:0px;top:0px;width:240px;height:480px;" data-autocenter="2">
+							<!-- Thumbnail Item Skin Begin -->
+							<div data-u="slides" style="cursor: default;">
+									<div data-u="prototype" class="p">
+											<div class="w">
+													<div data-u="thumbnailtemplate" class="t"></div>
+											</div>
+											<div class="c"></div>
+									</div>
+							</div>
+							<!-- Thumbnail Item Skin End -->
+					</div>
+					<!-- Arrow Navigator -->
+					<span data-u="arrowleft" class="jssora05l" style="top:158px;left:248px;width:40px;height:40px;" data-autocenter="2"></span>
+					<span data-u="arrowright" class="jssora05r" style="top:158px;right:8px;width:40px;height:40px;" data-autocenter="2"></span>
+			</div>
+		</div>
+		<!-- #endregion Jssor Slider End -->
+	</div>
+</section>
+{% endblock main %}
+
+</body>
+</html>

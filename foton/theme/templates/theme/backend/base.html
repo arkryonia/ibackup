@@ -1,0 +1,200 @@
+{% load staticfiles %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Backend of IRGIB Website">
+    <meta name="usersor" content="Foton IT">
+
+    <title>IRGIB AFRICA WEBSITE BACKEND</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href={% static "theme/libs/bootstrap/dist/css/bootstrap.min.css" %} rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href={% static "theme/libs/metisMenu/dist/metisMenu.min.css" %} rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href={% static "theme/libs/startbootstrap-sb-admin-2/dist/css/sb-admin-2.css" %} rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href={% static "theme/libs/font-awesome/css/font-awesome.min.css" %} rel="stylesheet" type="text/css">
+
+    <link href={% static "theme/css/backend.css" %} rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+{% block body %}
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">{% trans "Toggle navigation" %}</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="">IRGIB AFRICA ADMIN 0.2.3</a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="{% url "users:backend-pass" %}"><i class="fa fa-gear fa-fw"></i> {% trans "Update password" %}</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                          <form method="post" action="{% url 'account_logout' %}">
+                            {% csrf_token %}
+                            {% if redirect_field_value %}
+                            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                            {% endif %}
+                            <div class="logout">
+                              <i class="fa fa-sign-out"></i><button type="submit">{% trans 'Sign Out' %}</button>
+                            </div>
+                          </form>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        {% if perms.users.is_admin or perms.users.is_scolar or perms.users.is_commercial or perms.users.is_editor or perms.users.is_author %}
+                          <li>
+                            <a href= {% url 'staff:home' %} ><i class="fa fa-home fa-fw"></i> {% trans "Home" %}</a>
+                          </li>
+                        {% endif %}
+
+                        {% if perms.users.is_admin %}
+                          <li>
+                            <a href={% url "staff:list-staff" %} ><i class="fa fa-group fa-fw"></i> {% trans "Staff" %}<span class="fa arrow"></span></a>
+                          </li>
+                        {% endif %}
+
+                        {% if perms.users.is_scolar %}
+
+                          <li><a href={% url 'programs:domain-list' %}><i class="fa fa-map-o fa-fw"></i> {% trans "Programs" %}<span class="fa arrow"></span></a></li>
+
+                          <li>
+                            <a href="#" %}><i class="fa fa-graduation-cap fa-fw"></i> {% trans "Degrees" %}<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                              <li>
+                                  <a href={% url 'degrees:bachelor-list' %}>{% trans "Bachelors" %} </a>
+                              </li>
+                              <li>
+                                  <a href={% url 'degrees:masters-list' %} }>{% trans "Masters" %}</a>
+                              </li>
+                              <li>
+                                  <a href="#">{% trans "Doctorates" %}</a>
+                              </li>
+                            </ul>
+                          </li>
+                          <li><a href=" {% url 'planning:list-planning' %} "><i class="fa fa-calendar-plus-o fa-fw"></i> {% trans "Planning" %}<span class="fa arrow"></span></a></li>
+                          <li><a href="#"><i class="fa fa-check-square-o fa-fw"></i> {% trans "Registration" %}<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                              <li>
+                                  <a href={% url 'students:list-classes' %}>{% trans "Classes" %} </a>
+                              </li>
+                              <li>
+                                  <a href="{% url "students:list-class" %}" >{% trans "Students" %}</a>
+                              </li>
+                          </ul>
+                          </li>
+                          <li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> {% trans "Exams Result" %}<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                              <li>
+                                  <a href={% url 'notes:list-classes' %}>{% trans "Notes" %} </a>
+                              </li>
+                              <li>
+                                  <a href={% url 'notes:list-course' %}>{% trans "Courses" %}</a>
+                              </li>
+                            </ul>
+                          </li>
+                        {% endif %}
+
+                        {% if perms.users.is_commercial %}
+                          <li><a href="{% url "presentation:list-about" %}"><i class="fa fa-bank fa-fw"></i> {% trans "Presentation" %}<span class="fa arrow"></span></a></li>
+
+                          <li>
+                            <a href="#"><i class="fa fa-newspaper-o fa-fw"></i> {% trans "Publications" %}<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                              <li><a href= {% url 'cicanon:list-posts' %}><i class="glyphicon glyphicon-list-alt"></i> {% trans "Blog Posts" %}<span class="fa arrow"></span></a></li>
+                              <li><a href= {% url 'cicanon:list-cats' %}><i class="fa fa-list-alt fa-fw"></i> {% trans "Blog Categories" %}<span class="fa arrow"></span></a></li>
+                              <li><a href= {% url 'publication:list-publication' %}><i class="fa fa-list-alt fa-fw"></i> {% trans "Events and News" %}<span class="fa arrow"></span></a></li>
+                              <li><a href= {% url "ejournal:list-magasine" %} ><i class="fa fa-book fa-fw"></i> {% trans "Sc. Journal" %}<span class="fa arrow"></span></a></li>
+                              <li><a href= {% url "galleries:admin-list-galleries" %}><i class="fa fa-book fa-fw"></i> {% trans "Galleries" %}<span class="fa arrow"></span></a></li>
+                            </ul>
+                          </li>
+                        {% endif %}
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h3 class="page-header">{% block title %}{% trans "IRGIB AFRICA ADMINISTRATION" %}{% endblock title %}</h3>
+                        {% block content %}{% endblock content %}
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+{% endblock body %}
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src={% static "theme/libs/jquery/dist/jquery.min.js" %}></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src={% static "theme/libs/bootstrap/dist/js/bootstrap.min.js" %}></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src={% static "theme/libs/metisMenu/dist/metisMenu.min.js" %}></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src={% static "theme/libs/startbootstrap-sb-admin-2/dist/js/sb-admin-2.js" %}></script>
+    <script src="{% static "cicanon/theme/js/tinymce/tinymce.min.js" %}"></script>
+    <script>
+      tinymce.init(
+        {selector:'textarea'});   
+    </script>
+
+</body>
+
+</html>

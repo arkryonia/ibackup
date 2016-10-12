@@ -1,0 +1,14 @@
+{% extends "theme/backend/form.html" %}
+{% load staticfiles i18n %}
+
+{% block title %}
+
+	{% if perms.users.is_commercial %}
+		{% trans "Create Category" %}
+	{% else %}
+		{% trans "Action Denied!" %}
+	{% endif %}
+
+{% endblock title %}
+
+{% block value %}{% trans "Create Category" %}{% endblock value %}

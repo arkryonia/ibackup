@@ -1,0 +1,89 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-08-24 17:12+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: models.py:17
+msgid "Select a category"
+msgstr ""
+
+#: models.py:18 templates/publication/public/news-list.html.py:5
+msgid "News"
+msgstr ""
+
+#: models.py:19
+msgid "Event"
+msgstr ""
+
+#: templates/publication/admin/create.html:5
+#: templates/publication/admin/create.html:6
+msgid "Create Publication"
+msgstr ""
+
+#: templates/publication/admin/detail.html:22
+msgid "Edit"
+msgstr ""
+
+#: templates/publication/admin/detail.html:28
+msgid "I'm afraid you're kidding! Action Denied!"
+msgstr ""
+
+#: templates/publication/admin/list.html:4
+msgid "Publications List"
+msgstr ""
+
+#: templates/publication/admin/list.html:9
+msgid "New Publication"
+msgstr ""
+
+#: templates/publication/admin/list.html:14
+msgid "Titles"
+msgstr ""
+
+#: templates/publication/admin/list.html:15
+msgid "Categoies"
+msgstr ""
+
+#: templates/publication/admin/update.html:4
+#: templates/publication/admin/update.html:5
+msgid "Update Publication"
+msgstr ""
+
+#: templates/publication/public/detail.html:4
+msgid "Details "
+msgstr ""
+
+#: templates/publication/public/detail.html:19
+msgid "Added the "
+msgstr ""
+
+#: templates/publication/public/events-list.html:4
+msgid "Irgib Events"
+msgstr ""
+
+#: templates/publication/public/events-list.html:5
+msgid "Events"
+msgstr ""
+
+#: templates/publication/public/events-list.html:22
+#: templates/publication/public/news-list.html:22
+msgid "Learn more"
+msgstr ""
+
+#: templates/publication/public/news-list.html:4
+msgid "Irgib News"
+msgstr ""

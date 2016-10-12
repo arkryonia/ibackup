@@ -1,0 +1,41 @@
+{% extends "cicanon/theme/base_public.html" %}
+{% load staticfiles i18n %}
+
+{% block maintitle %}
+	{{ post.title }}
+{% endblock maintitle %}
+
+
+{% block content %}
+<hr>
+{% if post %}
+
+	<p class="mbl">
+	<img src="{{ post.picture.url }}" alt="{{ post.title }}">
+	</p>
+
+{% endif %}
+
+<div class="text-justify">
+	{% autoescape off %}
+
+		{{post.content}}
+
+	{% endautoescape %}
+</div>
+
+<p>
+	<div class="info">
+		<i class="fa fa-calendar"> {{ post.created }}</i>
+		<i class="fa fa-user"> {{ post.author }}</i>
+	</div>
+</p>
+
+	<hr>
+
+	{% include "cicanon/theme/inc/disqus.html" %}
+
+{% endblock content %}
+{% block aside %}
+
+{% endblock aside %}

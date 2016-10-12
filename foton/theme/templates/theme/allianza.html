@@ -1,0 +1,50 @@
+{% extends "theme/default.html" %}
+{% load staticfiles i18n %}
+{% block title %}{% trans "E-learning" %}{% endblock title %}
+{% block maintitle %}  {% trans "Allianza" %}  {% endblock maintitle %}
+{% block content %}
+<section class="blog">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 col-md-8">
+            	<img src="{% static "theme/img/allianza.jpg" %}" alt="" class="img-responsive img-thumbnail">
+                <hr>
+                <p>
+             		ALLIANZA est la plateforme d'E-learning d’IRGIB-Africa et de ses partenaires : Universités, Centres de formatons professionnelles et centres de recherches. Elle offre une gamme de formation variée multidisciplinaire qui se regroupe en trois catégories : MOOC, CLMD et FAC, Bachelor, Master et Doctorat.
+                </p>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                    <h3 class="panel-title">MOOC</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>
+                            Les MOOCs (Massive Oline Open Courses) sont des cours en lignes ouverts et massifs. A cet effet, ils sont gratuits et certifiant. Les MOOCs que nous proposons sont des modules de cours choisis parmi les multitudes qui couvrent nos domaines de compétences : Génies de Procédés de Productions Industrielles, Génies des Technologies de l’Information et de la communication, Génie des Procédés d’Expertises et d’Analyses, Génie du Merchandising, Génie des Procédés De Maintenance et de Fabrication des Equipements Industriels.
+                        </p>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                    <h3 class="panel-title">CLMD</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>
+                            Les CLMD (Classique Licence Master et Doctorat) constituent l’ensemble de formations en présentiel que IRGIB-Africa propose et dispense à distance par le truchement de sa plate-forme Allianza. Vous trouverez un peu plus loin une liste des formations disponibles.
+                        </p>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                    <h3 class="panel-title">FAC</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>
+                           Les FAC (Formations A la Carte) sont des formations personnalisées. L’étudiant compte tenu de ses projets peut choisir de suivre une FAC afin d’être rapidement opérationnel. Les FAC concernent les professionnels
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock content %}

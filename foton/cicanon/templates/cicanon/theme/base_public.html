@@ -1,0 +1,19 @@
+{% extends "theme/default.html" %}
+{% load staticfiles i18n %}
+
+{% block title %}{% trans "Blog" %}{% endblock title %}
+
+{% block aside %}
+	<div class="clo-xs-12 col-sm-12col-md-4 aside">
+		<div class="journal">
+			<h5>{% trans "CATEGORIES" %}</h5>
+			<hr>
+			<div class="list">
+
+				{% for p in posts %}
+				    <a href="{% url "cicanon:cat-post-list" p.category.slug %}">{{ p.category }}</a>
+				{% endfor %}
+
+			</div>
+		</div>
+{% endblock aside %}

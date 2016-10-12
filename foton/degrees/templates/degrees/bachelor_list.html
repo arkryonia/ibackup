@@ -1,0 +1,24 @@
+{% extends "theme/default.html" %}
+{% load i18n %}
+{% block title %}{% trans "Program Bachelor" %}{% endblock title %}
+{% block maintitle %}{% trans "Program Bachelor" %}{% endblock maintitle %}
+{% block content %}
+    {% for bachelor in bachelors %}
+        {% ifchanged %}
+            <hr/> <br/>
+                <div class="list-group-item default">
+                	<p class="label label-success">{{ bachelor.option.domain.name }} </p>
+                </div>
+        {% endifchanged %}
+        <div class="row well">
+            <div class="col-md-9 col-sm-8 col-xs-8 ">
+                {{ bachelor.option.name }}
+            </div>
+            <div class="col-md-3 col-sm-4 col-xs-4">
+                <a href={{ bachelor.pdf.url }} target="_blank">
+                 <button type="button" class="btn btn-success pull-right">Download</button>
+                </a>
+            </div>
+        </div>
+	{% endfor %}
+{% endblock content %}

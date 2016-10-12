@@ -1,0 +1,24 @@
+{% extends "theme/default.html" %}
+{% load i18n staticfiles thumbnail %}
+
+{% block title %}{% trans "Details " %}{{ publication.category }}{% endblock title %}
+
+{% block maintitle %}{{ publication.title }}{% endblock maintitle %}
+
+{% block content %}
+
+{% thumbnail publication.picture "750x300" crop="bottom" as pic %}
+  <div class="">
+    <img src="{% static pic.url %}" alt="{{ publication.title }}">
+  </div>
+  <br>
+  <p class="text-justify">
+    {% autoescape off %}
+      {{ publication.content }}
+    {% endautoescape %} 
+  </p>
+  <div class="mts">
+    <i>{% trans "Added the " %}{{ publication.created }}</i>
+  </div>
+
+{% endblock content %}

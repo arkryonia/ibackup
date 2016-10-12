@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  {% include "theme/inc/head.html" %}
+  <body class="login">
+    <div>
+      <div class="container">
+        <div class="row">
+          <div class="login_page col-md-4 col-md-offset-4">
+            <div class="panel panel-default">
+
+              <div class="panel-heading">
+                {% block actionTitle %}{% endblock actionTitle %}
+              </div>
+
+              <div class="panel-body">
+                {% block actionBody %}{% endblock actionBody %}
+              </div>
+            </div>
+            {% block other %}{% endblock other %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

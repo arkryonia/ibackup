@@ -1,0 +1,18 @@
+BBBBBBB BBBBBBBBBBBBBBBBBBB
+
+BBBB BBBB
+
+BBBBB BBBBBBBBBB gettext('Sign Up Closed') BBBBBBBB
+
+BBBBB BBBBBBB
+XXXX XXXXXXXXXXXXXXXXXX
+  XXXX XXXXXXXXXXXX
+    XXXX XXXXXXXXXXXXXXXXX
+        XXXX gettext('Sign Up Closed') XXXXX
+
+        XXX gettext('We are sorry, but the sign up is currently closed.') XXXX
+    XXXXXX
+  XXXXXX
+XXXXXX
+BBBBBBBB
+

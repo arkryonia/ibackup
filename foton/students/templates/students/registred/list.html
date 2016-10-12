@@ -1,0 +1,38 @@
+{% extends "theme/backend/base.html" %}
+{% load i18n %}
+
+{% block title %} {% trans "Students" %} {% endblock title %}
+{% block content %}
+<div class="dataTable_wrapper">
+ 	<table class="table table-striped table-bordered table-hover" id="dataTables-example">
+		<thead>
+			<tr>
+				<th>{% trans " Matricule " %}</th>
+				<th>{% trans " Students " %}</th>
+				<th>{% trans " Class " %}</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for registred in registreds %}  
+			<tr class="odd gradeX">
+				<td>{{ registred.matricule_number }}</td>
+				<td>{{ registred.student.first_name }} {{ registred.student.last_name }} </td>
+				<td>{{registred.clazz.name}} {{registred.clazz.level}} </td>
+				<td class="text-center"> <a href="{% url "students:update-registred" registred.pk %}"><i class="fa fa-edit fa-fw"></i></a> </td>
+				
+				<td class="text-center">
+					<a href="{% url "students:update-student" registred.student.pk  %}" ><i class="fa fa-list fa-fw"></i></a>
+				</td>
+				<td class="text-center">
+					{% if registred.student.is_active %}
+	                    <a class="text-center" href="{% url "students:activate" registred.student.pk %}"><i class="fa fa-user fa-fw"></i></a>
+	                {% else %}
+	                  <a class="text-danger text-center" href="{% url "students:activate" registred.student.pk %}"><i class="fa fa-user-times fa-fw"></i></a>
+	                {% endif %}
+				</td>
+			</tr>
+		{% endfor %}
+		</tbody>
+  	</table>
+</div>
+{% endblock content %}

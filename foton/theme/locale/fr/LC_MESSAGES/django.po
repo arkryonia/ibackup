@@ -1,0 +1,310 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-09-22 17:29+0100\n"
+"PO-Revision-Date: 2016-09-22 17:34+0014\n"
+"Last-Translator: b'  <>'\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Translated-Using: django-rosetta 0.7.11\n"
+
+#: templates/theme/allianza.html:3
+msgid "E-learning"
+msgstr "E-learning"
+
+#: templates/theme/allianza.html:4 templates/theme/base.html.py:89
+msgid "Allianza"
+msgstr "Allianza"
+
+#: templates/theme/backend/base.html:47
+msgid "Toggle navigation"
+msgstr "Mieux connaître Irgib Africa"
+
+#: templates/theme/backend/base.html:63
+msgid "Update password"
+msgstr "Changer le mot de passe"
+
+#: templates/theme/backend/base.html:73
+msgid "Sign Out"
+msgstr "se déconnecter"
+
+#: templates/theme/backend/base.html:89 templates/theme/base.html.py:85
+msgid "Home"
+msgstr "Accueil"
+
+#: templates/theme/backend/base.html:95
+msgid "Staff"
+msgstr "Staff"
+
+#: templates/theme/backend/base.html:101
+msgid "Programs"
+msgstr "Programmes"
+
+#: templates/theme/backend/base.html:104
+msgid "Degrees"
+msgstr "Niveaux"
+
+#: templates/theme/backend/base.html:107
+msgid "Bachelors"
+msgstr "Bachelors"
+
+#: templates/theme/backend/base.html:110
+msgid "Masters"
+msgstr "Masters"
+
+#: templates/theme/backend/base.html:113
+msgid "Doctorates"
+msgstr "Doctorat"
+
+#: templates/theme/backend/base.html:117
+msgid "Planning"
+msgstr "Emploi du Temps"
+
+#: templates/theme/backend/base.html:118
+msgid "Registration"
+msgstr "Inscription"
+
+#: templates/theme/backend/base.html:121
+msgid "Classes"
+msgstr "Classes"
+
+#: templates/theme/backend/base.html:124
+msgid "Students"
+msgstr "Etudiants"
+
+#: templates/theme/backend/base.html:128
+msgid "Exams Result"
+msgstr "Résultats d'Examens"
+
+#: templates/theme/backend/base.html:131
+msgid "Notes"
+msgstr "Notes"
+
+#: templates/theme/backend/base.html:134
+msgid "Courses"
+msgstr "Cours"
+
+#: templates/theme/backend/base.html:141 templates/theme/base.html.py:86
+msgid "Presentation"
+msgstr "Présentation"
+
+#: templates/theme/backend/base.html:144
+msgid "Publications"
+msgstr "Publications"
+
+#: templates/theme/backend/base.html:146
+msgid "Blog Posts"
+msgstr "Articles"
+
+#: templates/theme/backend/base.html:147
+msgid "Blog Categories"
+msgstr "Categories"
+
+#: templates/theme/backend/base.html:148
+msgid "Events and News"
+msgstr "Événement et Nouvelles"
+
+#: templates/theme/backend/base.html:149
+msgid "Sc. Journal"
+msgstr "Journal Sc."
+
+#: templates/theme/backend/base.html:150
+msgid "Galleries"
+msgstr "Galleries"
+
+#: templates/theme/backend/base.html:166
+msgid "IRGIB AFRICA ADMINISTRATION"
+msgstr "ADMINISTRATION "
+
+#: templates/theme/backend/home.html:7
+msgid "Welcome to IRGIB AFRICA Administration Site!"
+msgstr "Bienvenu sur le site d'Administration"
+
+#: templates/theme/backend/home.html:8
+msgid "You can start working right now."
+msgstr "Au travail!"
+
+#: templates/theme/base.html:32
+msgid "Welcome to IRGIB AFRICA. You are now connected as "
+msgstr "Bienvenue à IRGIB-AFRCA. Vous êtes connectez en tant que "
+
+#: templates/theme/base.html:39
+msgid "Logout "
+msgstr "Se Déconnecter"
+
+#: templates/theme/base.html:70
+msgid "Ok"
+msgstr "Ok"
+
+#: templates/theme/base.html:87
+msgid "Admission"
+msgstr "Inscription"
+
+#: templates/theme/base.html:88
+msgid "Results"
+msgstr "Résultats"
+
+#: templates/theme/base.html:94
+msgid "Bachelor"
+msgstr "Licence"
+
+#: templates/theme/base.html:95
+msgid "Master"
+msgstr "Master"
+
+#: templates/theme/base.html:96 templates/theme/base.html.py:97
+msgid "Doctorate"
+msgstr "Doctorat"
+
+#: templates/theme/base.html:119
+msgid "Gallery of "
+msgstr "Gallerie de "
+
+#: templates/theme/base.html:151
+msgid "IRGIB on Twitter"
+msgstr "Irgib Africa sur Twitter"
+
+#: templates/theme/base.html:181
+msgid "Helpful Links"
+msgstr "Liens utiles"
+
+#: templates/theme/base.html:185
+msgid "our blog"
+msgstr "Nôtre Blog"
+
+#: templates/theme/base.html:188
+msgid "E-Journal"
+msgstr "E-Journal"
+
+#: templates/theme/base.html:191
+msgid "irgib news"
+msgstr "Nouvelles"
+
+#: templates/theme/base.html:194
+msgid "irgib events"
+msgstr "Évènements"
+
+#: templates/theme/base.html:197
+msgid "consult planning"
+msgstr "Emplois du Temps"
+
+#: templates/theme/base.html:200
+msgid "galleries photos"
+msgstr "Galleries"
+
+#: templates/theme/base.html:203
+msgid "contact us"
+msgstr "Nous Contacter"
+
+#: templates/theme/base.html:207
+msgid "LOGOUT"
+msgstr "SE DÉCONNECTER"
+
+#: templates/theme/base.html:209
+msgid "Login"
+msgstr "Connexion"
+
+#: templates/theme/base.html:219
+msgid "All Right Reserved"
+msgstr "Tous droits réservés"
+
+#: templates/theme/contact.html:7
+msgid "Contact Irgib Africa University"
+msgstr "Contacter Irgib Africa University"
+
+#: templates/theme/contact.html:8
+msgid "General Contact Informations"
+msgstr "Informations de Contacts "
+
+#: templates/theme/contact.html:20
+msgid "Phones"
+msgstr ""
+
+#: templates/theme/contact.html:22
+msgid "+229 67 29 64 64"
+msgstr "+229 95 08 71 71"
+
+#: templates/theme/contact.html:23
+msgid "+229 68 69 41 42"
+msgstr "+229 95 45 77 41"
+
+#: templates/theme/contact.html:24
+msgid "+229 21 33 31 78"
+msgstr "+229 21 30 68 04"
+
+#: templates/theme/contact.html:36
+msgid "Addresses"
+msgstr "Adresses"
+
+#: templates/theme/contact.html:38
+msgid "07BP 231 Cotonou"
+msgstr "07 BP 231 Cotonou"
+
+#: templates/theme/contact.html:39
+msgid "contact@irgibafrica.university"
+msgstr "contact@irgibafrica.university"
+
+#: templates/theme/contact.html:51
+#| msgid "Publications"
+msgid "Location"
+msgstr "Localisation"
+
+#: templates/theme/contact.html:53
+msgid "Derrière Immeuble Air France"
+msgstr "Derrière Immeuble Air France"
+
+#: templates/theme/contact.html:54
+msgid "Route de l'Aéroport de Cotonou"
+msgstr "Route de l'Aéroport de Cotonou"
+
+#: templates/theme/contact.html:61
+msgid "follow on twitter"
+msgstr "Suivez Nous sur Twitter"
+
+#: templates/theme/contact.html:62
+msgid "follow on facebook"
+msgstr "Suivez Nous sur Facebook"
+
+#~ msgid "Inscription"
+#~ msgstr "Inscription"
+
+#~ msgid "IRGIB NEWS"
+#~ msgstr "Nouvelles"
+
+#~ msgid "EVENTS AT IRGIB"
+#~ msgstr "Événement"
+
+#~ msgid "OUR BLOG"
+#~ msgstr "NOTRE BLOG"
+
+#~ msgid "PLANNING"
+#~ msgstr "EMPLOI DU TEMPS"
+
+#~ msgid "NEWS"
+#~ msgstr "NOUVELLES"
+
+#~ msgid "EVENTS"
+#~ msgstr "ÉVÉNEMENT"
+
+#~ msgid "GALLERIES"
+#~ msgstr "GALLERIES"
+
+#~ msgid "CONNEXION"
+#~ msgstr "CONNECTION"
+
+#~ msgid "We learn to rise"
+#~ msgstr "Nous Nous Instruisons pour Nous Élever"
+
+#~ msgid "We rise to defeat under development"
+#~ msgstr "Nous Nous Élevons pour vaincre le sous-développement"

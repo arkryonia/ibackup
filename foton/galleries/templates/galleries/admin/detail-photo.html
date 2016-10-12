@@ -1,0 +1,16 @@
+{% extends "theme/backend/base.html" %}
+{% load thumbnail staticfiles i18n %}
+
+{% block title %}{% trans "Detail Photo" %}{% endblock title %}
+
+{% block content %}
+<div class="dataTable_wrapper">
+  <h3>{{ photo.title }}</h3>
+  {% thumbnail photo.image 1000x600 crop as pic %}
+  <img src="{% static pic.url %}" alt="{{ photo.title }}" class="mrs">
+  <p class="text-right">
+    <br>
+      <a href={% url 'galleries:update-photo' photo.gallery.slug photo.pk %} class="btn btn-primary">{% trans "Update this Photo" %}</a>
+  </p>
+</div>
+{% endblock content %}

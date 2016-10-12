@@ -1,0 +1,28 @@
+{% extends "theme/backend/base.html" %}
+{% load i18n %}
+
+{% block title %} {% trans "Publications List" %} {% endblock title %}
+{% block content %}
+<div class="dataTable_wrapper">
+	<p class="text-right">
+		<a href="{% url "ejournal:create-magasine" %}" class="btn btn-primary">{% trans "Create Publication" %}</a>
+	</p>
+ 	<table class="table table-striped table-bordered table-hover" id="dataTables-example">
+		<thead>
+		  <tr>
+	    	<th>{% trans " Publications " %}</th>
+		  </tr>
+		</thead>
+		<tbody>
+		{% for magasine in magasines %}  
+			<tr class="odd gradeX">
+				<td>{{ magasine.title }} </td>
+				<td class="text-center"> <a href="{% url "ejournal:update-magasine" magasine.pk %}"><i class="fa fa-edit fa-fw"></i></a> </td>
+				<td class="text-center"><a href="{% url "ejournal:detail-magasine" magasine.pk %}" ><i class="fa fa-list fa-fw"></i></a></td>
+				<td class="text-center"><a href="{% url "ejournal:create-sommary"  magasine.pk %}" ><i class="fa fa-plus-circle fa-fw"></i></a></td>
+			</tr>
+		{% endfor %}
+		</tbody>
+  	</table>
+</div>
+{% endblock content %}

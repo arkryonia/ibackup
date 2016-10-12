@@ -1,0 +1,25 @@
+{% extends "theme/base.html" %}
+
+{% load staticfiles thumbnail i18n %}
+
+{% block seo %}
+	{# stuff: define your seo from here #}
+
+{% endblock seo %}
+
+{% block title %}{% trans "Photos" %}{% endblock title %}
+
+{% block main %}
+<section class="main-section">
+	<div class="container">
+		<div class="row text-center">
+      <h3>{{ photo.title }}</h3>
+      {% thumbnail photo.image 1500x900 crop as pic %}
+      <img src="{% static pic.url %}" alt="{{ photo.title }}" class="mrs">
+		</div>
+	</div>
+</section>
+{% endblock main %}
+
+</body>
+</html>

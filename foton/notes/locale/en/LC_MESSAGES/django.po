@@ -1,0 +1,109 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-07-28 07:34+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: models.py:23
+msgid "Course"
+msgstr ""
+
+#: models.py:24
+msgid "Courses"
+msgstr ""
+
+#: models.py:32
+msgid "Test"
+msgstr ""
+
+#: models.py:33
+msgid "Exam"
+msgstr ""
+
+#: models.py:34
+msgid "Average"
+msgstr ""
+
+#: templates/notes/class_detail.html:4 templates/notes/class_detail.html:5
+msgid "Students list"
+msgstr ""
+
+#: templates/notes/class_list.html:3
+msgid "Classes "
+msgstr ""
+
+#: templates/notes/class_list.html:4
+msgid "Classes"
+msgstr ""
+
+#: templates/notes/classes/create.html:4 templates/notes/classes/create.html:5
+#: templates/notes/students/list.html:8
+msgid "Create Class"
+msgstr ""
+
+#: templates/notes/classes/list.html:4
+msgid "Classes List"
+msgstr ""
+
+#: templates/notes/classes/list.html:10
+msgid " Classes "
+msgstr ""
+
+#: templates/notes/classes/update.html:4 templates/notes/classes/update.html:5
+msgid "Update Class"
+msgstr ""
+
+#: templates/notes/courses/create.html:4 templates/notes/courses/create.html:5
+#: templates/notes/courses/list.html:8
+msgid "Create Course"
+msgstr ""
+
+#: templates/notes/courses/list.html:4
+msgid "Courses List"
+msgstr ""
+
+#: templates/notes/courses/list.html:13
+msgid " Courses "
+msgstr ""
+
+#: templates/notes/courses/list.html:14
+msgid "Coefficient"
+msgstr ""
+
+#: templates/notes/courses/update.html:4 templates/notes/courses/update.html:5
+msgid "Update Course"
+msgstr ""
+
+#: templates/notes/note/create.html:4 templates/notes/note/create.html.py:5
+#: templates/notes/note/list.html:8
+msgid "Add Note"
+msgstr ""
+
+#: templates/notes/note/list.html:4
+msgid "Notes List"
+msgstr ""
+
+#: templates/notes/note/update.html:4 templates/notes/note/update.html.py:5
+msgid "Update Note"
+msgstr ""
+
+#: templates/notes/students/list.html:4
+msgid "Students List"
+msgstr ""
+
+#: templates/notes/students/list.html:13
+msgid " Students "
+msgstr ""

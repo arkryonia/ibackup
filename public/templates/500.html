@@ -1,0 +1,14 @@
+{% extends "theme/default.html" %}
+{% load i18n %}
+
+{% block maintitle %}{% trans "Ooops 405 : Server error" %}{% endblock maintitle %}
+
+{% block content %}
+  <br>
+  <h4>{% trans "Looks like something went wrong!" %}</h4>
+  <p>{% trans "We track these errors automatically, but if the problem persists feel free to contact us. In the meantime, try refreshing" %}</p>
+{% endblock content %}
+
+{% block aside %}{% endblock aside %}
+{% block video %}{% endblock video %}
+{% block timeline %}{% endblock timeline %}

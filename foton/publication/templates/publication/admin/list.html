@@ -1,0 +1,30 @@
+{% extends "theme/backend/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Publications List" %}{% endblock title %}
+
+{% block content %}
+<div class="dataTable_wrapper">
+  <p class="text-right">
+      <a href={% url 'publication:create-publication' %} class="btn btn-primary">{% trans "New Publication" %}</a>
+  </p>
+  <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+      <thead>
+          <tr>
+              <th>{% trans "Titles" %}</th>
+              <th>{% trans "Categoies" %}</th>
+          </tr>
+      </thead>
+      <tbody>
+        {% for publication in publications  %}
+          <tr class="odd gradeX">
+              <td>{{ publication.title }}</td>
+              <td>{{ publication.category }}</td>
+              <td class="text-center"><a href={% url 'publication:detail-publication' publication.pk %} ><i class="fa fa-list fa-fw"></i></a></td>
+              <td class="text-center"><a href={% url 'publication:update-publication' publication.pk %}><i class="fa fa-edit"></i></a></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+  </table>
+</div>
+{% endblock content %}

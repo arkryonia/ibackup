@@ -1,0 +1,91 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-08-24 17:12+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: models.py:22 templates/planning/public/detail.html.py:4
+#: templates/planning/public/list.html:4
+msgid "Planning"
+msgstr ""
+
+#: models.py:23
+msgid "Plannings"
+msgstr ""
+
+#: models.py:46
+msgid "PlanningItem"
+msgstr ""
+
+#: models.py:47
+msgid "PlanningItems"
+msgstr ""
+
+#: templates/planning/classes/create.html:4
+#: templates/planning/classes/create.html:5
+#: templates/planning/classes/list.html:9 templates/planning/items/list.html:9
+msgid "Create Planning"
+msgstr ""
+
+#: templates/planning/classes/detail.html:8
+#: templates/planning/public/detail.html:6
+msgid "Planning of "
+msgstr ""
+
+#: templates/planning/classes/detail.html:134
+#: templates/planning/items/create.html:4
+#: templates/planning/items/create.html:5
+msgid "Add Item"
+msgstr ""
+
+#: templates/planning/classes/list.html:4 templates/planning/items/list.html:4
+msgid "Classes List"
+msgstr ""
+
+#: templates/planning/classes/list.html:14
+#: templates/planning/public/list.html:13
+msgid "Classes"
+msgstr ""
+
+#: templates/planning/classes/update.html:4
+#: templates/planning/classes/update.html:5
+msgid "Update Planning"
+msgstr ""
+
+#: templates/planning/items/delete.html:5
+msgid "Are you sure you want to delete this planning item ?"
+msgstr ""
+
+#: templates/planning/items/delete.html:6
+msgid "Delete this planning Item"
+msgstr ""
+
+#: templates/planning/items/delete.html:7
+msgid "Delete Item"
+msgstr ""
+
+#: templates/planning/items/list.html:14
+msgid "Classe"
+msgstr ""
+
+#: templates/planning/items/update.html:4
+#: templates/planning/items/update.html:5
+msgid "Update Item"
+msgstr ""
+
+#: templates/planning/public/list.html:6
+msgid "Plannings list"
+msgstr ""

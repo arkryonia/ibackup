@@ -1,0 +1,22 @@
+{% extends "theme/backend/base.html" %}
+{% load thumbnail i18n staticfiles %}
+
+{% block title %}{{ gallery.name }}{% endblock title %}
+
+{% block content %}
+<div class="dataTable_wrapper">
+  <p class="text-right">
+      <a href={% url 'galleries:add-photo' %} class="btn btn-primary">{% trans "Add Photo" %}</a>
+      <a href={% url 'galleries:delete-gallery' gallery.slug %} class="btn btn-danger">{% trans "Delete Gallery" %}</a>
+  </p>
+  <div class="">
+    {% for photo in photos %}
+      <div class="col-md-2">
+        {% thumbnail photo.image 150x150 crop as pic %}
+        <a href={% url 'galleries:admin-detail-photo' photo.gallery.slug photo.pk %}><img data-u="image" src="{% static pic.url %}" /></a>
+      </div>
+    {% endfor %}
+
+  </div>
+</div>
+{% endblock content %}

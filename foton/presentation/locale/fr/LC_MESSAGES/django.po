@@ -1,0 +1,134 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-09-06 18:12+0100\n"
+"PO-Revision-Date: 2016-09-06 18:29+0014\n"
+"Last-Translator: b'  <>'\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Translated-Using: django-rosetta 0.7.11\n"
+
+#: models.py:17
+msgid "Title"
+msgstr "Titre"
+
+#: models.py:18
+msgid "Content"
+msgstr "Contenu"
+
+#: models.py:19
+msgid "slug"
+msgstr "slug"
+
+#: templates/presentation/about.html:3
+msgid "Presentation"
+msgstr "Présentation"
+
+#: templates/presentation/about/create.html:4
+#: templates/presentation/about/create.html:6
+#: templates/presentation/about/list.html:8
+msgid "Create About"
+msgstr "Ajouter"
+
+#: templates/presentation/about/list.html:4
+msgid "About List"
+msgstr "Liste"
+
+#: templates/presentation/about/list.html:13
+msgid " Title "
+msgstr "Titre"
+
+#: templates/presentation/about/update.html:4
+#: templates/presentation/about/update.html:5
+msgid "Update About"
+msgstr "Modifier"
+
+#: templates/presentation/home.html:38
+#| msgid "Learn more about Digisity"
+msgid "Learn more about IRGIB Africa"
+msgstr "En Savoir plus sur Irgib Africa"
+
+#: templates/presentation/home.html:45
+msgid "Bachelor"
+msgstr "License"
+
+#: templates/presentation/home.html:58
+msgid "Master"
+msgstr "Master"
+
+#: templates/presentation/home.html:79
+msgid "Irgib news"
+msgstr "Nouvelles"
+
+#: templates/presentation/home.html:85 templates/presentation/home.html:101
+#: templates/presentation/home.html:117
+msgid "read more"
+msgstr "Lire la suite"
+
+#: templates/presentation/home.html:88
+msgid "Sorry, there is no new to display now. Thanks!"
+msgstr "Aucune Nouvelle"
+
+#: templates/presentation/home.html:90
+msgid "More News"
+msgstr "Plus de Nouvelles"
+
+#: templates/presentation/home.html:95
+msgid "Irgib events"
+msgstr "Évènements"
+
+#: templates/presentation/home.html:104
+msgid "Sorry, there is no event to display now. Thanks!"
+msgstr "Aucun Évènement "
+
+#: templates/presentation/home.html:106
+msgid "More Events"
+msgstr "Plus d'Évènements"
+
+#: templates/presentation/home.html:112
+msgid "Last post"
+msgstr "Dernières Publications"
+
+#: templates/presentation/home.html:119
+msgid "More Posts"
+msgstr "Plus de Publications"
+
+#: templates/presentation/item/create.html:4
+#: templates/presentation/item/create.html:6
+msgid "Create Item"
+msgstr "Créer"
+
+#: templates/presentation/item/list.html:4
+msgid "Items List"
+msgstr "Items"
+
+#: templates/presentation/item/update.html:4
+#: templates/presentation/item/update.html:5
+msgid "Update Item"
+msgstr "Modifier"
+
+#~ msgid "Is IRGIB AFRICA the right choice for you ? Find it out !"
+#~ msgstr "Pourquoi sommes-nous le meilleur choix"
+
+#~ msgid "Check for more information"
+#~ msgstr "Plus d'informations"
+
+#~ msgid "IRGIB NEWS"
+#~ msgstr "Les Nouvelles"
+
+#~ msgid "Added the "
+#~ msgstr "Ajouter le"
+
+#~ msgid "EVENTS AT IRGIB"
+#~ msgstr "Événement"
