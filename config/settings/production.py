@@ -18,7 +18,7 @@ ALLOWED_HOSTS =  ['www.irgibafrica.university', 'irgibafrica.university', 'irgib
 INSTALLED_APPS +=('gunicorn',)
 
 
-SECRET_KEY = env("DJANGO_SECRET_KEY")
+SECRET_KEY = "sagj1#@b5e#6=-9vpu4fsfji3jh--wowgdh_1mc9ycr&79q#8g"
 
 
 # EMAIL
