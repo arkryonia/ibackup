@@ -84,7 +84,7 @@
                 <h5>{{ NEW.title }}</h5>
                 <p>
                   {% autoescape off %}
-                    {{ NEW.content|truncatechars_html:200 }}
+                    {{ NEW.content|truncatechars_html:50 }}
                   {% endautoescape %}   
                     <a href={% url 'publication:public-detail-publication' NEW.pk %} >{% trans "read more" %}</a>
                 </p>
@@ -102,7 +102,7 @@
                 <h5>{{ EVENT.title }}</h5>
                 <p>
                   {% autoescape off %}
-                    {{ EVENT.content|truncatechars_html:200 }}
+                    {{ EVENT.content|truncatechars_html:50 }}
                   {% endautoescape %}   
                     <a href={% url 'publication:public-detail-publication' EVENT.pk %} title="">{% trans "read more" %}</a>
                 </p>
