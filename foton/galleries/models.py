@@ -25,3 +25,6 @@ class Photo(TimeStampedModel):
     class Meta:
         verbose_name = _('Photo')
         verbose_name_plural = _('Photos')
+
+    def __str__(self):
+        return self.title
