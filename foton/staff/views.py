@@ -71,8 +71,7 @@ from .forms import (
 
 # ============================================================================
 
-class StaffHome(LoginRequiredMixin, PermissionRequiredMixin, TemplateView):
-    permission_required='users.is_scolar' or 'users.is_commercial' or 'users.is_admin'
+class StaffHome(LoginRequiredMixin, TemplateView):
     template_name = 'theme/backend/home.html'
 
 
