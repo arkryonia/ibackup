@@ -12,12 +12,12 @@ class ProgramTranslationOptions(TranslationOptions):
 	required_languages = ('fr','en',)
 translator.register(Program, ProgramTranslationOptions)
 
-class BachelorTranslationOptions(TranslationOptions):
-	fields = ('option',)
-	required_languages = ('fr','en',)
-translator.register(Bachelor, BachelorTranslationOptions)
+# class BachelorTranslationOptions(TranslationOptions):
+# 	fields = ('option',)
+# 	required_languages = ('fr','en',)
+# translator.register(Bachelor, BachelorTranslationOptions)
 
-class MasterTranslationOptions(TranslationOptions):
-	fields = ('speciality',)
-	required_languages = ('fr','en')
-translator.register(Master, MasterTranslationOptions)
+# class MasterTranslationOptions(TranslationOptions):
+# 	fields = ('speciality',)
+# 	required_languages = ('fr','en')
+# translator.register(Master, MasterTranslationOptions)

@@ -21,7 +21,7 @@
                 {{ pub.content|truncatechars_html:300 }}
               {% endautoescape %}
               <div class="myBtn">
-                <a href= {% url 'publication:public-detail-publication' pub.pk %} >{% trans "Learn more" %}</a>
+                <a href= {% url 'publication:public-detail-publication' pub.pk %} >{% trans "Learn more" %}</a>  
               </div>
             </div>
           </div>
