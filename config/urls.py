@@ -21,6 +21,12 @@ from django.views.generic import TemplateView
 from django.views import defaults as default_views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
+from django.contrib.sitemaps.views import sitemap
+from django.contrib.sitemaps import views
+from django.contrib.sitemaps import GenericSitemap
+
+from .sitemaps import HomeViewSitemap, PublicationSitemap, PostSitemap, AboutSitemap
+
 # ============================================================================
 
 
@@ -44,6 +50,12 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 # ============================================================================
 
+sitemaps = {
+    'pubs'  : PublicationSitemap,
+    'home'  : HomeViewSitemap,
+    'posts' : PostSitemap,
+    'about' : AboutSitemap,
+}
 
 
 
@@ -101,6 +113,12 @@ urlpatterns = [
     # Rosetta
     url(r'^rosetta/', include('rosetta.urls')),
     url(r'^i18n/', include('django.conf.urls.i18n')),
+    
+    # Sitemaps
+
+    url(r'^sitemap\.xml$', views.index, {'sitemaps': sitemaps}),
+    url(r'^sitemap-(?P<section>.+)\.xml$', views.sitemap, {'sitemaps': sitemaps}),
+
 
 
 ]

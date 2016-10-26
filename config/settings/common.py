@@ -34,6 +34,7 @@ DJANGO_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
 
     # Admin
     # 'django.contrib.admin',
@@ -163,6 +164,7 @@ TEMPLATES = (
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
                 'foton.presentation.context_processors.presentation',
+                'foton.seo.context_processors.seo',
             ],
             'debug': DEBUG,
         },
@@ -237,6 +239,10 @@ AUTH_USER_MODEL = 'users.User'
 LOGIN_REDIRECT_URL = 'users:redirect'
 LOGIN_URL = 'account_login'
 
-SITE_NAME = 'IRGIB AFRICA UNIVERSITY'
+SITE_NAME = 'IrgibAfrica University'
+SITE_DESCRIPTION = 'IRGIB AFRICA UNIVERSITY'
+SITE_KEYWORDS = 'Irgib, Africa, University, Université, Excellence, Paramilitaire,\
+ Paramilitary, Bio, Ingénierie, '
+SITE_SLOGAN = 'University of Excellence'
 DJANGO_WYSIWYG_FLAVOR = 'ckeditor'
 DJANGO_WYSIWYG_MEDIA_URL = STATIC_URL + "ckeditor/"

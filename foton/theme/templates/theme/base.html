@@ -6,7 +6,7 @@
 
 <html>
 <head>
-	<title>{% block title %}Accueil{% endblock title %} &verbar; IRGIB AFRICA</title>
+	{% include "seo/seo-base.html" %}
 	{% block seo %}{% endblock seo %}
 	{% include "theme/inc/head.html" %}
 	<script>
@@ -28,17 +28,17 @@
 	{% if user.is_authenticated %}
 		<div class="top">
 	  	<div class="container">
-				<div class="col-md-6">
-					{% trans "Welcome to IRGIB AFRICA. You are now connected as " %} {{ user.email }}
-				</div>
-				<div class="col-md-6 text-right">
-					{% if perms.users.is_admin or perms.users.is_scolar or perms.users.is_commercial %}
-						<a href= {% url 'staff:home' %} >Administration</a>
-						<i>|</i>
-					{% endif %}
-					<a href= {% url 'account_logout' %} >{% trans 'Logout ' %}<i class="fa fa-sign-out"></i></a>
-					</li>
-				</div>
+			<div class="col-md-6">
+				{% trans "Welcome to IRGIB AFRICA. You are now connected as " %} {{ user.email }}
+			</div>
+			<div class="col-md-6 text-right">
+				{% if perms.users.is_admin or perms.users.is_scolar or perms.users.is_commercial %}
+					<a href= {% url 'staff:home' %} >Administration</a>
+					<i>|</i>
+				{% endif %}
+				<a href= {% url 'account_logout' %} >{% trans 'Logout ' %}<i class="fa fa-sign-out"></i></a>
+				</li>
+			</div>
 	  	</div>
 		</div>
 	{% endif %}

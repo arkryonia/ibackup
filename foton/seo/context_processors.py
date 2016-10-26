@@ -42,10 +42,9 @@ def seo(request):
     
     return {
 
-        # 'CICANON': settings.CICANON,
-        # 'DISQUS_SITE_NAME':settings.DISQUS_SITE_NAME,        
-        # 'BLOG_NAME': settings.SITE_NAME,
         'SITE_DESCRIPTION':settings.SITE_DESCRIPTION,
         'SITE_NAME':settings.SITE_NAME,
         'SITE_SLOGAN':settings.SITE_SLOGAN,
+        'SITE_KEYWORDS':settings.SITE_KEYWORDS,
+        
     }

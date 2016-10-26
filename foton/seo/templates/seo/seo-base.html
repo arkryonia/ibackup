@@ -1,8 +1,7 @@
 {% load static i18n %}
-
-<link href="https://irgib-africa.org/" rel="canonical" />
-<meta name="description" content="{{ SITE_DESCRIPTION }}">
-<meta property="og:description" content="{{ SITE_SLOGAN}}" />
+<link href="https://irgibafrica.university/" rel="canonical" />
+<meta charset="UTF-8"  />
+<meta name="description" property="og:site_description" content="{% trans "L’université irgib-africa et son école polytechnique dispose d’infrastructures et d’équipements de grande qualité.la performance des ingénieurs et les bonnes relations avec les universités et écoles d’ingénieurs à l’international ont permis d’intégrer certains programme dont celui de la qualité de l’environnement." %}" />
+<meta name="keywords" property="og:site_keywords" content="{{ SITE_KEYWORDS}}" />
 <meta property="og:site_name" content="{{ SITE_NAME }}" />
-
-{# <meta property="og:image" content="src="{% static "website/img/logo.png" %}" /> #}
+<title>{{SITE_NAME}} - {{SITE_SLOGAN}} {% block irgib_title %} {% endblock irgib_title %} </title>
