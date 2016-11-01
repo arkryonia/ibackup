@@ -7,10 +7,10 @@
 from modeltranslation.translator import register, translator, TranslationOptions
 from .models import Bachelor, Master, Program
 
-class ProgramTranslationOptions(TranslationOptions):
-	fields = ('pdf',)
-	required_languages = ('fr','en',)
-translator.register(Program, ProgramTranslationOptions)
+# class ProgramTranslationOptions(TranslationOptions):
+# 	fields = ('pdf',)
+# 	required_languages = ('fr','en',)
+# translator.register(Program, ProgramTranslationOptions)
 
 # class BachelorTranslationOptions(TranslationOptions):
 # 	fields = ('option',)
