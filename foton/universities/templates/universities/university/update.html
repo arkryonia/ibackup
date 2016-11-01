@@ -1,0 +1,9 @@
+{% extends "theme/default.html" %}
+{% load i18n %}
+
+{% block main-content %}
+	<form action="" method="post" enctype="multipart/form-data" class="" >{% csrf_token %}
+	    {{ form.as_p }}
+	    <input class="validation" type="submit" value="{% trans "validate" %}" />
+	</form>
+{% endblock main-content %}

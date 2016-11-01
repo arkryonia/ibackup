@@ -1,0 +1,39 @@
+{% extends "theme/backend/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Licenses" %}{% endblock title %}
+
+{% block content %}
+<div class="dataTable_wrapper">
+  <p class="text-right">
+    <a href={% url 'elearning:bachelor-add' %} class="btn btn-primary">{% trans "Create License" %}</a>
+  </p>
+  <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+      <thead>
+          <tr>
+              <th>{% trans "Name" %}</th>
+              <th>{% trans "Option" %}</th>
+              <th>{% trans "Program File" %}</th>
+          </tr>
+      </thead>
+      <tbody>
+      {% for bachelor in bachelors %}
+          <tr>
+            <td><a href="{% url "elearning:detail-bachelor" bachelor.slug %}">{{ bachelor.option.name }}</a></td>
+            <td> {{bachelor.option}} </td>
+            <td>
+              <a href={{ bachelor.pdf.url }} target="_blank" >
+                <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+              </a>
+            </td>
+            <td>
+              <a href={% url 'elearning:update-bachelor' bachelor.id %}>
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 
+              </a>
+            </td>
+          </tr>
+      {% endfor %}
+      </tbody>
+  </table>
+</div>
+{% endblock content %}

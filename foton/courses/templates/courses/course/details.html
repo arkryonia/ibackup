@@ -1,0 +1,75 @@
+{% extends "theme/base.html" %}
+{% load staticfiles thumbnail i18n %}
+
+
+{% block main %}
+	<div class="main">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3">
+					<div class="side-left">
+						
+					</div>
+				</div>
+				<div class="col-md-7">
+					<div class="main-content">
+            			<h3> {{course.title}} </h3>
+						{% thumbnail course.overview_image 730x250 crop as thumb %}
+                		<img src="{{ thumb.url }}" width="{{ thumb.width }}" height="{{ thumb.height }}" class="img-responsive " alt="{{ course.title}}" />
+                		<h4> Overview </h4>
+                		<div>
+                			<p>
+	                			{{course.overview}}
+	                		</p>
+                		</div>
+                		<h4> Owner </h4>
+            			<div class="row">
+            				<div class="col-md-3">
+            				{% thumbnail course.owner.picture 120x120 crop as thumb %}
+                			<img src="{{ thumb.url }}" width="{{ thumb.width }}" height="{{ thumb.height }}" class="img-responsive " alt="{{ course.owner.username}}" />	
+            				</div>
+            				<div class="9">
+            					<h5>{{course.owner.get_complete_name}}</h5>
+            					<p> {{course.owner.presentation}} </p>
+            				</div>
+            			</div>
+            			<hr>
+            			<h4>Programme</h4>
+            			<hr>
+                        {{ course.modules.count }} Module
+            			{% for m in modules %}
+            				<div>
+            					<h4>Module {{m.order|add:1}}</h4>
+            					<h5> {{m.title}} </h5>
+            					<p>
+            						{{m.description}}
+            					</p>
+            					<!-- <p>
+            						{% for c in contents %}
+            							{{c.content_type}}
+            						{% endfor %}
+            					</p> -->
+            				</div>
+            			{% endfor %}
+                        {% if request.user.is_authenticated %}
+                            {% if course.lecture %}
+                                
+                            {% else %}
+                            <form action="" method="post">
+                                {{ enroll_form }}
+                                {% csrf_token %}
+                                <input type="submit" class="button" value="Enroll now">
+                            </form>
+                            {% endif %}
+                        {% else %}
+                        {% endif %}
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div class="side-right">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock main %}

@@ -1,0 +1,15 @@
+{% extends "theme/default.html" %}
+{% load i18n %}
+{% block left-side %}
+	<h3> <a href=""> {% trans "Presentation" %} </a> </h3>
+	<h3> {% trans "Programmes" %} </h3>
+	<h4> {% trans "Bachelor" %} </h4>
+	{% for b in bachelors %}
+		<a href="{% url "degrees:program-detail" b.slug %}">{{b.name}}</a>
+	{% endfor %}
+	<h4> {% trans "Master" %} </h4>
+	{% for m in masters %}
+		<a href="{% url "degrees:program-detail" m.slug %}">{{m.name}} - {{m.speciality.option}} - {{m.speciality}} </a>
+	{% endfor %}
+	
+{% endblock left-side %}

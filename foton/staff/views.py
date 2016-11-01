@@ -62,6 +62,7 @@ from foton.users.models import User
 # ----------------------------------------------------------------------------
 
 from .models import Scolar, Commercial, Year
+from foton.universities.models import Lecturer
 from .forms import (
     ScolarCreationForm,
     ScolarChangeForm,
@@ -129,6 +130,7 @@ class StaffListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super(StaffListView, self).get_context_data(**kwargs)
         context['commercials'] = Commercial.objects.order_by('last_name')
+        context['lecturers'] = Lecturer.objects.order_by('last_name')
         return context
 
 

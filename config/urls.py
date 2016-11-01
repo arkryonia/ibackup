@@ -106,6 +106,12 @@ urlpatterns = [
     # ----- GALLERY ----- #
     url(r'^galleries/', include('foton.galleries.urls', namespace='galleries')),
 
+    url(r'^elearning/', include("foton.elearning.urls", namespace="elearning")),
+    
+    url(r'^university/', include("foton.universities.urls", namespace="universities")),
+    
+    url(r'^moocs/', include("foton.moocs.urls", namespace="moocs")),
+
     # ------ Diplompa ------- #
 
     # url(r'^diploma/', include("foton.diploma.urls", namespace="diploma")),

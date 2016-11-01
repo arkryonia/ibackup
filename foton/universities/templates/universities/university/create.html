@@ -1,0 +1,10 @@
+{% extends "theme/default.html" %}
+{% load i18n %}
+
+{% block main-content %}
+	<form action="" method="post" enctype="multipart/form-data" class="" >{% csrf_token %}
+	    {{ form.as_p }}
+	  	<i>{% trans "by clicking the button below, you confirm that you accept the " %} <a href="">{% trans "rules and conditions of ..." %}</a></i><br><br>
+	    <input class="validation" type="submit" value="{% trans "validate" %}" />
+	</form>
+{% endblock main-content %}

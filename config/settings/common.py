@@ -68,6 +68,10 @@ LOCAL_APPS = (
     'foton.notes',
     'foton.publication',
     'foton.galleries',
+    'foton.universities',
+    'foton.courses',
+    'foton.elearning',
+    'foton.moocs',
     'foton.seo',
 )
 

@@ -1,0 +1,36 @@
+{% extends "theme/backend/base.html" %}
+{% load i18n %}
+{% load contents %}
+
+{% block content %}
+
+<p class="text-right" >
+	<a href="{% url "elearning:module_create" course.slug course.pk%}" class="btn btn-primary">{% trans "Add or Edit Modules" %}</a>
+	
+</p>
+
+<div class="dataTable_wrapper">
+  <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+      <thead>
+          <tr>
+              <th>{% trans "Modules" %}</th>
+          </tr>
+      </thead>
+      <tbody>
+        {% for m in modules %}
+			<tr class="odd gradeX">
+			  <td>{{m.title}}</td>
+			  <td class="center">
+			    <a href={% url "elearning:module_content_list" m.lecture.slug m.id  %} ><i class="fa fa-list fa-fw"></i></a>
+			  </td>
+			</tr>
+        {% empty %}
+			<tr>
+				<td>This module has no contents yet.</td>
+			</tr>
+        {% endfor %}
+    	
+      </tbody>
+  </table>
+</div>
+{% endblock content %}

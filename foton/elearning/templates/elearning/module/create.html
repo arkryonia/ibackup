@@ -1,0 +1,11 @@
+{% extends "theme/backend/form.html" %}
+{% load i18n staticfiles %}
+
+{% block content %}
+	<form action="" method="post">
+		{{ formset }}
+		
+		{% csrf_token %}
+		<input type="submit" class="button" value="Save modules">
+	</form>
+{% endblock content %}

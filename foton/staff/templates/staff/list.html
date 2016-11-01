@@ -7,6 +7,7 @@
 <div class="dataTable_wrapper">
   <p class="text-right">
     <a href={% url 'staff:add-scolar' %} class="btn btn-primary">{% trans "Add Scolar " %}</a>
+    <a href={% url 'universities:add-lecturer' %} class="btn btn-primary">{% trans "Add Lecturer " %}</a>
     <a href={% url 'staff:add-commercial' %} class="btn btn-primary">{% trans "Add Commercial " %}</a>
   </p>
   <h3>{% trans 'Scolarity Members List' %}</h3>
@@ -34,6 +35,40 @@
                     <a class="text-center" href="{% url "staff:scolar-activate" scolar.pk %}"><i class="fa fa-user fa-fw"></i></a>
                 {% else %}
                   <a class="text-danger" href="{% url "staff:scolar-activate" scolar.pk %}"><i class="fa fa-user-times fa-fw"></i></a>
+                {% endif %}
+              </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+  </table>
+
+  <br>
+
+  <h3>{% trans 'Lecturers Members List' %}</h3>
+  <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+      <thead>
+          <tr>
+              <th>{% trans "Name" %}</th>
+              <th>{% trans "Email" %}</th>
+              <th>{% trans "Phone" %}</th>
+              <th>{% trans "Residence" %}</th>
+          </tr>
+      </thead>
+      <tbody>
+        {% for lecturer in lecturers  %}
+          <tr class="odd gradeX">
+              <td>{{ lecturer.get_complete_name }} </td>
+              <td>{{ lecturer.email }}</td>
+              <td>{{ lecturer.phone }} </td>
+              <td class="center">{{ lecturer.residence }}</td>
+              <td class="text-center">
+                <a href={% url 'universities:update-lecturer' lecturer.pk %}><i class="fa fa-edit fa-fw"></i>  </a>
+              </td>
+              <td class="text-center">
+                {% if lecturer.is_active %}
+                    <a class="text-center" href="{% url "universities:lecturer-activate" lecturer.pk %}"><i class="fa fa-user fa-fw"></i></a>
+                {% else %}
+                  <a class="text-danger" href="{% url "universities:lecturer-activate" lecturer.pk %}"><i class="fa fa-user-times fa-fw"></i></a>
                 {% endif %}
               </td>
           </tr>

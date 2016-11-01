@@ -1,0 +1,7 @@
+{% extends "theme/default.html" %}
+
+{% block content %}
+	{% for p in student_programs %}
+		<h4> <a href="{% url "elearning:student_program_details" p.slug %}"> {{p.name}} </a> </h4>
+	{% endfor %}
+{% endblock content %}

@@ -1,0 +1,10 @@
+{% extends "theme/default.html" %}
+
+{% block content %}
+	{% for m in student_moocs %}
+		<h4> <a href="{% url "moocs:student_mooc_view" m.pk  %}"> {{m}} </a> </h4>
+		
+	{% empty %}
+	
+	{% endfor %}
+{% endblock content %}

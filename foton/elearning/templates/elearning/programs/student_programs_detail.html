@@ -1,0 +1,19 @@
+{% extends "theme/default.html" %}
+
+	{% block title %}
+	 	{{student_program.name}}
+	{% endblock title %}
+{% block content %}
+	
+	{% for s in semesters %}
+		<h4>{{s}}</h4>
+		{% with order=s.order %}
+			{% for l in lectures  %}
+				{% if l.semester.order == order %}
+					<h4><a href="{% url "elearning:student_program_course_detail" l.semester.program.slug l.pk %}">{{l}}</a></h4> 
+					<p>{{l.total_modules}} Modules </p>
+				{% endif %}
+			{% endfor %}
+		{% endwith %}
+	{% endfor %}
+{% endblock content %}

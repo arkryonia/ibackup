@@ -1,0 +1,16 @@
+{% extends "theme/default.html" %}
+{% load thumbnail i18n %}
+
+{% block main-content %}
+	{% for u in universities %}						
+		<div class="content">
+			{% thumbnail u.logo 360x250 crop as thumb %}
+			<img src="{{ thumb.url }}" width="{{ thumb.width }}" height="{{ thumb.height }}" class="img-responsive thumbnail" alt="{{ u.name}}" />
+			<div class="title">
+				<h5><b> {{u.name}} </b></h5>
+			</div>
+		</div>
+		<a href={% url "universities:detail-university" u.slug %} class="btn btn-block btn-primary">{% trans "Read More" %}</a>
+	{% endfor %}
+							
+{% endblock main-content %}

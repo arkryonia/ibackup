@@ -1,0 +1,10 @@
+{% extends "theme/backend/form.html" %}
+{% load i18n %}
+{% block title %} 
+{% if object %} Edit content "{{ object.title }}"
+{% else %}
+Add a new content
+{% endif %}
+{% endblock title %}
+{% block entype %}enctype="multipart/form-data"{% endblock entype %}
+{% block value %} {% trans "Add" %} {% endblock value %}

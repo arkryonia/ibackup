@@ -1,0 +1,49 @@
+{% extends "theme/backend/base.html" %}
+{% load i18n %}
+{% load contents %}
+
+{% block content %}
+<div class="dataTable_wrapper">
+	<p class="text-right">
+	{% with m=module %}
+		<a href="{% url "elearning:module_content_create"  m.lecture.slug m.id "video"  %}" class="btn btn-primary">{% trans "Add Video" %}</a>
+		<a href="{% url "elearning:module_content_create" m.lecture.slug m.id "file"  %}" class="btn btn-primary">{% trans "Add File" %}</a>
+		<a href="{% url "elearning:module_content_create" m.lecture.slug m.id "image"  %}" class="btn btn-primary">{% trans "Add Image" %}</a>
+		<a href="{% url "elearning:module_content_create" m.lecture.slug m.id "text"  %}" class="btn btn-primary">{% trans "Add Text" %}</a>
+		{% endwith %}
+	</p>
+	<h4>{{lecture.title}}</h4>
+
+	<p>
+	{{lecture.overview}}
+	</p>
+
+  <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+      <thead>
+          <tr>
+              <th>{% trans "Contents" %}</th>
+          </tr>
+      </thead>
+      <tbody>
+        {% for content in module.contents.all %}
+        	{% with item=content.item %}
+				<tr class="odd gradeX">
+				  <td>{{ item }}</td>
+				  <td class="center">
+				    <a href={% url "elearning:module_content_update" content.module.lecture.slug content.module.id  item|model_name  item.pk %} ><i class="fa fa-edit fa-fw"></i>  {{content.lecture.program.slug}}  </a>
+				  </td>
+				</tr>
+			{% endwith %}
+        {% empty %}
+			<tr>
+				<td>This module has no contents yet.</td>
+			</tr>
+        {% endfor %}
+    	
+      </tbody>
+  </table>
+
+
+	<i> {{lecture.owner.get_full_name}} </i>
+</div>
+{% endblock content %}
