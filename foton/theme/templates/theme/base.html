@@ -36,6 +36,8 @@
 					<a href= {% url 'staff:home' %} >Administration</a>
 					<i>|</i>
 				{% endif %}
+				<a href= {% url 'elearning:student_programs' %} >{% trans 'My Programs' %}</a>
+				<a href= {% url 'moocs:student_mooc_list_view' %} >{% trans 'My MOOC' %}</a>
 				<a href= {% url 'account_logout' %} >{% trans 'Logout ' %}<i class="fa fa-sign-out"></i></a>
 				</li>
 			</div>
@@ -86,7 +88,7 @@
 				<li><a href="{% url "presentation:about" %}">{% trans "Presentation" %}</a></li>
 				<li><a href="{% url "students:sign-up" %}">{% trans "Admission" %}</a></li>
 				<li><a href="{% url "notes:classes-list" %}">{% trans "Results" %}</a></li>
-				<li><a href="{% url "theme:allianza" %}">{% trans "Allianza" %}</a></li>
+				<li><a href="{% url "elearning:program-list" %}">{% trans "Allianza" %}</a></li>
 			</ul>
 		</div>
 		<div class="nav col-xs-12 col-sm-4 col-md-3">
