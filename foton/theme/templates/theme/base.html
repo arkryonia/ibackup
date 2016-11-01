@@ -32,13 +32,15 @@
 				{% trans "Welcome to IRGIB AFRICA. You are now connected as " %} {{ user.email }}
 			</div>
 			<div class="col-md-6 text-right">
-				{% if perms.users.is_admin or perms.users.is_scolar or perms.users.is_commercial %}
+				{% if perms.users.is_admin or perms.users.is_scolar or perms.users.is_commercial or perms.users.is_lecturer %}
 					<a href= {% url 'staff:home' %} >Administration</a>
 					<i>|</i>
 				{% endif %}
-				<a href= {% url 'elearning:student_programs' %} >{% trans 'My Programs' %}</a>
-				<a href= {% url 'moocs:student_mooc_list_view' %} >{% trans 'My MOOC' %}</a>
-				<a href= {% url 'account_logout' %} >{% trans 'Logout ' %}<i class="fa fa-sign-out"></i></a>
+				{% if not perms.users.is_admin or not perms.users.is_scolar or not perms.users.is_commercial or not perms.users.is_lecturer %}
+					<a href= {% url 'elearning:student_programs' %} >{% trans 'My Programs' %}</a>
+					<a href= {% url 'moocs:student_mooc_list_view' %} >{% trans 'My MOOC' %}</a>
+					<a href= {% url 'account_logout' %} >{% trans 'Logout ' %}<i class="fa fa-sign-out"></i></a>
+				{% endif %}
 				</li>
 			</div>
 	  	</div>
