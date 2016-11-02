@@ -27,6 +27,6 @@ db.sqlite3
 sftp-config.json
 
 # public/media/
-# mediafiles/
+mediafiles/
 
 .sass-cache/
