@@ -523,13 +523,4 @@
         "name": "commercial",
         "permissions": [63]
     }
-}, {
-    "model": "auth.group",
-    "pk": 6,
-    "fields": {
-        "name": "Is Lecturer",
-        "content_type": 56,
-        "codename": "change_category",
-        "permissions": [66]
-    }
 }]
