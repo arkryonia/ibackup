@@ -454,6 +454,23 @@ div.myBtn{
 	}
 }
 
+/* ----------- GALLERY ------------------*/
+
+div.mygallery{
+	.myCarouselControl{
+		a{
+			color: #fff;
+		}
+		span{
+			padding: 10px 15px;
+    		background-color: rgba(0, 0, 0, 0.8);
+		}
+		span:hover{
+			background-color: rgba(0, 0, 0, 0.5);
+		}
+	}
+}
+
 /* ---------- FORMULAIRE DESIGN ---------- */
 
 form{
