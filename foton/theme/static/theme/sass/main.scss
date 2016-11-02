@@ -524,6 +524,9 @@ body.error{
 }
 
 @media screen and ( max-width : 767px ){
+	.desktop{
+		display:none!important;
+	}
 	section.intro{
 		margin-top: 20px;
 		h3{

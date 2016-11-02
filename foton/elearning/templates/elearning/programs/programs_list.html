@@ -5,5 +5,4 @@
 	{% for p in programs %}
 		<h4><a href="{% url "elearning:program-courses" p.slug %}"> {{p.name}} </a></h4>
 	{% endfor %}
-	
 {% endblock content %}

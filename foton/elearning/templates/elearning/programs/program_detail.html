@@ -4,10 +4,14 @@
 {% block content %}
 	{% for s in semesters %}
 		<h4>{{s}}</h4>
-		{% for l in lectures  %}
-			<h4><a href="">{{l}}</a></h4> 
-			<p>{{l.total_modules}} Modules </p>
-		{% endfor %}
+      {% with order=s.order %}
+        {% for l in lectures  %}
+          {% if l.semester.order == order %}
+            <h4><a href="{% url "elearning:student_program_course_detail" l.semester.program.slug l.pk %}">{{l}}</a></h4> 
+            <p>{{l.total_modules}} Modules </p>
+          {% endif %}
+        {% endfor %}
+      {% endwith %}
 	{% endfor %}
 	{% if request.user.is_authenticated %}
         <form action="{% url "elearning:student_enroll_program" program.slug %}" method="post">

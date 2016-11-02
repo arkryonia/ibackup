@@ -350,6 +350,9 @@ body.error {
     max-height: 60px;
     width: auto; } }
 @media screen and (max-width: 767px) {
+  .desktop {
+    display: none !important; }
+
   section.intro {
     margin-top: 20px; }
     section.intro h3 {
