@@ -25,6 +25,10 @@ body{
 	background-color: #fff !important;
 }
 
+.mobile{
+	display: none;
+}
+
 div.top{
 	height: 30px;
 	line-height: 30px;
@@ -524,6 +528,47 @@ body.error{
 }
 
 @media screen and ( max-width : 767px ){
+	.container{
+		margin-top: 70px;
+	}
+	.mobile{
+		display: block!important;
+		height: 60px;
+		background-color: $digisity;
+		position: fixed;
+		width: 100%!important;
+		top: 0!important;
+		z-index: 20;
+		box-shadow: 0 1px 2px #555;
+		img{
+			height: 60px!important;
+			float: left;
+		}
+		div.name{
+			float: left;
+			line-height: 60px;
+			color: #fff;
+			margin-left: 15px;
+		}
+		div.dropdown{
+			float: left;
+			line-height: 60px;
+		}
+		li.dropdown-toggle{
+			list-style: none;
+			color: #fff;
+			i{
+				background-color: darken($digisity, 10%);
+				font-size: 1.6em;
+				padding: 8px;
+				margin-top: 4px;
+				margin-right: 5px;
+			}
+		}
+		.dropdown-menu{
+			padding: 0!important;
+		}
+	}
 	.desktop{
 		display:none!important;
 	}

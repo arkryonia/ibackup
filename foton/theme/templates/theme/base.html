@@ -25,6 +25,27 @@
 	<!-- header -->
 
 <header id="header" class="">
+	<div class="mobile">
+		<img src="{% static "theme/img/mobile-logo.png" %}">
+		<div class="name">
+			IRGIB AFRICA UNIVERSITY
+		</div>
+		<div class="dropdown pull-right">
+		  <li class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+		    <i class='fa fa-bars'></i>
+		  </li>
+		  <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+		    <li><a href="{% url "presentation:about" %}">{% trans "Presentation" %}</a></li>
+			<li><a href="{% url "students:sign-up" %}">{% trans "Admission" %}</a></li>
+			<li><a href="{% url "notes:classes-list" %}">{% trans "Results" %}</a></li>
+			<li><a href="{% url "theme:allianza" %}">{% trans "Allianza" %}</a></li>
+		    <li role="separator" class="divider"></li>
+		    <li><a href="{% url "degrees:bachelor-front-list" %}">{% trans "Bachelor" %}</a></li>
+			<li><a href="{% url "degrees:masters-front-list" %}">{% trans "Master" %}</a></li> 
+			<li><a href="#">{% trans "Doctorate" %}</a></li>
+		  </ul>
+		</div>
+	</div>
 	{% if user.is_authenticated %}
 		<div class="top desktop">
 	  	<div class="container">
@@ -46,7 +67,7 @@
 	  	</div>
 		</div>
 	{% endif %}
-	<div class="main-header">
+	<div class="main-header desktop">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-5 col-md-5 name">
@@ -82,10 +103,10 @@
 <!-- Menu secondaire -->
 
 
-<div class="sub-nav">
+<div class="sub-nav desktop">
 	<div class="container">
 		<div class="nav col-sm-8 col-md-9">
-			<ul id="menu">
+			<ul id="">
 				<li><a href="{% url "presentation:home" %}">{% trans "Home" %}</a></li>
 				<li><a href="{% url "presentation:about" %}">{% trans "Presentation" %}</a></li>
 				<li><a href="{% url "students:sign-up" %}">{% trans "Admission" %}</a></li>

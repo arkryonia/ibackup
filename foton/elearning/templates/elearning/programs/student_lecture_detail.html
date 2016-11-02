@@ -20,11 +20,13 @@
 		</ul>
 	</div>
 	<div class="module">
-		{% for content in module.contents.all %}
+		<div class="col-xs-12 col-sm-12">
+			{% for content in module.contents.all %}
 			{% with item=content.item %}
 				<h2>{{ item.title }}</h2>
 				{{ item.render }}
 			{% endwith %}
 		{% endfor %}
+		</div>
 	</div>
 {% endblock content %}

@@ -1,6 +1,9 @@
 body {
   background-color: #fff !important; }
 
+.mobile {
+  display: none; }
+
 div.top {
   height: 30px;
   line-height: 30px;
@@ -350,6 +353,41 @@ body.error {
     max-height: 60px;
     width: auto; } }
 @media screen and (max-width: 767px) {
+  .container {
+    margin-top: 70px; }
+
+  .mobile {
+    display: block !important;
+    height: 60px;
+    background-color: #003380;
+    position: fixed;
+    width: 100% !important;
+    top: 0 !important;
+    z-index: 20;
+    box-shadow: 0 1px 2px #555; }
+    .mobile img {
+      height: 60px !important;
+      float: left; }
+    .mobile div.name {
+      float: left;
+      line-height: 60px;
+      color: #fff;
+      margin-left: 15px; }
+    .mobile div.dropdown {
+      float: left;
+      line-height: 60px; }
+    .mobile li.dropdown-toggle {
+      list-style: none;
+      color: #fff; }
+      .mobile li.dropdown-toggle i {
+        background-color: #001f4d;
+        font-size: 1.6em;
+        padding: 8px;
+        margin-top: 4px;
+        margin-right: 5px; }
+    .mobile .dropdown-menu {
+      padding: 0 !important; }
+
   .desktop {
     display: none !important; }
 
