@@ -348,13 +348,27 @@ body.error {
     width: 30% !important;
     height: auto; }
 
-@media screen and (max-width: 399px) {
-  header .logo {
-    max-height: 60px;
-    width: auto; } }
+@media screen and (max-width: 295px) {
+  div.name {
+    font-size: 1.1rem !important; } }
 @media screen and (max-width: 767px) {
-  .container {
+  h1, h2, h3, h4 {
+    font-size: 1.7rem !important;
+    margin: 5px !important; }
+
+  .mainTitle {
+    display: none; }
+
+  p, div {
+    font-size: 1.3rem !important; }
+
+  .container.mt70 {
     margin-top: 70px; }
+
+  .container {
+    width: 100% !important; }
+    .container .row {
+      padding-left: 0 !important; }
 
   .mobile {
     display: block !important;
@@ -386,7 +400,13 @@ body.error {
         margin-top: 4px;
         margin-right: 5px; }
     .mobile .dropdown-menu {
-      padding: 0 !important; }
+      padding: 0 !important;
+      width: 250px !important; }
+      .mobile .dropdown-menu a {
+        padding: 7px !important;
+        font-size: 1.3rem;
+        border-bottom: 1px solid #ccc;
+        color: #555; }
 
   .desktop {
     display: none !important; }

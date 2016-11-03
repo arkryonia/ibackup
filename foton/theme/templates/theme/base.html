@@ -26,7 +26,7 @@
 
 <header id="header" class="">
 	<div class="mobile">
-		<img src="{% static "theme/img/mobile-logo.png" %}">
+		<a href="{% url "presentation:about" %}"><img src="{% static "theme/img/mobile-logo-1.png" %}"></a>
 		<div class="name">
 			IRGIB AFRICA UNIVERSITY
 		</div>
@@ -35,14 +35,19 @@
 		    <i class='fa fa-bars'></i>
 		  </li>
 		  <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-		    <li><a href="{% url "presentation:about" %}">{% trans "Presentation" %}</a></li>
-			<li><a href="{% url "students:sign-up" %}">{% trans "Admission" %}</a></li>
+			<!-- li><a href="{% url "students:sign-up" %}">{% trans "Admission" %}</a></li-->
 			<li><a href="{% url "notes:classes-list" %}">{% trans "Results" %}</a></li>
 			<li><a href="{% url "theme:allianza" %}">{% trans "Allianza" %}</a></li>
-		    <li role="separator" class="divider"></li>
-		    <li><a href="{% url "degrees:bachelor-front-list" %}">{% trans "Bachelor" %}</a></li>
-			<li><a href="{% url "degrees:masters-front-list" %}">{% trans "Master" %}</a></li> 
-			<li><a href="#">{% trans "Doctorate" %}</a></li>
+			<li><a href= {% url 'cicanon:public-list-posts' %} class="">{% trans "IRGIB Blog" %}</a></li>
+			<li><a href="{% url "ejournal:magasines" %}" class="">{% trans "E-Journal" %}</a></li>
+			<li><a href= {% url 'publication:list-new' %} class="">{% trans "irgib news" %}</a></li>
+			<li><a href= {% url 'publication:list-event' %} class="">{% trans "irgib events" %}</a></li>
+			<li><a href={% url 'planning:public-list-planning' %} class="">{% trans "consult planning" %}</a></li>
+			{% if user.is_authenticated %}
+			   <li><a href= {% url 'account_logout' %} title="" class="">{% trans "LOGOUT" %}</a></li>
+			{% else %}
+			   <li><a href= {% url 'account_login' %} title="" class="">{% trans "Login" %}</a></li>
+			{% endif %}
 		  </ul>
 		</div>
 	</div>
@@ -139,54 +144,54 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-8 col-md-8">
-							<div class="news-home">
-								{% if GALLERY %}
-									<a href={% url 'galleries:list-photos' GALLERY.slug %}><h5>{% trans "Gallery of " %}{{ GALLERY.name }}</h5></a>
+				<div class="news-home">
+					{% if GALLERY %}
+						<a href={% url 'galleries:list-photos' GALLERY.slug %}><h5>{% trans "Gallery of " %}{{ GALLERY.name }}</h5></a>
 
-									<hr class="aside-hr">
+						<hr class="aside-hr">
 
-									<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-										<div class="carousel-inner" role="listbox">
-											<div class="item active">
-												{% thumbnail GALLERY.image 780x350 crop as thumb %}
-												<a href={% url 'galleries:list-photos' GALLERY.slug %}><img src="{{ thumb.url }}" class="img-responsive" alt="{{ GALLERY.name }}" /></a>
-												<div class="carousel-caption">
-													{{ GALLERY.name}}
-												</div>
-											</div>
-											{% for photo in PHOTOS %}
-												<div class="item">
-													{% thumbnail photo.image 780x350 crop as pic %}
-													<a href={% url 'galleries:detail-photo' photo.gallery.slug photo.pk %}><img src="{{ pic.url }}" class="img-responsive" alt="{{ photo.title }}" /> </a>
-													<div class="carousel-caption">
-														{{ photo.title }}
-													</div>
-												</div>
-											{% endfor %}
+						<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+							<div class="carousel-inner" role="listbox">
+								<div class="item active">
+									{% thumbnail GALLERY.image 780x350 crop as thumb %}
+									<a href={% url 'galleries:list-photos' GALLERY.slug %}><img src="{{ thumb.url }}" class="img-responsive" alt="{{ GALLERY.name }}" /></a>
+									<div class="carousel-caption">
+										{{ GALLERY.name}}
+									</div>
+								</div>
+								{% for photo in PHOTOS %}
+									<div class="item">
+										{% thumbnail photo.image 780x350 crop as pic %}
+										<a href={% url 'galleries:detail-photo' photo.gallery.slug photo.pk %}><img src="{{ pic.url }}" class="img-responsive" alt="{{ photo.title }}" /> </a>
+										<div class="carousel-caption">
+											{{ photo.title }}
 										</div>
 									</div>
-									{% endif %}
+								{% endfor %}
 							</div>
-            </div>
-						<div class="col-md-4 clo-xs-12 col-sm-12 aside-home">
-							{% block aside %}
-
-								<div class="timeline">
-									<div class="">
-										<h5>{% trans "IRGIB on Twitter" %}</h5>
-									</div>
-									<hr class="aside-hr">
-									<div class="body">
-										<a class="twitter-timeline"  href="https://twitter.com/hashtag/irgibafrica" data-widget-id="773189535257726976">Tweets sur #irgibafrica</a>
-									</div>
-								</div>
-								<div class='store'>
-									<a href="https://play.google.com/store/apps/details?id=mouhrakib.irg&hl=fr" class="store"><img src="{% static "theme/img/svg/playstore.svg" %}" alt=""></a>
-								</div>
-
-							{% endblock aside %}
-    				</div>
+						</div>
+						{% endif %}
 				</div>
+            </div>
+				<div class="col-md-4 clo-xs-12 col-sm-12 aside-home">
+					{% block aside %}
+
+						<div class="timeline">
+							<div class="">
+								<h5>{% trans "IRGIB on Twitter" %}</h5>
+							</div>
+							<hr class="aside-hr">
+							<div class="body">
+								<a class="twitter-timeline"  href="https://twitter.com/hashtag/irgibafrica" data-widget-id="773189535257726976">Tweets sur #irgibafrica</a>
+							</div>
+						</div>
+						<div class='store desktop'>
+							<a href="https://play.google.com/store/apps/details?id=mouhrakib.irg&hl=fr" class="store"><img src="{% static "theme/img/svg/playstore.svg" %}" alt=""></a>
+						</div>
+
+					{% endblock aside %}
+				</div>
+			</div>
 		</div>
 </section>
 {% endblock main %}
@@ -200,7 +205,7 @@
 
 	<!-- Footer -->
 
-<footer>
+<footer class="desktop">
 	<div class="footer">
 		<div class="container">
 			<h3>{% trans "Helpful Links" %}</h3>

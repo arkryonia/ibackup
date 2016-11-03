@@ -9,7 +9,7 @@
 
 {% block main %}
 <section class="main-section">
-	<div class="container">
+	<div class="container mt70">
 		<div class="row">
 			<div class="col-md-8 clo-xs-12 col-sm-12 main" class="">
 
@@ -21,9 +21,9 @@
 
     	</div>
 
-			<div class="col-md-4 clo-xs-12 col-sm-12 aside">
+			<div class="clo-xs-12 col-sm-12 col-md-4 aside desktop">
 				{% block aside %}
-					<a href= ><h5>{{ GALLERY.name }}</h5></a>
+					<a href="{% url "galleries:list-photos" GALLERY.slug %}"><h5>{{ GALLERY.name }}</h5></a>
 
 					<hr class="aside-hr">
 
