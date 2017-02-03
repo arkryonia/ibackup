@@ -12,7 +12,7 @@ from .common import *
 
 
 # Allow all host headers
-ALLOWED_HOSTS =  ['www.irgibafrica.university', 'irgibafrica.university', 'irgibweb.reysh.com',] #env('ALLOWED_HOSTS')
+ALLOWED_HOSTS =  ['www.irgibafrica.university', 'irgibafrica.university', 'irgibweb.reysh.tech',] #env('ALLOWED_HOSTS')
 
 
 INSTALLED_APPS +=('gunicorn',)
