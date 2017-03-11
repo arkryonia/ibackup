@@ -99,15 +99,15 @@ class Student(User):
     gender      = models.IntegerField(choices=GENDERS, verbose_name = _("Gender"))
     student_type = models.IntegerField(choices=TYPES, verbose_name = _("Type"), default=0)
     origin      = CountryField(blank_label=_('(select country)'), verbose_name = _("Nationality"))
-    birth_date  = models.DateField(default=timezone.now)
+    birth_date  = models.DateField(default=timezone.now, verbose_name=_('Birth Date'))
     birth_venue = models.CharField(max_length=100, verbose_name = _("Place of Birth"))
     year = models.ForeignKey(Year, verbose_name = _("Academic Year"))
-    national_Id = models.CharField(max_length=50, blank=True)
+    national_Id = models.CharField(max_length=50, blank=True, verbose_name=_('National ID'))
     marital_status = models.IntegerField(choices=MARITAL,
                                         default=0,
                                         verbose_name = _("Marital Status")
                                         )
-    sponsor_full_name = models.CharField(max_length=100, help_text=_('Sponsor or guardian full name'))
+    sponsor_full_name = models.CharField(max_length=100, verbose_name=_('Sponsor or guardian full name'))
     sponsor_relationship = models.CharField(max_length=50, verbose_name = _("Relationship with Sponsor or Guardian"), help_text=_('Relation to Applicant'))
     sponsor_address = models.CharField(max_length=50,verbose_name = _("Sponsor or Guardian Address"), help_text=_('Sponsor or Guardian Permanent Address'))
     sponsor_occupation = models.CharField(max_length=150, verbose_name = _("Occupation"))

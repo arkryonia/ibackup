@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-15 17:29+0100\n"
-"PO-Revision-Date: 2016-09-18 17:36+0014\n"
+"POT-Creation-Date: 2017-03-11 08:41+0100\n"
+"PO-Revision-Date: 2017-03-11 08:45+0014\n"
 "Last-Translator: b'  <>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -52,7 +52,6 @@ msgid "Regular Student"
 msgstr "Ordinaire"
 
 #: models.py:94
-#| msgid "Choose your type"
 msgid "Choose your marital status"
 msgstr "Choisissez votre Situation Matrimoniale"
 
@@ -80,6 +79,10 @@ msgstr "Vôtre pays d'origine"
 msgid "Nationality"
 msgstr "Nationalité"
 
+#: models.py:102
+msgid "Birth Date"
+msgstr "Date de Naissance"
+
 #: models.py:103
 msgid "Place of Birth"
 msgstr "Lieu de Naissance"
@@ -88,16 +91,19 @@ msgstr "Lieu de Naissance"
 msgid "Academic Year"
 msgstr "Année Académique"
 
+#: models.py:105
+msgid "National ID"
+msgstr "Numéro de la Carte d'Indentité"
+
 #: models.py:108
 msgid "Marital Status"
 msgstr "Situation Matrimoniale"
 
 #: models.py:110
 msgid "Sponsor or guardian full name"
-msgstr "Parain ou Sponsor ou Tuteur"
+msgstr "Nom complet du Parain, du Sponsor ou du Tuteur"
 
 #: models.py:111
-#| msgid "Sponsor or Guardian Email"
 msgid "Relationship with Sponsor or Guardian"
 msgstr "Relation avec Sponsor ou le Tuteur "
 
@@ -106,12 +112,10 @@ msgid "Relation to Applicant"
 msgstr "Relation avec l'étudiant"
 
 #: models.py:112
-#| msgid "Sponsor or guardian Permanent Address"
 msgid "Sponsor or Guardian Address"
 msgstr "Addresse du Sponsor ou Tuteur"
 
 #: models.py:112
-#| msgid "Sponsor or guardian Permanent Address"
 msgid "Sponsor or Guardian Permanent Address"
 msgstr "Addresse du Sponsor ou Tuteur"
 
