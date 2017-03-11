@@ -87,7 +87,7 @@ class Student(User):
     TYPES = (
         ("",_("Choose your type")),
         (0, _("Regular Student")),
-        # (1, _("Allianza Student")),
+        (1, _("Allianza Student")),
     )
 
     MARITAL = (
