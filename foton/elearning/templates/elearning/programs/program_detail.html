@@ -19,12 +19,9 @@
             {% csrf_token %}
             <input type="submit" class="button" value="Enroll">
         </form>
+  {% elif request.user.student.student_type == 1 %}
+      
   {% else %}
-      <a href="{% url "students:sign-up" %}" title="">
-        <button class="btn btn-success btn-block" type="submit">
-          {% trans "Register to program" %}
-        </button>
-      </a>
     
   {% endif %}
 {% endblock content %}
