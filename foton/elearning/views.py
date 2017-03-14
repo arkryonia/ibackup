@@ -57,7 +57,7 @@ class ProgramDetailView(DetailView):
         context["lectures"] = Lecture.objects.filter(semester__program=program)\
         .annotate(total_modules=Count('modules')).order_by('-pk')
         context['enrollform'] = ProgramEnrollForm(initial={'program':program})
-        user = User.student.objects.get(username=self.request.user.username)
+        user = User.objects.get(username=self.request.user.username)
         allianza = Group.objects.get(name="allianza")
         if user.student.student_type==1:
             user.groups.add(allianza)
