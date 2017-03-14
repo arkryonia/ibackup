@@ -3,6 +3,7 @@
 # ----------------------------------------------------------------------------
 
 from __future__ import absolute_import, unicode_literals
+from django.contrib.auth.models import Group
 
 
 # ============================================================================
@@ -52,15 +53,15 @@ class StudentForm(forms.ModelForm):
                     'first_name',
                     'last_name',
                     'marital_status',
-                    'username',
                     'year',
+                    'origin',
+                    'username',
+                    'email',
                     'password',
                     'student_type',
-                    'origin',
                     'national_Id',
                     'birth_date',
                     'birth_venue',
-                    'email',
                     'phone',
                     'residence',
                     'sponsor_full_name',
@@ -85,6 +86,9 @@ class StudentForm(forms.ModelForm):
     def save(self, commit=True):
         user = super(StudentForm, self).save(commit=False)
         user.set_password(self.cleaned_data["password"])
+        # if user.student_type==1:
+        #     allianza = Group.objects.get(name="allianza")
+        #     user.groups.add(allianza)
         if commit:
             user.save()
         return user

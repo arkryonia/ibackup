@@ -62,7 +62,7 @@
 					<a href= {% url 'staff:home' %} >Administration</a>
 					<i>|</i>
 				{% endif %}
-				{% if not perms.users.is_admin or not perms.users.is_scolar or not perms.users.is_commercial or not perms.users.is_lecturer %}
+				{% if perms.users.is_allianza %}
 					<a href= {% url 'elearning:student_programs' %} >{% trans 'My Programs' %}</a>
 					<a href= {% url 'moocs:student_mooc_list_view' %} >{% trans 'My MOOC' %}</a>
 				{% endif %}

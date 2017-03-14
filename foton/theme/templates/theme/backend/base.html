@@ -96,17 +96,6 @@
                           </li>
                         {% endif %}
 
-                        {% if perms.users.is_lecturer %}
-                          <ul class="nav" id="side-menu">
-                            <li>
-                              <a href={% url 'elearning:lecture-list-by-owner' %} %}><i class="fa fa-graduation-cap fa-fw"></i> {% trans "Courses" %}<span class="fa arrow"></span></a>
-                            </li>
-                            <li>
-                              <a href={% url "moocs:owner-list" %} ><i class="fa fa-graduation-cap fa-fw"></i> {% trans "Moocs" %}<span class="fa arrow"></span></a>
-                            </li>
-                          </ul>
-                        {% endif %}
-
                         {% if perms.users.is_scolar %}
 
                           <li><a href={% url 'programs:domain-list' %}><i class="fa fa-map-o fa-fw"></i> {% trans "Programs" %}<span class="fa arrow"></span></a></li>
@@ -159,6 +148,17 @@
                             </ul>
                           </li>
                           
+                        {% endif %}
+
+                        {% if perms.users.is_lecturer %}
+                          <ul class="nav" id="side-menu">
+                            <li>
+                              <a href={% url 'elearning:lecture-list-by-owner' %} %}><i class="fa fa-graduation-cap fa-fw"></i> {% trans "Courses" %}<span class="fa arrow"></span></a>
+                            </li>
+                            <li>
+                              <a href={% url "moocs:owner-list" %} ><i class="fa fa-graduation-cap fa-fw"></i> {% trans "Moocs" %}<span class="fa arrow"></span></a>
+                            </li>
+                          </ul>
                         {% endif %}
 
                         {% if perms.users.is_commercial %}

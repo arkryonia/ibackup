@@ -2,15 +2,15 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import Http404, HttpResponse
 from django.core.urlresolvers import reverse_lazy
 from django.core.mail import EmailMessage
-
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from django.views.generic import (ListView,
-								  DetailView,
-								  CreateView,
-								  UpdateView,
-								  DeleteView,
-								  View)
+                                  DetailView,
+                                  CreateView,
+                                  UpdateView,
+                                  DeleteView,
+                                  View)
+from django.contrib.auth.models import Group
 from django.contrib.auth.mixins import (LoginRequiredMixin,
 										PermissionRequiredMixin
 										)
@@ -70,6 +70,11 @@ class StudentCreateView(CreateView):
 
     def form_valid(self, form):
         form.instance.is_active = False
+        allianza = Group.objects.get(name="allianza")
+        if form.instance.student_type==1:
+            form.instance.is_active = True
+            # form.instance.groups.add(allianza)
+
         return super(StudentCreateView, self).form_valid(form)
 
 

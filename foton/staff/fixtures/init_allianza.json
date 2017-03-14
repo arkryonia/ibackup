@@ -1575,6 +1575,15 @@
     }
 },
 {
+    "model": "auth.permission",
+    "pk": 176,
+    "fields": {
+        "name": "Is Allianza",
+        "content_type": 15,
+        "codename": "is_allianza"
+    }
+},
+{
     "model": "auth.group",
     "pk": 1,
     "fields": {
@@ -1613,6 +1622,16 @@
         "name": "lecturer",
         "permissions": [
             175
+        ]
+    }
+},
+{
+    "model": "auth.group",
+    "pk": 5,
+    "fields": {
+        "name": "allianza",
+        "permissions": [
+            176
         ]
     }
 }

@@ -13,20 +13,18 @@
         {% endfor %}
       {% endwith %}
 	{% endfor %}
-	{% if request.user.is_authenticated %}
+	{% if request.user.is_authenticated and perms.users.is_allianza and request.user.student.student_type == 1 %}
         <form action="{% url "elearning:student_enroll_program" program.slug %}" method="post">
             {{ enrollform }}
             {% csrf_token %}
             <input type="submit" class="button" value="Enroll">
         </form>
-    {% else %}
-    	<form class="login" method="POST" action="{% url 'account_login' %}">
-          {% csrf_token %}
-          {{ form|crispy }}
-          {% if redirect_field_value %}
-          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-          {% endif %}
-          <button class="btn btn-success btn-block" type="submit">{% trans "Sign In To Register at  This Program" %}</button>
-        </form>
-    {% endif %}
+  {% else %}
+      <a href="{% url "students:sign-up" %}" title="">
+        <button class="btn btn-success btn-block" type="submit">
+          {% trans "Register to program" %}
+        </button>
+      </a>
+    
+  {% endif %}
 {% endblock content %}

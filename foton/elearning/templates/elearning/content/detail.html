@@ -6,7 +6,6 @@
 <div class="dataTable_wrapper">
 	<p class="text-right">
 	{% with m=module %}
-		<a href="{% url "elearning:module_content_create"  m.lecture.slug m.id "video"  %}" class="btn btn-primary">{% trans "Add Video" %}</a>
 		<a href="{% url "elearning:module_content_create" m.lecture.slug m.id "file"  %}" class="btn btn-primary">{% trans "Add File" %}</a>
 		<a href="{% url "elearning:module_content_create" m.lecture.slug m.id "image"  %}" class="btn btn-primary">{% trans "Add Image" %}</a>
 		<a href="{% url "elearning:module_content_create" m.lecture.slug m.id "text"  %}" class="btn btn-primary">{% trans "Add Text" %}</a>

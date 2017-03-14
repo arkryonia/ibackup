@@ -1,2 +1,4 @@
 
-{{ item.content|linebreaks|safe }}
+{% autoescape off %}
+	{{ item.content|linebreaks|safe }}
+{% endautoescape %}

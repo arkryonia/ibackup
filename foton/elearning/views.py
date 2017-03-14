@@ -18,21 +18,32 @@ from django.forms.models import modelform_factory
 from django.apps import apps
 from django.utils.translation import ugettext_lazy as _
 
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.contrib.auth.mixins import (LoginRequiredMixin, PermissionRequiredMixin)
+from django.contrib.auth.models import Group
 
 from foton.programs.models import Option, Speciality
 
 from .models import ElearningBachelor, ElearningMaster, Semester, Lecture, ElearningProgram, LectureModule  
 
 from foton.courses.models import Module, Content, Course
+from foton.users.models import User
 from .forms import ModuleFormSet, ProgramEnrollForm
 from .forms import BachelorCreateForm, LectureCreateForm
+
+
+
 
 class ProgramListView(ListView):
     model = ElearningProgram
     template_name = "elearning/programs/programs_list.html"
     context_object_name = "programs"
+
+
+# class RegisterProgramView(View):
+#     model = ElearningProgram
+#     template_name = "elearning/programs/programs_list.html"
+#     context_object_name = "programs"
+
 
 class ProgramDetailView(DetailView):
     model = ElearningProgram
@@ -46,6 +57,11 @@ class ProgramDetailView(DetailView):
         context["lectures"] = Lecture.objects.filter(semester__program=program)\
         .annotate(total_modules=Count('modules')).order_by('-pk')
         context['enrollform'] = ProgramEnrollForm(initial={'program':program})
+        user = User.objects.get(username=self.request.user.username)
+        allianza = Group.objects.get(name="allianza")
+        if user.student.student_type==1:
+            user.groups.add(allianza)
+        user.save()            
         return context
 
 
@@ -87,7 +103,6 @@ class BachelorDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView
 class BachelorCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     permission_required='users.is_admin'
     model = ElearningBachelor
-    # form_class = BachelorCreateForm
     fields = ['option','name', 'pdf']
     success_url = reverse_lazy('elearning:bachelor-list')
     template_name = 'elearning/bachelors/create.html'
@@ -356,7 +371,7 @@ class ContentCreateUpdateView(LoginRequiredMixin, PermissionRequiredMixin, View)
     template_name = "elearning/content/create_content.html"
     
     def get_model(self, model_name):
-        if model_name in ['text', 'file', 'image', 'video']:
+        if model_name in ['text', 'file', 'image']:
             return apps.get_model(app_label = 'courses',
                                     model_name = model_name)
         return None
@@ -407,7 +422,8 @@ class ContentCreateUpdateView(LoginRequiredMixin, PermissionRequiredMixin, View)
 # ======================================= Student ======================================
 
 
-class StudentProgramListView(LoginRequiredMixin, ListView):
+class StudentProgramListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
+    permission_required='users.is_allianza'
     model = ElearningProgram
     template_name = 'elearning/programs/student_program_list.html'
     context_object_name = "student_programs"
@@ -415,7 +431,8 @@ class StudentProgramListView(LoginRequiredMixin, ListView):
         qs = super(StudentProgramListView, self).get_queryset()
         return qs.filter(students__in=[self.request.user])
 
-class StudentProgramDetailView(LoginRequiredMixin, DetailView):
+class StudentProgramDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
+    permission_required='users.is_allianza'
     model = ElearningProgram
     template_name = 'elearning/programs/student_programs_detail.html'
     context_object_name = "student_program"
@@ -434,7 +451,8 @@ class StudentProgramDetailView(LoginRequiredMixin, DetailView):
         return context
 
 
-class StudentLectureDetailView(LoginRequiredMixin, DetailView):
+class StudentLectureDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
+    permission_required='users.is_allianza'
     model = Lecture
     template_name = 'elearning/programs/student_lecture_detail.html'
 
@@ -448,5 +466,5 @@ class StudentLectureDetailView(LoginRequiredMixin, DetailView):
         if 'module_id' in self.kwargs:
             context['module'] = lecture.modules.get(id=self.kwargs['module_id'])
         else:
-            context['module'] = lecture.modules.all()[0]
+            context['module'] = lecture.modules.first()
         return context
