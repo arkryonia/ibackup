@@ -20,8 +20,7 @@
             <input type="submit" class="button" value="Enroll">
         </form>
   {% elif request.user.student.student_type == 1 %}
-      
   {% else %}
-    
+      <a href="{% url "elearning:allianza-registration" program.slug %}" title=""> {% trans "Register" %} </a>
   {% endif %}
 {% endblock content %}

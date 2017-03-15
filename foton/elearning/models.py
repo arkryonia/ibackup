@@ -53,9 +53,11 @@ from foton.courses.models import Course, Content, Module
 from foton.universities.models import Lecturer
 # from foton.degrees.models import Program, Bachelor, Master
 from foton.users.models import User
+from foton.students.models import Student, Registred
 from foton.courses.forms import OrderField
 
 # ============================================================================
+
 
 class ElearningProgram(TimeStampedModel):
     name = models.CharField(max_length=50)
@@ -68,7 +70,7 @@ class ElearningProgram(TimeStampedModel):
         verbose_name_plural = 'E-Programs'
 
     def __str__(self):
-        return self.pdf.url
+        return self.name
 
 
 class ElearningBachelor(ElearningProgram):
@@ -85,6 +87,41 @@ class ElearningMaster(ElearningProgram):
         verbose_name = 'E-Master'
         verbose_name_plural = 'E-Masters'
 
+
+class AllianzaStudent(Student):
+    program = models.ForeignKey(ElearningProgram)
+
+    class Meta:
+        verbose_name = 'Allianza Student'
+        verbose_name_plural = 'Allianza Students'
+    
+    def __str__(self):
+        return ("{0} {1} {2}").format(self.first_name, self.last_name, self.email)
+
+    # def get_absolute_url(self):
+    #     return reverse_lazy('students:student-detail', kwargs={'pk': self.pk})
+
+AllianzaStudent._meta.get_field('marital_status').null=True
+AllianzaStudent._meta.get_field('student_type').default=1
+AllianzaStudent._meta.get_field('sponsor_full_name').blank=True
+AllianzaStudent._meta.get_field('sponsor_relationship').blank=True
+AllianzaStudent._meta.get_field('sponsor_address').blank=True
+AllianzaStudent._meta.get_field('sponsor_occupation').blank=True
+AllianzaStudent._meta.get_field('sponsor_phone').blank=True
+AllianzaStudent._meta.get_field('sponsor_email').blank=True
+
+class AllianzaRegistred(Registred):
+    class Meta:
+        verbose_name = _('Allianza Registred')
+        verbose_name_plural = _('Allianza Registreds')
+
+    def __str__(self):
+        return "{0} is registred in {1}".format(self.student.first_name, 
+            self.student.id)
+
+
+AllianzaRegistred._meta.get_field('clazz').null=True
+
 class Semester(TimeStampedModel):
     program = models.ForeignKey(ElearningProgram)
     name = models.CharField(default="Semester", max_length=9, blank=True)
@@ -97,6 +134,7 @@ class Semester(TimeStampedModel):
 
     def __str__(self):
         return "{0} {1}".format(self.name, self.order)
+
 
 class Lecture(Course):
     owner = models.ForeignKey(Lecturer, related_name='courses_lecturer')

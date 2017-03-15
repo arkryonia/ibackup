@@ -40,7 +40,7 @@ class BachelorListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
 class BachelorCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     permission_required = 'users.is_scolar'
     model = Bachelor
-    fields = ('option','pdf_en','pdf_fr')
+    fields = ['option','pdf_en','pdf_fr']
     success_url = reverse_lazy('degrees:bachelor-list')
     template_name = 'degrees/bachelors/create.html'
 

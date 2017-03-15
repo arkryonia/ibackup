@@ -59,7 +59,7 @@ class Program(TimeStampedModel):
         verbose_name_plural = 'Programs'
 
     def __str__(self):
-        return self.pdf.url
+        return self._meta.model_name
 
 
 class Bachelor(Program):
@@ -67,6 +67,9 @@ class Bachelor(Program):
     class Meta:
         verbose_name = 'Bachelor'
         verbose_name_plural = 'Bachelors'
+    
+    def __str__(self):
+        return self.option.name
 
 
 class Master(Program):
@@ -75,3 +78,6 @@ class Master(Program):
     class Meta:
         verbose_name = 'Master'
         verbose_name_plural = 'Masters'
+
+    def __str__(self):
+        return self.speciality.name

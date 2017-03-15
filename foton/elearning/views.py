@@ -9,6 +9,9 @@
 from django.db.models import Count
 from django.shortcuts import render, get_object_or_404, get_list_or_404, Http404, redirect
 from django.core.urlresolvers import reverse_lazy, reverse
+from django.core.mail import EmailMessage
+from django.conf import settings
+
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView, TemplateView, View
 from django.views.generic.base import TemplateResponseMixin
@@ -23,12 +26,161 @@ from django.contrib.auth.models import Group
 
 from foton.programs.models import Option, Speciality
 
-from .models import ElearningBachelor, ElearningMaster, Semester, Lecture, ElearningProgram, LectureModule  
+from .models import (AllianzaStudent, AllianzaRegistred, ElearningBachelor,
+ElearningMaster, Semester,Lecture, ElearningProgram, LectureModule)  
 
 from foton.courses.models import Module, Content, Course
+from foton.staff.models import Year 
 from foton.users.models import User
+from foton.students.models import Registred
 from .forms import ModuleFormSet, ProgramEnrollForm
-from .forms import BachelorCreateForm, LectureCreateForm
+from .forms import BachelorCreateForm, LectureCreateForm, AllianzaStudentForm
+
+
+class AllianzaStudentCreateView(CreateView):
+    model = AllianzaStudent
+    template_name = "students/students/create.html"
+    form_class = AllianzaStudentForm
+    success_url = reverse_lazy("presentation:home")
+    def form_valid(self, form):
+        program = ElearningProgram.objects.get(slug=self.kwargs['slug'])
+        form.instance.program = program
+        form.instance.is_active = False
+        return super(AllianzaStudentCreateView, self).form_valid(form)
+
+
+class AllianzaRegistredListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
+    permission_required = 'users.is_scolar'
+    queryset = AllianzaRegistred.objects.order_by('student')
+    template_name = "elearning/registration/list.html"
+    def get_context_data(self, **kwargs):
+        context = super(AllianzaRegistredListView, self).get_context_data(**kwargs)
+        year = Year.objects.filter(available = True)
+        students = AllianzaStudent.objects.filter(year=year, is_active=False)
+        context["students"] = students.order_by("last_name")
+        return context
+
+
+class AllianzaStudentUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+    permission_required = 'users.is_scolar'
+    model = AllianzaStudent
+    fields = ['first_name', 'last_name', 'birth_date', 'birth_venue']
+    template_name = "students/registred/update.html"
+    success_url = reverse_lazy("elearning:registration-list")
+
+
+
+class AllianzaRegistredCreateView(LoginRequiredMixin, PermissionRequiredMixin, View):
+    permission_required = 'users.is_scolar'
+    template_name = "students/registred/create.html"
+
+    def number(self):
+        year = Year.objects.filter(available = True)
+        c = Registred.objects.filter(student__year=year).all().count()
+        if c == 0:
+            num = 0
+        else:
+            num = Registred.objects.filter(student__year=year).last().matricule
+        return  num
+
+    def matricul(self, *args, **kwargs):
+        student = get_object_or_404(AllianzaStudent, pk=self.kwargs['pk'])
+        last_registred = Registred.objects.last()
+        year = "{0}{1}".format(str(student.year.start[2]), str(student.year.start[3]))
+        g = student.gender
+        s_t = student.student_type
+        m = str(last_registred.matricule+1)
+
+        
+        if (g == 0) :
+            gender = "00"
+        else:
+            gender = "01"
+
+        if (s_t == 0):
+            s_type = "00"
+        else:
+            s_type = "01"
+        if len(m) == 1:
+            mat = "{0}{1}".format("000", m)
+        elif len(m) == 2:
+            mat = "{0}{1}".format("00", m)
+        elif len(m) == 3:
+            mat = "{0}{1}".format("0", m)
+        else:
+            mat = m
+        matricule_number = "{0}{1}{2}{3}".format(gender, s_type, year, mat)
+        # self.matricule_number = matricule_number 
+        return matricule_number
+        # form.instance.matricule = form.instance.number()+1
+    
+    def get(self, request, *args, **kwargs):
+        student = get_object_or_404(AllianzaStudent, pk=kwargs['pk'])
+        registred = AllianzaRegistred.objects.create(student=student, 
+            matricule=self.number()+1, matricule_number=self.matricul() )
+        registred.save()
+        student_program = student.program
+        program = ElearningProgram.objects.get(slug=student_program.slug)
+        program.students.add(student)
+        program.save()
+        student.is_active = True
+        allianza = Group.objects.get(name="allianza")
+        student.groups.add(allianza)
+        student.save()
+
+        subject = "Registration completed"
+        message = "Dear {0},\nMatricule {1},\n\n\
+        OFFER OF PROVISIONAL ADMISSION.\n\nIn reference to your application for\
+        an admission as an undergraduate student of IRGIB-Africa, \
+        we are delighted to inform you that you have been offered provisional\
+        admission to undertake the following Program {2}.All credentials ( Originals )\
+        will be checked during registration. The University reserves the right to \
+        withdraw this admission if it is discovered that any of your claims in \
+        the application or documents submitted are false.\n\n\
+        The rules and regulations governing the University must be strictly adhered\
+        to. Please contact your academic advisor for information on your course \
+        and academic information.\n\nAs an indication of your acceptance of \
+        this provincial offer of admission, you are required to complete your\
+        fees payment and all registration processes within one month of receipt \
+        of this letter.\n\nFor more information regarding registration, our \
+        programs and admission, please visit the school’s website : \
+        https://www.irgibafrica.university \
+        by contacting us at contact@irgibafrica.university.\n\nCongratulations \
+        on receiving an offer into IRGIB-Africa University. If you have any \
+        questions or would like any further information at this time, please \
+        feel free tocontact us. We look forward to welcoming you.\n \n \n\
+        Yours sincerely, \n\n \nSimon AMOUSSOU-GUENOU \n\nRegistar."\
+              .format(student, registred.matricule_number, \
+                student.program)
+        email = EmailMessage(subject,
+                             message,
+                             settings.EMAIL_HOST_USER,
+                             [registred.student.email]
+                            )
+        email.send()
+        return reverse_lazy("elearning:registration-list")
+
+class AllianzaStudentByProgram(ListView):
+    model = AllianzaStudent
+    template_name = "elearning/registration/allianzastudent_list.html"
+    context_object_name = "students"
+    def get_context_data(self, **kwargs):
+        context = super(AllianzaStudentByProgram, self).get_context_data(**kwargs)
+        program = ElearningProgram.objects.get(slug=self.kwargs['slug'])
+        context['students'] = program.students.all()
+        return context
+
+class ActivateRegistredView(LoginRequiredMixin, PermissionRequiredMixin, View):
+    permission_required = "users.is_scolar"
+    def get(self, request, *args, **kwargs):
+        registred = get_object_or_404(Student, pk=kwargs['pk'])
+        if registred.is_active:
+            registred.is_active = False
+        else:
+            registred.is_active = True
+        registred.save()
+        return redirect('students:list-class')
+
 
 
 
@@ -37,12 +189,6 @@ class ProgramListView(ListView):
     model = ElearningProgram
     template_name = "elearning/programs/programs_list.html"
     context_object_name = "programs"
-
-
-# class RegisterProgramView(View):
-#     model = ElearningProgram
-#     template_name = "elearning/programs/programs_list.html"
-#     context_object_name = "programs"
 
 
 class ProgramDetailView(DetailView):
@@ -57,11 +203,11 @@ class ProgramDetailView(DetailView):
         context["lectures"] = Lecture.objects.filter(semester__program=program)\
         .annotate(total_modules=Count('modules')).order_by('-pk')
         context['enrollform'] = ProgramEnrollForm(initial={'program':program})
-        user = User.objects.get(username=self.request.user)
-        allianza = Group.objects.get(name="allianza")
-        if user.student.student_type==1:
-            user.groups.add(allianza)
-        user.save()            
+        # user = User.objects.get(username=self.request.user)
+        # allianza = Group.objects.get(name="allianza")
+        # if user.student.student_type==1:
+        #     user.groups.add(allianza)
+        # user.save()            
         return context
 
 
@@ -127,7 +273,7 @@ class BachelorUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView
     def form_valid(self, form):
         instance = form.save()
         instance.slug = slugify(instance.name)
-        return super(BachelorCreateView, self).form_valid(form)
+        return super(BachelorUpdateView, self).form_valid(form)
 
 
 #-------------------------------------------------------------------------------
@@ -259,8 +405,8 @@ class SemesterMasterCreateView(LoginRequiredMixin, PermissionRequiredMixin, Crea
 class LectureCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     permission_required='users.is_admin'
     model = Lecture
-    # form_class = LectureCreateForm
-    fields = ['semester','owner','title','credits','overview','overview_image']
+    form_class = LectureCreateForm
+    # fields = ['semester','owner','title','credits','overview','overview_image']
     template_name = "elearning/lecture/create.html"
 
     def get_success_url(self):

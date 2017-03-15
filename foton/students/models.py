@@ -176,3 +176,4 @@ class Registred(TimeStampedModel):
         matricule_number = "{0}{1}{2}{3}".format(gender, s_type, year, mat)
         # self.matricule_number = matricule_number 
         return matricule_number
+

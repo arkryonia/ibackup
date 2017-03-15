@@ -63,6 +63,33 @@ urlpatterns = [
 		view = views.ProgramDetailView.as_view(),
 		name='program-courses'
 	),
+	url(
+		regex = r'^(?P<slug>[-\w]+)/program/students/$',
+		view = views.AllianzaStudentByProgram.as_view(),
+		name='program-student'
+	),
+	
+	url(
+		regex = r'^(?P<slug>[-\w]+)/program/courses/registration/$',
+		view = views.AllianzaStudentCreateView.as_view(),
+		name='allianza-registration'
+	),
+	url(
+		regex = r'^(?P<slug>[-\w]+)/program/courses/update/(?P<pk>[-\w]+)/student/$',
+		view = views.AllianzaStudentUpdateView.as_view(),
+		name='update-student'
+	),
+	url(
+		regex = r'^(?P<slug>[-\w]+)/program/courses/registration/(?P<pk>[-\w]+)/registration/$',
+		view = views.AllianzaRegistredCreateView.as_view(),
+		name='registration'
+	),
+
+	url(
+		regex = r'^registration/list/$',
+		view = views.AllianzaRegistredListView.as_view(),
+		name='registration-list'
+	),
 
 	url(
 		regex = r'^(?P<slug>[-\w]+)/enroll-program/$',

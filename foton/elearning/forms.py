@@ -9,13 +9,78 @@
 
 
 from django import forms
+from django.utils.translation import ugettext_lazy as _
+
+
 from foton.programs.models import Option
-from .models import ElearningBachelor, Semester, Lecture, ElearningProgram, LectureModule
+from .models import (ElearningBachelor, Semester, Lecture, 
+ElearningProgram, LectureModule, AllianzaStudent, AllianzaRegistred)
 
 from django.forms.models import inlineformset_factory
 from foton.courses.models import Course
 
 ModuleFormSet = inlineformset_factory(Lecture, LectureModule, fields=['title', 'description'], extra=4, can_delete=False)
+
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
+class AllianzaStudentForm(forms.ModelForm):
+    password = forms.CharField(label=_('Password') ,widget=forms.PasswordInput)
+
+    class Meta:
+        model = AllianzaStudent
+        fields = [
+                    'gender',
+                    'first_name',
+                    'last_name',
+                    # 'marital_status',
+                    'origin',
+                    # 'program',
+                    'year',
+                    # 'national_Id',
+                    'birth_date',
+                    'birth_venue',
+                    'username',
+                    'email',
+                    'phone',
+                    'password',
+                ]
+        widgets = {
+            'birth_date': DateInput(),
+        }
+
+
+    def __init__(self, *args, **kwargs):
+        super(AllianzaStudentForm, self).__init__(*args, **kwargs)
+
+    def clean(self):
+        cleaned_data = super(AllianzaStudentForm, self).clean()
+        return cleaned_data
+
+    def save(self, commit=True):
+        user = super(AllianzaStudentForm, self).save(commit=False)
+        user.set_password(self.cleaned_data["password"])
+        if commit:
+            user.save()
+        return user
+
+
+class RegistrationForm(forms.ModelForm):
+    matricule = forms.IntegerField()
+    # clazz = forms.ModelMultipleChoiceField(Class, label = _('Class'))
+    class Meta:
+        model = AllianzaRegistred
+        fields = ['matricule',]
+
+    def clean(self):
+        cleaned_data = super(RegistrationForm, self).clean()
+        return cleaned_data
+
+    def save(self, commit=True):
+        registered = super(RegistrationForm, self).save(commit=False)
+        if commit:
+            registered.save()
+        return registered
 
 
 class ProgramEnrollForm(forms.Form):
@@ -34,13 +99,14 @@ class BachelorCreateForm(forms.ModelForm):
 		self.fields['option'].queryset = Option.objects.filter(domain__user = self.request.user)
 
 class LectureCreateForm(forms.ModelForm):
-    semester = forms.ModelChoiceField(queryset=None)
-
-
+    semester = forms.ModelChoiceField(queryset=Semester.objects.filter())
     class Meta: 
     	model = Lecture
     	fields = ['semester']
+
     def __init__(self, *args, **kwargs):
         super(LectureCreateForm, self).__init__(*args, **kwargs)
-        program = Program.objects.get(pk = self.kwargs['pk'])
-        self.fields['semester'].queryset = Semester.objects.filter(program = program)
+        program = ElearningProgram.objects.get(slug = kwargs['slug'])
+        self.fields['semester'] = forms.ModelChoiceField(\
+        	queryset=Semester.objects.filter(program = program)
+    	)

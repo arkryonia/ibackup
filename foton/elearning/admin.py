@@ -48,10 +48,19 @@ from django.contrib import admin
 # Imports from our apps
 # ----------------------------------------------------------------------------
 
-from .models import ElearningBachelor, ElearningMaster, Semester, Lecture
+from .models import (ElearningBachelor, ElearningMaster, Semester, Lecture,
+	AllianzaStudent, AllianzaRegistred)
 
 # ============================================================================
 
+
+@admin.register(AllianzaStudent)
+class ElearningBachelorModelAdmin(admin.ModelAdmin):
+	pass
+
+@admin.register(AllianzaRegistred)
+class ElearningBachelorModelAdmin(admin.ModelAdmin):
+	pass
 
 @admin.register(ElearningBachelor)
 class ElearningBachelorModelAdmin(admin.ModelAdmin):

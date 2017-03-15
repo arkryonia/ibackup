@@ -7,6 +7,7 @@
   <p class="text-right">
 
     <a href={% url "elearning:lecture-add" bachelor.slug %} class="btn btn-primary">{% trans "Add Lecture" %}</a>
+    <a href={% url "elearning:program-student" bachelor.slug %} class="btn btn-primary">{% trans "Students" %}</a>
   </p>
   <form class="text-right" action="{% url "elearning:semester-bachelor-add" bachelor.slug %}" method="post">
     <input type="submit" value="Add Semester">
