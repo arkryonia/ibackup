@@ -19,7 +19,8 @@ ElearningProgram, LectureModule, AllianzaStudent, AllianzaRegistred)
 from django.forms.models import inlineformset_factory
 from foton.courses.models import Course
 
-ModuleFormSet = inlineformset_factory(Lecture, LectureModule, fields=['title', 'description'], extra=4, can_delete=False)
+ModuleFormSet = inlineformset_factory(Lecture, LectureModule, \
+    fields=['title', 'description'], extra=4, can_delete=False)
 
 class DateInput(forms.DateInput):
     input_type = 'date'
@@ -84,7 +85,8 @@ class RegistrationForm(forms.ModelForm):
 
 
 class ProgramEnrollForm(forms.Form):
-	program = forms.ModelChoiceField(queryset=ElearningProgram.objects.all(), widget=forms.HiddenInput)
+	program = forms.ModelChoiceField(queryset=ElearningProgram.objects.all(), \
+        widget=forms.HiddenInput)
 
 class BachelorCreateForm(forms.ModelForm):
 	option = forms.ModelChoiceField(queryset=None)
@@ -96,7 +98,8 @@ class BachelorCreateForm(forms.ModelForm):
 	
 	def __init__(self, *args, **kwargs):
 		super(BachelorCreateForm, self).__init__(*args, **kwargs)
-		self.fields['option'].queryset = Option.objects.filter(domain__user = self.request.user)
+		self.fields['option'].queryset = Option.objects.\
+        filter(domain__user = self.request.user)
 
 class LectureCreateForm(forms.ModelForm):
     semester = forms.ModelChoiceField(queryset=Semester.objects.filter())
@@ -104,9 +107,11 @@ class LectureCreateForm(forms.ModelForm):
     	model = Lecture
     	fields = ['semester']
 
-    def __init__(self, *args, **kwargs):
-        super(LectureCreateForm, self).__init__(*args, **kwargs)
-        program = ElearningProgram.objects.get(slug = kwargs['slug'])
-        self.fields['semester'] = forms.ModelChoiceField(\
-        	queryset=Semester.objects.filter(program = program)
-    	)
+    # def __init__(self, *args, **kwargs):
+    #     super(LectureCreateForm, self).__init__(*args, **kwargs)
+    #     program = ElearningProgram.objects.get(slug = self.kwargs['slug'])
+    #     self.fields['semester'] = forms.ModelChoiceField(\
+    #     	queryset=Semester.objects.filter(program = program)
+    # 	)
+    #     self.fields['semester'].queryset = \
+    #     Semester.objects.filter(domain__user = self.request.user)

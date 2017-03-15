@@ -58,7 +58,7 @@
 				{% trans "Welcome to IRGIB AFRICA. You are now connected as " %} {{ user.email }}
 			</div>
 			<div class="col-md-6 text-right">
-				{% if perms.users.is_admin or perms.users.is_scolar or perms.users.is_commercial or perms.users.is_lecturer %}
+				{% if perms.users.is_admin or perms.users.is_scolar or perms.users.is_commercial or perms.users.is_lecturer or perms.users.is_allianzadmin %}
 					<a href= {% url 'staff:home' %} >Administration</a>
 					<i>|</i>
 				{% endif %}
