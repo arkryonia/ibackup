@@ -2,7 +2,27 @@
 {% load i18n thumbnail %}
 {% block title %} {% trans "Our Programs" %} {% endblock title %}
 {% block content %}
-	{% for p in programs %}
-		<h4><a href="{% url "elearning:program-courses" p.slug %}"> {{p.name}} </a></h4>
-	{% endfor %}
+	<h3> {% trans "Programs" %} </h3>
+	<hr>
+	<div class="row">
+		{% for p in programs %}
+
+			<div class="col-md-4 listItem">
+				<div class="wrap">
+					<div class="row">
+						<div class="col-md-10">
+							<h4>{{p.name}}</h4>						
+						</div>
+						<div class="col-md-2">
+							<a href="{% url "elearning:program-courses" p.slug %}" title="" class="">
+								{% trans "details" %}
+							</a>			
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		{% endfor %}
+	</div>
 {% endblock content %}

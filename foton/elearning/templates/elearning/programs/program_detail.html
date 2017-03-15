@@ -2,25 +2,43 @@
 {% load i18n %}
 {% load crispy_forms_tags %}
 {% block content %}
-	{% for s in semesters %}
-		<h4>{{s}}</h4>
-      {% with order=s.order %}
-        {% for l in lectures  %}
-          {% if l.semester.order == order %}
-            <h4><a href="{% url "elearning:student_program_course_detail" l.semester.program.slug l.pk %}">{{l}}</a></h4> 
-            <p>{{l.total_modules}} Modules </p>
-          {% endif %}
-        {% endfor %}
-      {% endwith %}
-	{% endfor %}
-	{% if request.user.is_authenticated and perms.users.is_allianza and request.user.student.student_type == 1 %}
-        <form action="{% url "elearning:student_enroll_program" program.slug %}" method="post">
-            {{ enrollform }}
-            {% csrf_token %}
-            <input type="submit" class="button" value="Enroll">
-        </form>
-  {% elif request.user.student.student_type == 1 %}
-  {% else %}
-      <a href="{% url "elearning:allianza-registration" program.slug %}" title=""> {% trans "Register" %} </a>
-  {% endif %}
+  <div class="row">
+  	{% for s in semesters %}
+  		<h3>{{s}}</h3>
+      <hr>
+        {% with order=s.order %}
+          {% for l in lectures  %}
+            {% if l.semester.order == order %}
+              <div class="col-md-4 listItem">
+                <div class="wrap">
+                  <div class="row">
+                    <div class="col-md-10">
+                      <h4>{{l}}</h4>
+                      <i>{{l.total_modules}} Modules </i>           
+                    </div>
+                    <div class="col-md-2">
+                      <!-- a href="{% url "elearning:student_program_course_detail" l.semester.program.slug l.pk %}" title="" class="">
+                        {% trans "view" %}
+                      </a -->      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% endwith %}
+  	{% endfor %} 
+  </div>
+  <div class="row">
+  	{% if request.user.is_authenticated and perms.users.is_allianza and request.user.student.student_type == 1 %}
+          <form action="{% url "elearning:student_enroll_program" program.slug %}" method="post">
+              {{ enrollform }}
+              {% csrf_token %}
+              <input type="submit" class="button btn btn-success" value="Enroll">
+          </form>
+    {% elif request.user.student.student_type == 1 %}
+    {% else %}
+        <a href="{% url "elearning:allianza-registration" program.slug %}" title="" class="btn btn-success"> {% trans "Register" %} </a>
+    {% endif %}
+  </div>
 {% endblock content %}

@@ -1,7 +1,22 @@
 {% extends "theme/default.html" %}
+{% load i18n %}
 
 {% block content %}
 	{% for p in student_programs %}
-		<h4> <a href="{% url "elearning:student_program_details" p.slug %}"> {{p.name}} </a> </h4>
+		<div class="col-md-4 listItem">
+			<div class="wrap">
+				<div class="row">
+					<div class="col-md-10">
+						<h4>{{p.name}}</h4>						
+					</div>
+					<div class="col-md-2">
+						<a href="{% url "elearning:student_program_details" p.slug %}" title="" class="">
+							{% trans "details" %}
+						</a>			
+						
+					</div>
+				</div>
+			</div>
+		</div>			
 	{% endfor %}
 {% endblock content %}

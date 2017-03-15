@@ -583,4 +583,33 @@ div.login_page {
 .password_reset input {
   margin-bottom: 15px; }
 
+/* -------------- Allianza --------------- */
+div.listItem .wrap {
+  border: 1px solid #1bbaba;
+  background-color: rgba(17, 119, 119, 0.6);
+  padding: 10px 20px 10px 10px;
+  border-radius: 5px;
+  margin-bottom: 20px; }
+div.listItem .col-md-10 {
+  color: #fff; }
+  div.listItem .col-md-10 h4 {
+    margin: 0 0 5px 0;
+    font-weight: bolder; }
+  div.listItem .col-md-10 i {
+    color: #fff; }
+div.listItem a {
+  color: #888; }
+div.listItem a:active, div.listItem a:focus, div.listItem a:active, div.listItem a:checked {
+  border: none !important;
+  text-decoration: none;
+  color: blue; }
+div.listItem a {
+  background-color: #fff;
+  padding: 2px 7px;
+  border-radius: 2px;
+  margin-left: -15px; }
+  div.listItem a:hover {
+    text-decoration: none;
+    color: #003380; }
+
 /*# sourceMappingURL=main.css.map */

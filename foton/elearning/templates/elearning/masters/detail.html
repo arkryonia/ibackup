@@ -7,10 +7,6 @@
 <p class="text-right">
     <a href={% url "elearning:lecture-add" master.slug %} class="btn btn-primary">{% trans "Add Lecture" %}</a>
 </p>
-  <form class="text-right" action="{% url "elearning:semester-master-create" master.slug %}" method="post">
-    <input type="submit" value="Add Semester">
-    {% csrf_token %}
-  </form>
   <table class="table table-striped table-bordered table-hover" id="dataTables-example">
       <thead>
           <tr>
@@ -39,6 +35,10 @@
       	</tr>
       {% endfor %}
       </tbody>
-  </table>
+  </table><br>
+  <form class="text-right" action="{% url "elearning:semester-master-create" master.slug %}" method="post">
+    <input type="submit" value="Add Semester" class="btn btn-block btn-success"><br>
+    {% csrf_token %}
+  </form>
 </div>
 {% endblock content %}
