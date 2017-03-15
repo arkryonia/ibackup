@@ -20,6 +20,12 @@ class Scolar(User):
         verbose_name_plural = 'Scolars'
 
 
+class AllianzaAdmin(User):
+    class Meta:
+        verbose_name = 'Allianza Admin'
+        verbose_name_plural = 'Allianza Admins'
+
+
 class Commercial(User):
     class Meta:
         verbose_name = 'Commercial'

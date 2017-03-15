@@ -9,6 +9,7 @@
     <a href={% url 'staff:add-scolar' %} class="btn btn-primary">{% trans "Add Scolar " %}</a>
     <a href={% url 'universities:add-lecturer' %} class="btn btn-primary">{% trans "Add Lecturer " %}</a>
     <a href={% url 'staff:add-commercial' %} class="btn btn-primary">{% trans "Add Commercial " %}</a>
+    <a href={% url 'staff:add-allianza-admin' %} class="btn btn-primary">{% trans "Add Allianza Admin " %}</a>
   </p>
   <h3>{% trans 'Scolarity Members List' %}</h3>
   <table class="table table-striped table-bordered table-hover" id="dataTables-example">
@@ -35,6 +36,33 @@
                     <a class="text-center" href="{% url "staff:scolar-activate" scolar.pk %}"><i class="fa fa-user fa-fw"></i></a>
                 {% else %}
                   <a class="text-danger" href="{% url "staff:scolar-activate" scolar.pk %}"><i class="fa fa-user-times fa-fw"></i></a>
+                {% endif %}
+              </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+  </table>
+
+  <br>
+
+<h3>{% trans 'Allianza Admins Members List' %}</h3>
+  <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+      <thead>
+          <tr>
+              <th>{% trans "Name" %}</th>
+              <th>{% trans "Email" %}</th>
+          </tr>
+      </thead>
+      <tbody>
+        {% for a in allianzadmins  %}
+          <tr class="odd gradeX">
+              <td>{{ a.get_complete_name }} </td>
+              <td>{{ a.email }}</td>
+              <td class="text-center">
+                {% if a.is_active %}
+                    <a class="text-center" href="{% url "staff:allianza-admin-activate" a.pk %}"><i class="fa fa-user fa-fw"></i></a>
+                {% else %}
+                  <a class="text-danger" href="{% url "staff:allianza-admin-activate" a.pk %}"><i class="fa fa-user-times fa-fw"></i></a>
                 {% endif %}
               </td>
           </tr>

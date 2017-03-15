@@ -11,7 +11,7 @@
 from django import forms
 
 
-from .models import Scolar, Commercial
+from .models import Scolar, Commercial, AllianzaAdmin 
 from django.utils.translation import ugettext, ugettext_lazy as _
 
 class ScolarCreationForm(forms.ModelForm):
@@ -29,6 +29,27 @@ class ScolarCreationForm(forms.ModelForm):
 
     def save(self, commit=True):
         user = super(ScolarCreationForm, self).save(commit=False)
+        user.set_password('passTaka')     #(self.cleaned_data["password"])
+        if commit:
+            user.save()
+        return user
+
+
+class AllianzaAdminCreationForm(forms.ModelForm):
+    # password = forms.CharField(label=_('Password') ,widget=forms.PasswordInput)
+    class Meta:
+        model = AllianzaAdmin
+        fields = ['username', 'first_name', 'last_name', 'email']
+
+    def __init__(self, *args, **kwargs):
+        super(AllianzaAdminCreationForm, self).__init__(*args, **kwargs)
+
+    def clean(self):
+        cleaned_data = super(AllianzaAdminCreationForm, self).clean()
+        return cleaned_data
+
+    def save(self, commit=True):
+        user = super(AllianzaAdminCreationForm, self).save(commit=False)
         user.set_password('passTaka')     #(self.cleaned_data["password"])
         if commit:
             user.save()

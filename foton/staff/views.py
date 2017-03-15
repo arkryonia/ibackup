@@ -61,13 +61,14 @@ from foton.users.models import User
 # Imports from our apps
 # ----------------------------------------------------------------------------
 
-from .models import Scolar, Commercial, Year
+from .models import Scolar, Commercial, Year, AllianzaAdmin
 from foton.universities.models import Lecturer
 from .forms import (
     ScolarCreationForm,
     ScolarChangeForm,
     CommercialCreationForm,
-    CommercialChangeForm
+    CommercialChangeForm,
+    AllianzaAdminCreationForm
 )
 
 # ============================================================================
@@ -88,6 +89,19 @@ class ScolarCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
         scolar = Group.objects.get(name="scolar")
         form.instance.groups.add(scolar)
         return super(ScolarCreateView, self).form_valid(form)
+
+class AllianzaAdminCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+    permission_required='users.is_admin'
+    model = AllianzaAdmin
+    form_class = AllianzaAdminCreationForm
+    success_url = reverse_lazy('staff:list-staff')
+    template_name = 'staff/create.html'
+
+    def form_valid(self, form):
+        form.instance = form.save(commit=True)
+        allianzadmin = Group.objects.get(name="allianzadmin")
+        form.instance.groups.add(allianzadmin)
+        return super(AllianzaAdminCreateView, self).form_valid(form)
 
 class ScolarUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     permission_required='users.is_admin'
@@ -131,6 +145,7 @@ class StaffListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
         context = super(StaffListView, self).get_context_data(**kwargs)
         context['commercials'] = Commercial.objects.order_by('last_name')
         context['lecturers'] = Lecturer.objects.order_by('last_name')
+        context['allianzadmins'] = AllianzaAdmin.objects.order_by('last_name')
         return context
 
 
@@ -138,6 +153,19 @@ class ActivateScolarView(LoginRequiredMixin, PermissionRequiredMixin, View):
     permission_required='users.is_admin'
     def get(self, request, *args, **kwargs):
         scolar = get_object_or_404(Scolar, pk=kwargs['pk'])
+        if scolar.is_active:
+            scolar.is_active = False
+        else:
+            scolar.is_active = True
+
+        scolar.save()
+        print(scolar.first_name)
+        return redirect('staff:list-staff')
+
+class ActivateAllianzaAdminView(LoginRequiredMixin, PermissionRequiredMixin, View):
+    permission_required='users.is_admin'
+    def get(self, request, *args, **kwargs):
+        scolar = get_object_or_404(AllianzaAdmin, pk=kwargs['pk'])
         if scolar.is_active:
             scolar.is_active = False
         else:

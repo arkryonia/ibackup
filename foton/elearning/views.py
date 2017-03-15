@@ -50,7 +50,7 @@ class AllianzaStudentCreateView(CreateView):
 
 
 class AllianzaRegistredListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
-    permission_required = 'users.is_scolar'
+    permission_required = 'users.is_allianzadmin'
     queryset = AllianzaRegistred.objects.order_by('student')
     template_name = "elearning/registration/list.html"
     def get_context_data(self, **kwargs):
@@ -62,7 +62,7 @@ class AllianzaRegistredListView(LoginRequiredMixin, PermissionRequiredMixin, Lis
 
 
 class AllianzaStudentUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
-    permission_required = 'users.is_scolar'
+    permission_required = 'users.is_allianzadmin'
     model = AllianzaStudent
     fields = ['first_name', 'last_name', 'birth_date', 'birth_venue']
     template_name = "students/registred/update.html"
@@ -71,7 +71,7 @@ class AllianzaStudentUpdateView(LoginRequiredMixin, PermissionRequiredMixin, Upd
 
 
 class AllianzaRegistredCreateView(LoginRequiredMixin, PermissionRequiredMixin, View):
-    permission_required = 'users.is_scolar'
+    permission_required = 'users.is_allianzadmin'
     template_name = "students/registred/create.html"
 
     def number(self):
@@ -160,7 +160,8 @@ class AllianzaRegistredCreateView(LoginRequiredMixin, PermissionRequiredMixin, V
         email.send()
         return reverse_lazy("elearning:registration-list")
 
-class AllianzaStudentByProgram(ListView):
+class AllianzaStudentByProgram(LoginRequiredMixin, PermissionRequiredMixin, ListView):
+    permission_required = "users.is_allianzadmin"
     model = AllianzaStudent
     template_name = "elearning/registration/allianzastudent_list.html"
     context_object_name = "students"
@@ -171,7 +172,7 @@ class AllianzaStudentByProgram(ListView):
         return context
 
 class ActivateRegistredView(LoginRequiredMixin, PermissionRequiredMixin, View):
-    permission_required = "users.is_scolar"
+    permission_required = "users.is_allianzadmin"
     def get(self, request, *args, **kwargs):
         registred = get_object_or_404(Student, pk=kwargs['pk'])
         if registred.is_active:
@@ -223,7 +224,7 @@ class StudentEnrollProgramView(FormView):
 
 
 class BachelorListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
-    permission_required='users.is_admin'
+    permission_required='users.is_allianzadmin'
     context_object_name = 'bachelors'
     model = ElearningBachelor
     template_name = 'elearning/bachelors/list.html'
@@ -234,7 +235,7 @@ class BachelorListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
         return context
 
 class BachelorDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
-    permission_required='users.is_admin'
+    permission_required='users.is_allianzadmin'
     model = ElearningBachelor
     template_name = "elearning/bachelors/detail.html"
     context_object_name = "bachelor"
@@ -247,7 +248,7 @@ class BachelorDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView
 
 
 class BachelorCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
-    permission_required='users.is_admin'
+    permission_required='users.is_allianzadmin'
     model = ElearningBachelor
     fields = ['option','name', 'pdf']
     success_url = reverse_lazy('elearning:bachelor-list')
@@ -264,7 +265,7 @@ class BachelorCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView
         return super(BachelorCreateView, self).form_valid(form)
 
 class BachelorUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
-    permission_required='users.is_admin'
+    permission_required='users.is_allianzadmin'
     model = ElearningBachelor
     fields = ['option','name','pdf']
     success_url = reverse_lazy('elearning:bachelor-list')
@@ -279,13 +280,13 @@ class BachelorUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView
 #-------------------------------------------------------------------------------
 
 class MasterListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
-    permission_required='users.is_admin'
+    permission_required='users.is_allianzadmin'
     context_object_name = 'masters'
     model = ElearningMaster
     template_name = 'elearning/masters/list.html'
 
 class MasterDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
-    permission_required='users.is_admin'
+    permission_required='users.is_allianzadmin'
     model = ElearningMaster
     template_name = "elearning/masters/detail.html"
     context_object_name = "master"
@@ -298,7 +299,7 @@ class MasterDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
 
 
 class MasterCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
-    permission_required='users.is_admin'
+    permission_required='users.is_allianzadmin'
     model = ElearningMaster
     fields = ['speciality','name','pdf']
     success_url = reverse_lazy('elearning:masters-list')
@@ -310,7 +311,7 @@ class MasterCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
         return super(MasterCreateView, self).form_valid(form)
 
 class MasterUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
-    permission_required='users.is_admin'
+    permission_required='users.is_allianzadmin'
     model = ElearningMaster
     fields = ['speciality','name','pdf']
     template_name = 'elearning/masters/update.html'
@@ -345,7 +346,7 @@ class MasterFrontListView(ListView):
 # -----------------------------------------------------------------------------
 
 class SemesterCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
-    permission_required='users.is_admin'
+    permission_required='users.is_allianzadmin'
     model = Semester
     fields = ['name']
     template_name = "elearning/semester/create.html"
@@ -372,7 +373,7 @@ class SemesterCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView
         return super(SemesterCreateView, self).form_valid(form)
 
 class SemesterMasterCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
-    permission_required='users.is_admin'
+    permission_required='users.is_allianzadmin'
     model = Semester
     fields = ['name']
     template_name = "elearning/semester/create.html"
@@ -403,7 +404,7 @@ class SemesterMasterCreateView(LoginRequiredMixin, PermissionRequiredMixin, Crea
 # --------------------------------------------------------------------------------------
 
 class LectureCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
-    permission_required='users.is_admin'
+    permission_required='users.is_allianzadmin'
     model = Lecture
     form_class = LectureCreateForm
     # fields = ['semester','owner','title','credits','overview','overview_image']
@@ -420,7 +421,7 @@ class LectureCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView)
         return super(LectureCreateView, self).form_valid(form)
 
 class LectureUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
-    permission_required='users.is_admin'
+    permission_required='users.is_allianzadmin'
     model = Lecture
     fields = ['semester','owner','title','credits','overview','overview_image']
     template_name = "elearning/lecture/update.html"
@@ -435,7 +436,7 @@ class LectureUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView)
     
     
 class LectureDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
-    permission_required='users.is_admin'
+    permission_required='users.is_allianzadmin'
     model = Lecture
     template_name = "elearning/lecture/detail.html"
     context_object_name = "lecture"

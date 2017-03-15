@@ -135,7 +135,9 @@
                               </li>
                             </ul>
                           </li>
+                        {% endif %}
 
+                        {% if perms.users.is_allianzadmin %}
                           <li>
                             <a href="#" %}><i class="fa fa-graduation-cap fa-fw"></i> {% trans "Allianza" %}<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -150,7 +152,6 @@
                               </li>
                             </ul>
                           </li>
-                          
                         {% endif %}
 
                         {% if perms.users.is_lecturer %}

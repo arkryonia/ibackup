@@ -22,6 +22,11 @@ urlpatterns = [
         name='add-scolar'
     ),
     url(
+        regex=r'^allianza-admin/add/$',
+        view=views.AllianzaAdminCreateView.as_view(),
+        name='add-allianza-admin'
+    ),
+    url(
         regex=r'^commercial/add/$',
         view=views.CommercialCreateView.as_view(),
         name='add-commercial'
@@ -40,6 +45,11 @@ urlpatterns = [
         regex = r'^scolar/active/(?P<pk>\d+)/$',
         view = views.ActivateScolarView.as_view(),
         name='scolar-activate'
+    ),
+    url(
+        regex = r'^scolar/active/(?P<pk>\d+)/$',
+        view = views.ActivateAllianzaAdminView.as_view(),
+        name='allianza-admin-activate'
     ),
     url(
         regex = r'^commercial/active/(?P<pk>\d+)/$',
