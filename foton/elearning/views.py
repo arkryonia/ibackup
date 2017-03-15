@@ -406,8 +406,8 @@ class SemesterMasterCreateView(LoginRequiredMixin, PermissionRequiredMixin, Crea
 class LectureCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     permission_required='users.is_allianzadmin'
     model = Lecture
-    form_class = LectureCreateForm
-    # fields = ['semester','owner','title','credits','overview','overview_image']
+    # form_class = LectureCreateForm
+    fields = ['semester','owner','title','credits','overview','overview_image']
     template_name = "elearning/lecture/create.html"
 
     def get_success_url(self):
