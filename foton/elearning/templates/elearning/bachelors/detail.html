@@ -3,38 +3,45 @@
 
 {% block title %}{{bachelor.name}}{% endblock title %}
 {% block content %}
+<p class="text-right">
+  <a href={% url "elearning:program-student" bachelor.slug %} class="btn btn-primary">{% trans "Students" %}</a>
+</p>
+  
 <div class="dataTable_wrapper">
-  <p class="text-right">
-
-    <a href={% url "elearning:lecture-add" bachelor.slug %} class="btn btn-primary">{% trans "Add Lecture" %}</a>
-    <a href={% url "elearning:program-student" bachelor.slug %} class="btn btn-primary">{% trans "Students" %}</a>
-  </p>
+  
   <table class="table table-striped table-bordered table-hover" id="dataTables-example">
       <thead>
           <tr>
-              <th>{% trans "Lecures" %}</th>
-              <th>{% trans "Credits" %}</th>
-              <th>{% trans "Overview" %}</th>
+              <th class="text-center">{% trans "Lecures" %}</th>
+              <th class="text-center">{% trans "Credits" %}</th>
+              <th class="text-center">{% trans "Overview" %}</th>
+              <th class="text-center">{% trans "Actions" %}</th>
           </tr>
       </thead>
       <tbody>
       {% for s in semesters %}
       	<tr>
-      		<td>{{s}}</td>
+      		<td> <b>{{s}}</b> </td>
       		<td></td>
-      		<td></td>
+          <td></td>
+      		<td class="text-center">
+            Add Lecture to {{s}}
+            <a href="{% url "elearning:bachelor-lecture-add" s.program.slug s.pk %}">
+              <i class="fa fa-plus fa-fw"></i>
+            </a>
+          </td>
       		{% with order=s.order %}   
     				{% for l in lectures %}
     					{% if l.semester.order == order %}
     						<tr>
     							<td>{{ l.title }}</td>
-    							<td> {{l.credits}} </td>
+    							<td class="text-center"> {{l.credits}} </td>
     							<td>
                     {% autoescape off %}
                       {{l.overview|truncatewords:20}}
                     {% endautoescape %}   
                   </td>
-                  <td> <a href="{% url "elearning:lecture-update" l.semester.program.slug l.pk %}"> <i class="fa fa-edit fa-fw"></i> </a> </td>
+                  <td class="text-center"> <a href="{% url "elearning:bachelor-lecture-update" l.semester.program.slug l.pk %}"> <i class="fa fa-edit fa-fw"></i> </a> </td>
                 </tr>
               {% endif %}
             {% endfor %}
@@ -43,9 +50,12 @@
       {% endfor %}
       </tbody>
   </table><br>
+  {% if total_semesters == 6 %}
+  {% else %}
   <form class="text-right" action="{% url "elearning:semester-bachelor-add" bachelor.slug %}" method="post">
     <input type="submit" value="Add Semester" class="btn btn-block btn-success"><br>
     {% csrf_token %}
   </form>
+  {% endif %}
 </div>
 {% endblock content %}

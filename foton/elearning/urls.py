@@ -42,14 +42,24 @@ urlpatterns = [
 		name='semester-bachelor-add'
 	),
 	url(
-		regex = r'^(?P<slug>[-\w]+)/details/lecture/create/$',
+		regex = r'^bachelor/(?P<slug>[-\w]+)/details/semester/(?P<pk>[-\w]+)/lecture/create/$',
 		view = views.LectureCreateView.as_view(),
-		name='lecture-add'
+		name='bachelor-lecture-add'
 	),
 	url(
-		regex = r'^(?P<program_slug>[-\w]+)/lecture/(?P<pk>[-\w]+)/update/$',
+		regex = r'^master/(?P<slug>[-\w]+)/details/semester/(?P<pk>[-\w]+)/lecture/create/$',
+		view = views.MasterLectureCreateView.as_view(),
+		name='master-lecture-add'
+	),
+	url(
+		regex = r'^bachelor/(?P<program_slug>[-\w]+)/lecture/(?P<pk>[-\w]+)/update/$',
 		view = views.LectureUpdateView.as_view(),
-		name='lecture-update'
+		name='bachelor-lecture-update'
+	),
+	url(
+		regex = r'^master/(?P<program_slug>[-\w]+)/lecture/(?P<pk>[-\w]+)/update/$',
+		view = views.MasterLectureUpdateView.as_view(),
+		name='master-lecture-update'
 	),
 
 	url(
@@ -67,6 +77,11 @@ urlpatterns = [
 		regex = r'^(?P<slug>[-\w]+)/program/students/$',
 		view = views.AllianzaStudentByProgram.as_view(),
 		name='program-student'
+	),
+	url(
+		regex = r'^students/(?P<pk>[-\w]+)/status/$',
+		view = views.ActivateRegistredView.as_view(),
+		name='student-status'
 	),
 	
 	url(
@@ -185,8 +200,6 @@ urlpatterns = [
 		view = views.MasterUpdateView.as_view(),
 		name='master-update'
 	),
-
-
 	
 	url(
 		regex = r'^bachelors/list/$',
@@ -199,7 +212,11 @@ urlpatterns = [
 		view = views.MasterFrontListView.as_view(),
 		name='masters-front-list'
 	),
-
+	url(
+		regex = r'^(?P<slug>[-\w]+)/program/download/$',
+		view = views.download,
+		name='program-download'
+	),
 	
 
 ]

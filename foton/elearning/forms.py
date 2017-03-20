@@ -31,9 +31,9 @@ class AllianzaStudentForm(forms.ModelForm):
     class Meta:
         model = AllianzaStudent
         fields = [
-                    'gender',
-                    'first_name',
                     'last_name',
+                    'first_name',
+                    'gender',
                     # 'marital_status',
                     'origin',
                     # 'program',
@@ -94,7 +94,7 @@ class BachelorCreateForm(forms.ModelForm):
 	
 	class Meta:
 		model = ElearningBachelor
-		fields = ['option','name','pdf']
+		fields = ['option','name', 'description', 'image', 'pdf']
 	
 	def __init__(self, *args, **kwargs):
 		super(BachelorCreateForm, self).__init__(*args, **kwargs)

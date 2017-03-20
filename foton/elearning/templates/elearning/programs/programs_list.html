@@ -1,28 +1,53 @@
 {% extends "theme/default.html" %}
-{% load i18n thumbnail %}
+{% load i18n thumbnail staticfiles %}
 {% block title %} {% trans "Our Programs" %} {% endblock title %}
 {% block content %}
-	<h3> {% trans "Programs" %} </h3>
-	<hr>
-	<div class="row">
-		{% for p in programs %}
-
-			<div class="col-md-4 listItem">
+	<!--h3> {% trans "Programs" %} </h3>
+	<hr-->
+	<div class="">
+		<h3> {% trans "Bachelors" %} </h3>
+		<hr>
+		<div class="row">
+		{% for b in bachelors %}
+			<div class="col-md-4 publicList">
 				<div class="wrap">
-					<div class="row">
-						<div class="col-md-10">
-							<h4>{{p.name}}</h4>						
-						</div>
-						<div class="col-md-2">
-							<a href="{% url "elearning:program-courses" p.slug %}" title="" class="">
-								{% trans "details" %}
-							</a>			
-							
-						</div>
-					</div>
+					{% thumbnail b.image 500x400 crop as pic %}
+  					<img src="{% static pic.url %}" alt="{{ b.name }}" class="mrs">
+  					<div class="content">
+	  					<span>{{b.name}}</span><br>
+	  					{% autoescape off %}
+	  						{{b.description|truncatechars_html:50}}	
+	  					{% endautoescape %} 						
+  					</div>
 				</div>
-			</div>
-			
+				<a href="{% url "elearning:program-courses" b.slug %}" title="" class="btn btn-primary btn-block">
+					{% trans "voir plus" %}
+				</a>
+			</div>						
 		{% endfor %}
+		</div>
+	</div>
+	<div class="">
+		<h3> {% trans "Masters" %} </h3>
+		<hr>
+		<div class="row">
+			{% for m in masters %}
+				<div class="col-md-4 publicList">
+					<div class="wrap">
+						{% thumbnail m.image 500x400 crop as pic %}
+	  					<img src="{% static pic.url %}" alt="{{ m.name }}" class="mrs">
+	  					<div class="content">
+		  					<span>{{m.name}}</span><br>
+		  					{% autoescape off %}
+		  						{{m.description|truncatechars_html:50}}	
+		  					{% endautoescape %} 						
+	  					</div>
+					</div>
+					<a href="{% url "elearning:program-courses" m.slug %}" title="" class="btn btn-primary btn-block">
+						{% trans "voir plus" %}
+					</a>
+				</div>
+			{% endfor %}
+		</div>
 	</div>
 {% endblock content %}

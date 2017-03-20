@@ -1,33 +1,58 @@
 {% extends "theme/default.html" %}
-{% load i18n %}
+{% load i18n thumbnail staticfiles %}
 
 	{% block title %}
 	 	{{student_program.name}}
 	{% endblock title %}
 {% block content %}
-	{% for s in semesters %}
-  		<h3>{{s}}</h3>
-      	<hr>
+
+  <h3>{{student_program.name}}</h3><hr>
+  <div class="row">
+    <div class="col-md-12">
+      {% thumbnail student_program.image 800x300 crop as pic %}
+      <img src="{% static pic.url %}" alt="{{ student_program.title }}" class="mrs">       
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 programDes">
+      {% autoescape off %}
+            {{student_program.description}}
+      {% endautoescape %}        
+    </div>
+  </div>
+  {% for s in semesters %}
+      <br>
+      <h4>{{s}}</h4>
+      <hr>
         {% with order=s.order %}
-          {% for l in lectures  %}
-            {% if l.semester.order == order %}
-              <div class="col-md-4 listItem">
-                <div class="wrap">
-                  <div class="row">
-                    <div class="col-md-10">
-                      <h4>{{l}}</h4>
-                      <i>{{l.total_modules}} Courses </i>           
-                    </div>
-                    <div class="col-md-2">
-                      <a href="{% url "elearning:student_program_course_detail" l.semester.program.slug l.pk %}" title="" class="">
-                        {% trans "view" %}
-                      </a>      
+          <div class="row">
+            {% for l in lectures  %}
+              {% if l.semester.order == order %}
+                <div class="col-md-4 lectures">
+                  <div class="wrap noBorder">
+                    {% thumbnail l.overview_image 600x300 crop as pic %}
+                    <img src="{% static pic.url %}" alt="{{l}}" class="img-responsive">
+                    <div class="row bas">
+                      <div class="col-md-12">
+                        <span>{{l}}</span>
+                      </div>
+                      <div class="col-md-7">
+                        <i>{{l.total_modules}} Modules </i>           
+                      </div>
+                      <div class="col-md-5 text-right">
+                        <i>{{l.credits}} ECTS</i>
+                      </div>
                     </div>
                   </div>
+                  <a href="{% url "elearning:student_program_course_detail" l.semester.program.slug l.pk %}" title="" class="btn btn-block btn-primary proDetail">
+                    {% trans "view" %}
+                  </a>
                 </div>
-              </div>
-            {% endif %}
-          {% endfor %}
+              {% endif %}
+            {% endfor %}            
+          </div>
+          <hr>
         {% endwith %}
-  	{% endfor %}
+    {% endfor %}
 {% endblock content %}

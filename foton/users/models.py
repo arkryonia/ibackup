@@ -22,3 +22,12 @@ class User(AbstractUser):
 
     def get_complete_name(self):
         return "%s %s"%(self.last_name, self.first_name)
+
+User._meta.get_field('first_name').verbose_name=_('First Name')
+User._meta.get_field('first_name').blank=False
+User._meta.get_field('first_name').null=False
+
+User._meta.get_field('last_name').null=False
+User._meta.get_field('last_name').blank=False
+User._meta.get_field('last_name').verbose_name=_('Last Name')
+User._meta.get_field('email').blank=False

@@ -1,0 +1,225 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-03-17 10:07+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: forms.py:29
+msgid "Password"
+msgstr ""
+
+#: models.py:117
+msgid "Allianza Registred"
+msgstr ""
+
+#: models.py:118
+msgid "Allianza Registreds"
+msgstr ""
+
+#: templates/elearning/bachelor_list.html:3
+#: templates/elearning/bachelor_list.html:4
+msgid "Program Bachelor"
+msgstr ""
+
+#: templates/elearning/bachelors/create.html:4
+#: templates/elearning/bachelors/create.html:6
+#: templates/elearning/bachelors/list.html:9
+msgid "Create License"
+msgstr ""
+
+#: templates/elearning/bachelors/detail.html:7
+#: templates/elearning/registration/allianzastudent_list.html:4
+#: templates/elearning/registration/list.html:4
+msgid "Students"
+msgstr ""
+
+#: templates/elearning/bachelors/detail.html:15
+#: templates/elearning/masters/detail.html:10
+msgid "Lecures"
+msgstr ""
+
+#: templates/elearning/bachelors/detail.html:16
+#: templates/elearning/masters/detail.html:11
+msgid "Credits"
+msgstr ""
+
+#: templates/elearning/bachelors/detail.html:17
+#: templates/elearning/masters/detail.html:12
+msgid "Overview"
+msgstr ""
+
+#: templates/elearning/bachelors/detail.html:18
+#: templates/elearning/masters/detail.html:13
+msgid "Actions"
+msgstr ""
+
+#: templates/elearning/bachelors/list.html:4
+msgid "Licenses"
+msgstr ""
+
+#: templates/elearning/bachelors/list.html:14
+#: templates/elearning/masters/list.html:14
+#: templates/elearning/masters/options_list.html:14
+#: templates/elearning/masters/speciality_list.html:14
+msgid "Name"
+msgstr ""
+
+#: templates/elearning/bachelors/list.html:15
+#: templates/elearning/masters/list.html:15
+msgid "Option"
+msgstr ""
+
+#: templates/elearning/bachelors/list.html:16
+#: templates/elearning/masters/list.html:17
+msgid "Program File"
+msgstr ""
+
+#: templates/elearning/bachelors/update.html:4
+#: templates/elearning/bachelors/update.html:5
+#: templates/elearning/masters/update.html:4
+#: templates/elearning/masters/update.html:5
+msgid "Update License"
+msgstr ""
+
+#: templates/elearning/content/create_content.html:8
+msgid "Add"
+msgstr ""
+
+#: templates/elearning/content/detail.html:9
+#: templates/elearning/lecture/detail.html:8
+msgid "Add File"
+msgstr ""
+
+#: templates/elearning/content/detail.html:10
+#: templates/elearning/lecture/detail.html:9
+msgid "Add Image"
+msgstr ""
+
+#: templates/elearning/content/detail.html:11
+#: templates/elearning/lecture/detail.html:10
+msgid "Add Text"
+msgstr ""
+
+#: templates/elearning/content/detail.html:23
+msgid "Contents"
+msgstr ""
+
+#: templates/elearning/lecture/create.html:4
+#: templates/elearning/lecture/create.html:6
+msgid "Create Lecture"
+msgstr ""
+
+#: templates/elearning/lecture/detail.html:21
+#: templates/elearning/module/list_by_course.html:16
+msgid "Modules"
+msgstr ""
+
+#: templates/elearning/lecture/list_by_owner.html:10
+msgid "Lecture"
+msgstr ""
+
+#: templates/elearning/lecture/update.html:4
+#: templates/elearning/lecture/update.html:6
+msgid "Update Lecture"
+msgstr ""
+
+#: templates/elearning/masters/create.html:4
+#: templates/elearning/masters/create.html:6
+#: templates/elearning/masters/list.html:9
+#: templates/elearning/masters/options_list.html:9
+#: templates/elearning/masters/speciality_list.html:9
+msgid "Create Master"
+msgstr ""
+
+#: templates/elearning/masters/list.html:4
+#: templates/elearning/programs/programs_list.html:31
+msgid "Masters"
+msgstr ""
+
+#: templates/elearning/masters/list.html:16
+msgid "Speciality"
+msgstr ""
+
+#: templates/elearning/masters/list.html:31
+msgid "No Master available!"
+msgstr ""
+
+#: templates/elearning/masters/options_list.html:4
+#: templates/elearning/masters/speciality_list.html:4
+msgid "Masters Options"
+msgstr ""
+
+#: templates/elearning/masters/options_list.html:25
+#: templates/elearning/masters/speciality_list.html:25
+msgid "No License available!"
+msgstr ""
+
+#: templates/elearning/masters_list.html:3
+#: templates/elearning/masters_list.html:4
+msgid "Programs Master"
+msgstr ""
+
+#: templates/elearning/module/list_by_course.html:8
+msgid "Add or Edit Modules"
+msgstr ""
+
+#: templates/elearning/programs/program_detail.html:55
+msgid "Enroll to "
+msgstr ""
+
+#: templates/elearning/programs/programs_list.html:3
+msgid "Our Programs"
+msgstr ""
+
+#: templates/elearning/programs/programs_list.html:5
+msgid "Programs"
+msgstr ""
+
+#: templates/elearning/programs/programs_list.html:8
+msgid "Bachelors"
+msgstr ""
+
+#: templates/elearning/programs/programs_list.html:20
+#: templates/elearning/programs/programs_list.html:44
+#: templates/elearning/programs/student_program_list.html:14
+msgid "details"
+msgstr ""
+
+#: templates/elearning/programs/student_programs_detail.html:23
+msgid "view"
+msgstr ""
+
+#: templates/elearning/registration/allianzastudent_list.html:10
+#: templates/elearning/registration/list.html:10
+msgid " Students "
+msgstr ""
+
+#: templates/elearning/registration/allianzastudent_list.html:11
+msgid " Status "
+msgstr ""
+
+#: templates/elearning/registration/list.html:11
+msgid " Program "
+msgstr ""
+
+#: templates/elearning/semester/create.html:4
+#: templates/elearning/semester/create.html:6
+msgid "Create Semester"
+msgstr ""
+
+#: views.py:382 views.py:410
+msgid "Semester"
+msgstr ""

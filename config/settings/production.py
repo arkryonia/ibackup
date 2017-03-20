@@ -77,3 +77,7 @@ LOGGING = {
         }
     }
 }
+
+# TWILIO ACCOUNT SETTINGS
+ACCOUNT_SID = env('ACCOUNT_SID')
+AUTH_TOKEN = env('AUTH_TOKEN')

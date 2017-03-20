@@ -64,7 +64,7 @@
 				{% endif %}
 				{% if perms.users.is_allianza %}
 					<a href= {% url 'elearning:student_programs' %} >{% trans 'My Programs' %}</a>
-					<a href= {% url 'moocs:student_mooc_list_view' %} >{% trans 'My MOOC' %}</a>
+					&nbsp;
 				{% endif %}
 				<a href= {% url 'account_logout' %} >{% trans 'Logout ' %}<i class="fa fa-sign-out"></i></a>
 				</li>
@@ -79,12 +79,6 @@
 					<img src="{% static "theme/img/svg/logo-off.svg" %}" alt="" class="logo">
 				</div>
 				<div class="col-sm-5 col-md-2 pull-right search hidden-xs">
-					<!--form class="form-inline" action="index.html" method="post">
-						<div class="group">
-							<input type="text" name="name" value="" class="form-control field">
-							<input type="submit" name="name" value="search" class="form-control check">
-						</div>
-					</form-->
 					<form action="{% url 'set_language' %}" method="post" class="form-inline">{% csrf_token %}
 					    <input name="next" type="hidden" value="{{ redirect_to }}" />
 					    <select name="language" class="form-control field">
@@ -124,7 +118,6 @@
 				<li><a href="{% url "degrees:bachelor-front-list" %}">{% trans "Bachelor" %}</a></li> &verbar;
 				<li><a href="{% url "degrees:masters-front-list" %}">{% trans "Master" %}</a></li>  &verbar;
 				<li><a href="#">{% trans "Doctorate" %}</a></li>
-				<!--li><a href="#">{% trans "Doctorate" %}</a></li-->
 			</ul>
 		</div>
 	</div>

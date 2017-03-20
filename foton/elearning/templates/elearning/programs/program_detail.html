@@ -1,44 +1,66 @@
 {% extends "theme/default.html" %}
-{% load i18n %}
+{% load staticfiles i18n thumbnail %}
 {% load crispy_forms_tags %}
 {% block content %}
+  <div class="">
+  <h3>{{program.name}}</h3><hr>
   <div class="row">
+    <div class="col-md-12">
+      {% thumbnail program.image 800x300 crop as pic %}
+      <img src="{% static pic.url %}" alt="{{ program.title }}" class="mrs">       
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 programDes">
+      {% autoescape off %}
+            {{program.description}}
+      {% endautoescape %}        
+    </div>
+  </div>
+
   	{% for s in semesters %}
-  		<h3>{{s}}</h3>
+      <br>
+  		<h4>{{s}}</h4>
       <hr>
         {% with order=s.order %}
-          {% for l in lectures  %}
-            {% if l.semester.order == order %}
-              <div class="col-md-4 listItem">
-                <div class="wrap">
-                  <div class="row">
-                    <div class="col-md-10">
-                      <h4>{{l}}</h4>
-                      <i>{{l.total_modules}} Modules </i>           
-                    </div>
-                    <div class="col-md-2">
-                      <!-- a href="{% url "elearning:student_program_course_detail" l.semester.program.slug l.pk %}" title="" class="">
-                        {% trans "view" %}
-                      </a -->      
+          <div class="row">
+            {% for l in lectures  %}
+              {% if l.semester.order == order %}
+                <div class="col-md-4 lectures">
+                  <div class="wrap">
+                    {% thumbnail l.overview_image 600x300 crop as pic %}
+                    <img src="{% static pic.url %}" alt="{{l}}" class="img-responsive">
+                    <div class="row bas">
+                      <div class="col-md-12">
+                        <span>{{l}}</span>
+                      </div>
+                      <div class="col-md-7">
+                        <i>{{l.total_modules}} Modules </i>           
+                      </div>
+                      <div class="col-md-5 text-right">
+                        <i>{{l.credits}} ECTS</i>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            {% endif %}
-          {% endfor %}
+              {% endif %}
+            {% endfor %}            
+          </div>
+          <hr>
         {% endwith %}
   	{% endfor %} 
   </div>
-  <div class="row">
-  	{% if request.user.is_authenticated and perms.users.is_allianza and request.user.student.student_type == 1 %}
+  	<!--{% if request.user.is_authenticated and perms.users.is_allianza and request.user.student.student_type == 1 %}
           <form action="{% url "elearning:student_enroll_program" program.slug %}" method="post">
               {{ enrollform }}
               {% csrf_token %}
               <input type="submit" class="button btn btn-success" value="Enroll">
           </form>
     {% elif request.user.student.student_type == 1 %}
-    {% else %}
-        <a href="{% url "elearning:allianza-registration" program.slug %}" title="" class="btn btn-success"> {% trans "Register" %} </a>
-    {% endif %}
+    {% else %} 
+    {% endif %}-->
+        <a href="{% url "elearning:allianza-registration" program.slug %}" title="" class="btn btn-danger btn-block btn-lg"> {% trans "Enroll to " %} {{program.name}} </a>
+  <div class="row">
   </div>
 {% endblock content %}

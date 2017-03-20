@@ -8,17 +8,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-11 08:41+0100\n"
-"PO-Revision-Date: 2016-09-15 17:19+0014\n"
-"Last-Translator: b'  <>'\n"
+"POT-Creation-Date: 2017-03-17 10:36+0100\n"
+"PO-Revision-Date: 2017-03-17 11:20+0014\n"
+"Last-Translator: b'  <me@lanzi.com>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 "X-Translated-Using: django-rosetta 0.7.11\n"
 
-#: forms.py:46
+#: forms.py:47
 msgid "Password"
 msgstr ""
 
@@ -50,6 +50,10 @@ msgstr ""
 msgid "Regular Student"
 msgstr ""
 
+#: models.py:90
+msgid "Allianza Student"
+msgstr ""
+
 #: models.py:94
 msgid "Choose your marital status"
 msgstr ""
@@ -63,11 +67,11 @@ msgid "Maried"
 msgstr ""
 
 #: models.py:99
-msgid "Gender"
+msgid "Gender (required) "
 msgstr ""
 
 #: models.py:100
-msgid "Type"
+msgid "Type (required)"
 msgstr ""
 
 #: models.py:101
@@ -75,60 +79,60 @@ msgid "(select country)"
 msgstr ""
 
 #: models.py:101
-msgid "Nationality"
+msgid "Nationality (required)"
 msgstr ""
 
 #: models.py:102
-msgid "Birth Date"
+msgid "Birth Date (required)"
 msgstr ""
 
 #: models.py:103
-msgid "Place of Birth"
+msgid "Place of Birth (required)"
 msgstr ""
 
 #: models.py:104
-msgid "Academic Year"
+msgid "Academic Year (required)"
 msgstr ""
 
 #: models.py:105
-msgid "National ID"
+msgid "National ID (optional)"
 msgstr ""
 
 #: models.py:108
-msgid "Marital Status"
+msgid "Marital Status (required)"
 msgstr ""
 
 #: models.py:110
-msgid "Sponsor or guardian full name"
-msgstr ""
+msgid "Sponsor or guardian full name (required)"
+msgstr "Sponsor or guardian full name (Optional)"
 
 #: models.py:111
-msgid "Relationship with Sponsor or Guardian"
-msgstr ""
+msgid "Relationship with Sponsor or Guardian (required)"
+msgstr "Relationship with Sponsor or Guardian (Optional)"
 
 #: models.py:111
 msgid "Relation to Applicant"
-msgstr ""
+msgstr "Relation to Applicant (Optional)"
 
 #: models.py:112
-msgid "Sponsor or Guardian Address"
-msgstr ""
+msgid "Sponsor or Guardian Address (required)"
+msgstr "Sponsor or Guardian Address (Optional)"
 
 #: models.py:112
 msgid "Sponsor or Guardian Permanent Address"
-msgstr ""
+msgstr "Sponsor or Guardian Permanent Address (Optional)"
 
 #: models.py:113
-msgid "Occupation"
-msgstr ""
+msgid "Occupation (required)"
+msgstr "Occupation (Optional)"
 
 #: models.py:114
-msgid "Sponsor or Guardian Telphone"
-msgstr ""
+msgid "Sponsor or Guardian Telphone (required)"
+msgstr "Sponsor or Guardian Telphone (Optional)"
 
 #: models.py:115
-msgid "Sponsor or Guardian Email"
-msgstr ""
+msgid "Sponsor or Guardian Email (required)"
+msgstr "Sponsor or Guardian Email (Optional)"
 
 #: models.py:138
 msgid "Registred"

@@ -884,3 +884,69 @@ div.listItem{
 		}
 	}
 }
+
+div.col-md-12.programDes{
+	font-size: 1.2em;
+	color: #555;
+	margin-top: 15px;
+	text-align: justify;
+}
+
+div.col-md-4.lectures{
+	.wrap{
+		border: 1px solid #ccc;
+		border-left: 2px solid orange;
+		box-shadow: 5px 5px 0 #ddd;
+		span{
+			font-size: 1.2em;
+			color: #fafafa;
+			margin-bottom: 15px;
+		}
+		i{
+			font-size: .9em;
+		}
+		.bas{
+			background-color: #111;
+			color: #fafafa;
+			padding: 5px 0;
+			margin: 0;
+		}
+		&.noBorder{
+			box-shadow: none!important;
+		}
+	}
+	a.proDetail{
+		border-radius: 0!important;
+		margin-top: 5px;
+	}
+}
+
+div.col-md-4.publicList{
+	.wrap{
+		height: 300px; 
+		border: 1px solid #999;
+		background-color: #fafafa;
+		box-shadow: -5px -5px 0 #eee;
+		div.content{
+			padding: 7px;
+			span{
+				font-size: 1.2em;
+				color: $digisity;
+			}
+		}
+	}
+	a{
+		border-radius: 0;
+		margin-top: 10px;
+	}
+}
+
+div.col-md-7.programDetail{
+	p{
+		font-size: 1.2em;
+	}
+	a{
+		font-size: 1.2em;
+		margin-top: 15px;
+	}
+}

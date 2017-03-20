@@ -95,6 +95,7 @@ MIDDLEWARE_CLASSES = (
 # DEBUG
 # ------------------------------------------------------------------------------
 DEBUG = env.bool("DJANGO_DEBUG", False)
+AUTH_USER_EMAIL_UNIQUE = True
 
 
 # EMAIL CONFIGURATION
@@ -248,5 +249,9 @@ SITE_DESCRIPTION = 'IRGIB AFRICA UNIVERSITY'
 SITE_KEYWORDS = 'Irgib, Africa, University, Université, Excellence, Paramilitaire,\
  Paramilitary, Bio, Ingénierie, '
 SITE_SLOGAN = 'University of Excellence'
+
 DJANGO_WYSIWYG_FLAVOR = 'ckeditor'
 DJANGO_WYSIWYG_MEDIA_URL = STATIC_URL + "ckeditor/"
+
+ALLIANZA_ADMIN_EMAIL = ["sounton@gmail.com", "hodonou@sounton.me"]
+ALLIANZA_ADMIN_PHONE = "+22995302424"

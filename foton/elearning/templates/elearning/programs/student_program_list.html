@@ -1,22 +1,31 @@
 {% extends "theme/default.html" %}
-{% load i18n %}
-
+{% load staticfiles i18n thumbnail %}
+{% load crispy_forms_tags %}
+{% block title %} {% trans "Our Programs" %} {% endblock title %}
 {% block content %}
-	{% for p in student_programs %}
-		<div class="col-md-4 listItem">
-			<div class="wrap">
-				<div class="row">
-					<div class="col-md-10">
-						<h4>{{p.name}}</h4>						
-					</div>
-					<div class="col-md-2">
-						<a href="{% url "elearning:student_program_details" p.slug %}" title="" class="">
-							{% trans "details" %}
-						</a>			
-						
-					</div>
+	<!--h3> {% trans "Programs" %} </h3>
+	<hr-->
+	<div class="">
+		<h3> {% trans "My programs" %} </h3>
+		<hr>
+		<div class="row">
+			{% for p in student_programs %}
+				<div class="col-md-5">
+					{% thumbnail p.image 500x330 crop as pic %}
+  					<img src="{% static pic.url %}" alt="{{ p.title }}" class="img-responsive"> 
 				</div>
-			</div>
-		</div>			
-	{% endfor %}
+				<div class="col-md-7 programDetail">
+					<h4>{{p.name}}</h4>
+					{% autoescape off %}
+				        {{p.description|truncatechars_html:200}}
+				    {% endautoescape %}
+					<div class="wrap">
+						<a href="{% url "elearning:student_program_details" p.slug %}" title="" class="btn btn-block btn-primary">
+							{% trans "voir plus" %}
+						</a>
+					</div>
+				</div><br>
+			{% endfor %}	
+		</div>
+	</div>
 {% endblock content %}

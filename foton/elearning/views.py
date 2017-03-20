@@ -6,8 +6,11 @@
 # @Last modified time: 2016-05-20T12:40:57+01:00
 # @License: Copyright (c) Foton IT, All Right Reserved
 
+
+import os
 from django.db.models import Count
-from django.shortcuts import render, get_object_or_404, get_list_or_404, Http404, redirect
+from django.shortcuts import (render, get_object_or_404, get_list_or_404, \
+            Http404, HttpResponse, redirect)
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.core.mail import EmailMessage
 from django.conf import settings
@@ -29,6 +32,12 @@ from foton.programs.models import Option, Speciality
 from .models import (AllianzaStudent, AllianzaRegistred, ElearningBachelor,
 ElearningMaster, Semester,Lecture, ElearningProgram, LectureModule)  
 
+from io import BytesIO
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import A4, cm,landscape
+
+from twilio.rest import TwilioRestClient
+
 from foton.courses.models import Module, Content, Course
 from foton.staff.models import Year 
 from foton.users.models import User
@@ -36,6 +45,7 @@ from foton.students.models import Registred
 from .forms import ModuleFormSet, ProgramEnrollForm
 from .forms import BachelorCreateForm, LectureCreateForm, AllianzaStudentForm
 
+client = TwilioRestClient(settings.ACCOUNT_SID, settings.AUTH_TOKEN)
 
 class AllianzaStudentCreateView(CreateView):
     model = AllianzaStudent
@@ -46,6 +56,20 @@ class AllianzaStudentCreateView(CreateView):
         program = ElearningProgram.objects.get(slug=self.kwargs['slug'])
         form.instance.program = program
         form.instance.is_active = False
+        admin_message = "You have new student to register in Allianza \n {0} {1}"\
+        .format(form.instance.first_name, form.instance.last_name, form.instance.email )
+        admin_email = EmailMessage("New student in Allianza",
+                             admin_message,
+                             settings.EMAIL_HOST_USER,
+                             settings.ALLIANZA_ADMIN_EMAIL
+                            )
+        admin_email.send()
+        message = client.messages.create(body="You have new student to register in Allianza \n {0} {1}"\
+        .format(form.instance.first_name, form.instance.last_name, form.instance.email ),
+                                                  to = settings.ALLIANZA_ADMIN_PHONE,  
+                                                  from_= "+16466811807"
+                          )
+        print(message.sid)
         return super(AllianzaStudentCreateView, self).form_valid(form)
 
 
@@ -56,7 +80,7 @@ class AllianzaRegistredListView(LoginRequiredMixin, PermissionRequiredMixin, Lis
     def get_context_data(self, **kwargs):
         context = super(AllianzaRegistredListView, self).get_context_data(**kwargs)
         year = Year.objects.filter(available = True)
-        students = AllianzaStudent.objects.filter(year=year, is_active=False)
+        students = AllianzaStudent.objects.filter(year=year, is_active=False, groups=None)
         context["students"] = students.order_by("last_name")
         return context
 
@@ -73,30 +97,18 @@ class AllianzaStudentUpdateView(LoginRequiredMixin, PermissionRequiredMixin, Upd
 class AllianzaRegistredCreateView(LoginRequiredMixin, PermissionRequiredMixin, View):
     permission_required = 'users.is_allianzadmin'
     template_name = "students/registred/create.html"
-
-    def number(self):
-        year = Year.objects.filter(available = True)
-        c = Registred.objects.filter(student__year=year).all().count()
-        if c == 0:
-            num = 0
-        else:
-            num = Registred.objects.filter(student__year=year).last().matricule
-        return  num
-
-    def matricul(self, *args, **kwargs):
-        student = get_object_or_404(AllianzaStudent, pk=self.kwargs['pk'])
+    def get(self, request, *args, **kwargs):
+        student = get_object_or_404(AllianzaStudent, pk=kwargs['pk'])
+        # matricule generating
         last_registred = Registred.objects.last()
         year = "{0}{1}".format(str(student.year.start[2]), str(student.year.start[3]))
         g = student.gender
         s_t = student.student_type
         m = str(last_registred.matricule+1)
-
-        
         if (g == 0) :
             gender = "00"
         else:
             gender = "01"
-
         if (s_t == 0):
             s_type = "00"
         else:
@@ -110,55 +122,29 @@ class AllianzaRegistredCreateView(LoginRequiredMixin, PermissionRequiredMixin, V
         else:
             mat = m
         matricule_number = "{0}{1}{2}{3}".format(gender, s_type, year, mat)
-        # self.matricule_number = matricule_number 
-        return matricule_number
-        # form.instance.matricule = form.instance.number()+1
-    
-    def get(self, request, *args, **kwargs):
-        student = get_object_or_404(AllianzaStudent, pk=kwargs['pk'])
-        registred = AllianzaRegistred.objects.create(student=student, 
-            matricule=self.number()+1, matricule_number=self.matricul() )
-        registred.save()
+        
+        registred = AllianzaRegistred.objects.create(student=student, matricule=m, 
+            matricule_number=matricule_number)
+
         student_program = student.program
         program = ElearningProgram.objects.get(slug=student_program.slug)
         program.students.add(student)
-        program.save()
         student.is_active = True
         allianza = Group.objects.get(name="allianza")
         student.groups.add(allianza)
+        program.save()
         student.save()
-
-        subject = "Registration completed"
-        message = "Dear {0},\nMatricule {1},\n\n\
-        OFFER OF PROVISIONAL ADMISSION.\n\nIn reference to your application for\
-        an admission as an undergraduate student of IRGIB-Africa, \
-        we are delighted to inform you that you have been offered provisional\
-        admission to undertake the following Program {2}.All credentials ( Originals )\
-        will be checked during registration. The University reserves the right to \
-        withdraw this admission if it is discovered that any of your claims in \
-        the application or documents submitted are false.\n\n\
-        The rules and regulations governing the University must be strictly adhered\
-        to. Please contact your academic advisor for information on your course \
-        and academic information.\n\nAs an indication of your acceptance of \
-        this provincial offer of admission, you are required to complete your\
-        fees payment and all registration processes within one month of receipt \
-        of this letter.\n\nFor more information regarding registration, our \
-        programs and admission, please visit the school’s website : \
-        https://www.irgibafrica.university \
-        by contacting us at contact@irgibafrica.university.\n\nCongratulations \
-        on receiving an offer into IRGIB-Africa University. If you have any \
-        questions or would like any further information at this time, please \
-        feel free tocontact us. We look forward to welcoming you.\n \n \n\
-        Yours sincerely, \n\n \nSimon AMOUSSOU-GUENOU \n\nRegistar."\
-              .format(student, registred.matricule_number, \
-                student.program)
+        subject = "Admission completed"
+        message = "Dear {0},\nMatricule {1},\n\nOFFER OF PROVISIONAL ADMISSION.\n\nIn reference to your application for an admission as an undergraduate student of IRGIB-Africa, we are delighted to inform you that you have been offered provisional admission to undertake the following Program {2}.All credentials ( Originals ) will be checked during registration. The University reserves the right to withdraw this admission if it is discovered that any of your claims in the application or documents submitted are false.\n\nThe rules and regulations governing the University must be strictly adhered to. Please contact your academic advisor for information on your course and academic information.\n\nAs an indication of your acceptance of this provincial offer of admission, you are required to complete your fees payment and all registration processes within one month of receipt of this letter.\n\nFor more information regarding registration, our programs and admission, please visit the school’s website : https://www.irgibafrica.university by contacting us at contact@irgibafrica.university.\n\nCongratulations on receiving an offer into IRGIB-Africa University. If you have any questions or would like any further information at this time, please feel free to contact us. We look forward to welcoming you.\n \n \n     Yours sincerely, \n\n \nSimon AMOUSSOU-GUENOU \n\nRegistar."\
+         .format(student, registred.matricule_number, student.program)
         email = EmailMessage(subject,
                              message,
                              settings.EMAIL_HOST_USER,
                              [registred.student.email]
                             )
         email.send()
-        return reverse_lazy("elearning:registration-list")
+        return redirect("elearning:registration-list")
+
 
 class AllianzaStudentByProgram(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     permission_required = "users.is_allianzadmin"
@@ -168,28 +154,31 @@ class AllianzaStudentByProgram(LoginRequiredMixin, PermissionRequiredMixin, List
     def get_context_data(self, **kwargs):
         context = super(AllianzaStudentByProgram, self).get_context_data(**kwargs)
         program = ElearningProgram.objects.get(slug=self.kwargs['slug'])
-        context['students'] = program.students.all()
+        registreds = AllianzaRegistred.objects.filter(student__allianzastudent__program = program)
+        context['registreds'] = registreds.order_by('pk')
         return context
 
 class ActivateRegistredView(LoginRequiredMixin, PermissionRequiredMixin, View):
     permission_required = "users.is_allianzadmin"
     def get(self, request, *args, **kwargs):
-        registred = get_object_or_404(Student, pk=kwargs['pk'])
-        if registred.is_active:
-            registred.is_active = False
+        registred = get_object_or_404(AllianzaRegistred, pk=kwargs['pk'])
+        if registred.student.is_active:
+            registred.student.is_active = False
         else:
-            registred.is_active = True
-        registred.save()
-        return redirect('students:list-class')
-
-
-
+            registred.student.is_active = True
+        registred.student.save()
+        return redirect("elearning:registration-list")
 
 
 class ProgramListView(ListView):
     model = ElearningProgram
     template_name = "elearning/programs/programs_list.html"
     context_object_name = "programs"
+    def get_context_data(self, **kwargs):
+        context = super(ProgramListView, self).get_context_data(**kwargs)
+        context['bachelors']=ElearningBachelor.objects.order_by('name')
+        context['masters']=ElearningMaster.objects.order_by('name')
+        return context
 
 
 class ProgramDetailView(DetailView):
@@ -203,12 +192,7 @@ class ProgramDetailView(DetailView):
         .annotate(total_lectures=Count('lecture'))
         context["lectures"] = Lecture.objects.filter(semester__program=program)\
         .annotate(total_modules=Count('modules')).order_by('-pk')
-        context['enrollform'] = ProgramEnrollForm(initial={'program':program})
-        # user = User.objects.get(username=self.request.user)
-        # allianza = Group.objects.get(name="allianza")
-        # if user.student.student_type==1:
-        #     user.groups.add(allianza)
-        # user.save()            
+        context['enrollform'] = ProgramEnrollForm(initial={'program':program})          
         return context
 
 
@@ -221,7 +205,6 @@ class StudentEnrollProgramView(FormView):
         return super(StudentEnrollProgramView, self).form_valid(form)
     def get_success_url(self):
         return reverse_lazy('elearning:student_programs')
-
 
 class BachelorListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     permission_required='users.is_allianzadmin'
@@ -243,6 +226,7 @@ class BachelorDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView
         context = super(BachelorDetailView, self).get_context_data(**kwargs)
         program = ElearningBachelor.objects.get(slug = self.kwargs['slug'])
         context['semesters'] = Semester.objects.filter(program = program).order_by("order")
+        context['total_semesters'] = Semester.objects.filter(program = program).count()
         context['lectures'] = Lecture.objects.filter(semester__program = program)
         return context
 
@@ -250,7 +234,7 @@ class BachelorDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView
 class BachelorCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     permission_required='users.is_allianzadmin'
     model = ElearningBachelor
-    fields = ['option','name', 'pdf']
+    fields = ['option','name', 'description', 'image', 'pdf']
     success_url = reverse_lazy('elearning:bachelor-list')
     template_name = 'elearning/bachelors/create.html'
     
@@ -267,7 +251,7 @@ class BachelorCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView
 class BachelorUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     permission_required='users.is_allianzadmin'
     model = ElearningBachelor
-    fields = ['option','name','pdf']
+    fields = ['option','name', 'description', 'image','pdf']
     success_url = reverse_lazy('elearning:bachelor-list')
     template_name = 'elearning/bachelors/update.html'
 
@@ -294,6 +278,7 @@ class MasterDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
         context = super(MasterDetailView, self).get_context_data(**kwargs)
         program = ElearningMaster.objects.get(slug = self.kwargs['slug'])
         context['semesters'] = Semester.objects.filter(program = program).order_by("order")
+        context['total_semesters'] = Semester.objects.filter(program = program).count()
         context['lectures'] = Lecture.objects.filter(semester__program = program)
         return context
 
@@ -301,7 +286,7 @@ class MasterDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
 class MasterCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     permission_required='users.is_allianzadmin'
     model = ElearningMaster
-    fields = ['speciality','name','pdf']
+    fields = ['speciality','name', 'description', 'image', 'pdf']
     success_url = reverse_lazy('elearning:masters-list')
     template_name = 'elearning/masters/create.html'
 
@@ -313,7 +298,7 @@ class MasterCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
 class MasterUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     permission_required='users.is_allianzadmin'
     model = ElearningMaster
-    fields = ['speciality','name','pdf']
+    fields = ['speciality','name', 'description', 'image','pdf']
     template_name = 'elearning/masters/update.html'
     
     def form_valid(self, form):
@@ -322,7 +307,7 @@ class MasterUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
         return super(MasterUpdateView, self).form_valid(form)
 
     def get_success_url(self, **kwargs):
-        return reverse_lazy('elearning:detail-bachelor', kwargs={'slug': self.kwargs['slug']})
+        return reverse_lazy('elearning:detail-master', kwargs={'slug': self.kwargs['slug']})
 
 
 # ------------------------------------------------------------------------------
@@ -343,6 +328,28 @@ class MasterFrontListView(ListView):
     model = ElearningMaster
     template_name = 'elearning/masters_list.html'
 
+def download(request, slug):
+    # file_path = os.path.join(settings.MEDIA_ROOT, path)
+    program = ElearningProgram.objects.get(slug=slug)
+    file_path = program.pdf.url
+    print(file_path)
+    if os.path.exists(file_path):
+        with open(file_path, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
+            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+            return response
+    else:
+        raise Http404
+# def download(request, path):
+#     file_path = os.path.join(settings.MEDIA_ROOT, path)
+#     if os.path.exists(file_path):
+#         with open(file_path, 'rb') as fh:
+#             response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
+#             response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+#             return response
+#     else:
+#         raise Http404
+
 # -----------------------------------------------------------------------------
 
 class SemesterCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
@@ -355,7 +362,6 @@ class SemesterCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView
                'slug': self.kwargs['slug']
             }
         )
-
     def form_valid(self, form):
         p = ElearningProgram.objects.get(slug = self.kwargs['slug'])
         s = Semester.objects.filter(program = p)
@@ -407,7 +413,7 @@ class LectureCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView)
     permission_required='users.is_allianzadmin'
     model = Lecture
     # form_class = LectureCreateForm
-    fields = ['semester','owner','title','credits','overview','overview_image']
+    fields = ['title','credits','overview','overview_image']
     template_name = "elearning/lecture/create.html"
 
     def get_success_url(self):
@@ -416,23 +422,64 @@ class LectureCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView)
             })
 
     def form_valid(self, form):
+        semester = Semester.objects.get(pk=self.kwargs['pk'])
         instance = form.save(False)
+        form.instance.semester = semester
+        form.instance.owner = self.request.user
         instance.slug = slugify(instance.title)
         return super(LectureCreateView, self).form_valid(form)
 
+class MasterLectureCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+    permission_required='users.is_allianzadmin'
+    model = Lecture
+    # form_class = LectureCreateForm
+    fields = ['title','credits','overview','overview_image']
+    template_name = "elearning/lecture/create.html"
+
+    def get_success_url(self):
+        return reverse_lazy('elearning:detail-master', kwargs={
+                'slug': self.kwargs['slug'],
+            })
+
+    def form_valid(self, form):
+        semester = Semester.objects.get(pk=self.kwargs['pk'])
+        instance = form.save(False)
+        form.instance.owner = self.request.user
+        form.instance.semester = semester
+        instance.slug = slugify(instance.title)
+        return super(MasterLectureCreateView, self).form_valid(form)
+
 class LectureUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+    permission_required='users.is_allianzadmin'
+    model = Lecture
+    fields = ['semester','title','credits','overview','overview_image']
+    template_name = "elearning/lecture/update.html"
+    
+    def get_success_url(self):
+        return reverse_lazy('elearning:detail-bachelor', kwargs={
+                'slug': self.kwargs['program_slug'],
+            })
+
+    def form_valid(self, form):
+        instance = form.save(False)
+        instance.slug = slugify(instance.title)
+        return super(LectureUpdateView, self).form_valid(form)
+
+class MasterLectureUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     permission_required='users.is_allianzadmin'
     model = Lecture
     fields = ['semester','owner','title','credits','overview','overview_image']
     template_name = "elearning/lecture/update.html"
     
     def get_success_url(self):
-        return reverse_lazy('staff:home')
+        return reverse_lazy('elearning:detail-master', kwargs={
+                'slug': self.kwargs['program_slug'],
+            })
 
     def form_valid(self, form):
         instance = form.save(False)
         instance.slug = slugify(instance.title)
-        return super(LectureUpdateView, self).form_valid(form)
+        return super(MasterLectureUpdateView, self).form_valid(form)
     
     
 class LectureDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
@@ -591,7 +638,7 @@ class StudentProgramDetailView(LoginRequiredMixin, PermissionRequiredMixin, Deta
     def get_context_data(self, **kwargs):
         context = super(StudentProgramDetailView,self).get_context_data(**kwargs)
         program = self.get_object()
-        context["semesters"] = Semester.objects.filter(program=program).order_by("name")\
+        context["semesters"] = Semester.objects.filter(program=program).order_by("created")\
         .annotate(total_lectures=Count('lecture'))
         context["lectures"] = Lecture.objects.filter(semester__program=program)\
         .annotate(total_modules=Count('modules')).order_by('created')

@@ -63,6 +63,8 @@ class ElearningProgram(TimeStampedModel):
     name = models.CharField(max_length=50)
     slug = models.SlugField()
     pdf = models.FileField(upload_to="pdf/", blank=True)
+    description = models.TextField(verbose_name='Description')
+    image = models.ImageField(verbose_name='Overview Image')
     students = models.ManyToManyField(User, related_name='program_joined', blank=True)
 
     class Meta:
@@ -137,7 +139,7 @@ class Semester(TimeStampedModel):
 
 
 class Lecture(Course):
-    owner = models.ForeignKey(Lecturer, related_name='courses_lecturer')
+    owner = models.ForeignKey(User, related_name='courses_lecturer')
     semester = models.ForeignKey(Semester)
     credits = models.IntegerField(default=1)
 

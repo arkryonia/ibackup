@@ -70,11 +70,7 @@ class StudentCreateView(CreateView):
 
     def form_valid(self, form):
         form.instance.is_active = False
-        allianza = Group.objects.get(name="allianza")
-        if form.instance.student_type==1:
-            form.instance.is_active = True
-            # form.instance.groups.add(allianza)
-
+        form.instance.student_type = 0
         return super(StudentCreateView, self).form_valid(form)
 
 

@@ -49,17 +49,17 @@ class StudentForm(forms.ModelForm):
     class Meta:
         model = Student
         fields = [
-                    'gender',
-                    'first_name',
                     'last_name',
+                    'first_name',
+                    'gender',
                     'marital_status',
                     'year',
                     'origin',
                     'username',
                     'email',
                     'password',
-                    'student_type',
-                    'national_Id',
+                    # 'student_type',
+                    # 'national_Id',
                     'birth_date',
                     'birth_venue',
                     'phone',
