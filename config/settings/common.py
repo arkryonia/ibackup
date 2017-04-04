@@ -49,7 +49,6 @@ THIRD_PARTY_APPS = (
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
     'modeltranslation',
-    # 'parler',
     'django.contrib.admin',
     'django_wysiwyg',
 )
@@ -68,6 +67,7 @@ LOCAL_APPS = (
     'foton.notes',
     'foton.publication',
     'foton.galleries',
+    'foton.graduation',
     'foton.universities',
     'foton.courses',
     'foton.elearning',

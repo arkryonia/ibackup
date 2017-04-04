@@ -1,0 +1,14 @@
+{% extends "theme/default.html" %}
+{% load i18n %}
+{% block content %}
+	<h4> {% trans  " Choose your Degree " %} </h4>
+	<hr>
+	<div class="row">
+		<div class="col-md-6">
+			<a href="{% url "graduation:bachelor-create" %}" title="" class="btn btn-danger btn-block" > {% trans "Bachelor" %} </a>			
+		</div>
+		<div class="col-md-6">
+			<a href="{% url "graduation:master-create" %}" title="" class="btn btn-warning btn-block" > {% trans "Master" %} </a>
+		</div>
+	</div>
+{% endblock content %}
