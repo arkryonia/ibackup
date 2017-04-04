@@ -107,7 +107,7 @@ urlpatterns = [
     url(r'^galleries/', include('foton.galleries.urls', namespace='galleries')),
 
     #------ Graduation ------#
-    url(r'^graduation/', include('foton.graduation.urls', namespace='graduation')),
+    url(r'^certificate/', include('foton.graduation.urls', namespace='graduation')),
     
     url(r'^allianza/', include("foton.elearning.urls", namespace="elearning")),
     
