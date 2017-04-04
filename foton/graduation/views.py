@@ -59,7 +59,7 @@ class BachelorCreateView(CreateView):
     		gender = "01"
 
     	if total_student==0:
-    		form.instance.number = 163
+    		form.instance.number = 164
     	else:
     		form.instance.number += Student.objects.last().number
 
@@ -95,7 +95,7 @@ class MasterCreateView(CreateView):
             gender = "01"
 
         if total_student==0:
-            form.instance.number = 163
+            form.instance.number = 164
         else:
             form.instance.number = Student.objects.last().number + 1
 
@@ -131,7 +131,7 @@ class AdminBachelorCreate(LoginRequiredMixin, CreateView):
             gender = "01"
 
         if total_student==0:
-            form.instance.number = 163
+            form.instance.number = 164
         else:
             form.instance.number = Student.objects.last().number
 
@@ -166,7 +166,7 @@ class AdminMasterCreateView(LoginRequiredMixin, CreateView):
             gender = "01"
 
         if total_student==0:
-            form.instance.number = 163
+            form.instance.number = 164
         else:
             form.instance.number += Student.objects.last().number
 
