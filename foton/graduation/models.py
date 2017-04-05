@@ -57,7 +57,7 @@ class Bachelor(Student):
 
 
 class Master(Student):
-	speciality = models.ForeignKey(Speciality)
+	speciality = models.ForeignKey(Speciality, blank=True)
 	class Meta:
 		verbose_name = "Master"
 		verbose_name_plural = "Masters"
