@@ -31,7 +31,7 @@ class Student(TimeStampedModel):
 	surname = models.CharField(max_length=100, verbose_name='Surname')
 	name = models.CharField(max_length=100, verbose_name='Name(s)')
 	gender = models.CharField(max_length=10, choices=GENDER)
-	date_of_birth = models.DateField(verbose_name='Date of Birth')
+	date_of_birth = models.DateField(verbose_name='Date of Birth (mm/dd/yyyy)')
 	birth_venue = models.CharField(max_length=200, verbose_name='Birth Venue (for example \'Surulere, Lagos\')')
 	number = models.IntegerField(unique=True)
 	matricule_number = models.CharField(max_length=10, verbose_name='Matricule Number')
@@ -57,7 +57,7 @@ class Bachelor(Student):
 
 
 class Master(Student):
-	speciality = models.ForeignKey(Speciality, blank=True)
+	speciality = models.ForeignKey(Speciality, blank=True, null=True)
 	class Meta:
 		verbose_name = "Master"
 		verbose_name_plural = "Masters"
