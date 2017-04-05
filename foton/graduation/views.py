@@ -80,7 +80,6 @@ class MasterCreateView(CreateView):
                 'gender',
                 'date_of_birth',
                 'birth_venue',
-                'speciality',
             ]
     success_url = reverse_lazy('graduation:graduation-success')
     def form_valid(self, form):
