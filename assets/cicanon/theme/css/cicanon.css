@@ -1,0 +1,104 @@
+/* As hex codes */
+/* Main Primary color */
+/* As RGBa codes */
+/* Main Primary color */
+body {
+  background-color: #B5CDB7;
+}
+.ls {
+  background-color: #1C491F;
+  color: white;
+  position: fixed;
+  height: 655px;
+}
+.ls nav a {
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.ls nav a:hover {
+  text-decoration: underline;
+}
+.rs {
+  background-color: #B5CDB7;
+  min-height: 900px;
+  position: relative;
+}
+.rs .main {
+  min-height: 800px;
+  background-color: #F7F9F7;
+  box-shadow: 3px 3px 10px #5E615F;
+}
+.rs .main .pt {
+  text-transform: capitalize;
+  color: #467249;
+}
+.main-body p {
+  text-align: justify;
+}
+.btn a {
+  text-decoration: none;
+  text-transform: capitalize;
+}
+.form label,
+.form input[type=submit],
+.form input {
+  width: 100%;
+  margin-bottom: 1em;
+}
+.form input {
+  padding: .5em;
+}
+.form.login input{
+  margin-bottom: 20px;
+}
+.menu ul li {
+  list-style: none;
+}
+.em {
+  color: orange;
+}
+.social{
+  text-align: center;
+}
+.sn {
+  background-color: rgba(0, 0, 0, .5);
+  border-radius: 50%;
+  padding: 10px;
+}
+.fcb:hover {
+  background: rgba(60, 90, 152, .7);
+  opacity: 1;
+  z-index: 10;
+}
+.tw:hover {
+  background: rgba(68, 188, 221, .7);
+  opacity: 1;
+  z-index: 100;
+}
+.gp:hover {
+  background: rgba(218, 39, 19, .7);
+  opacity: 1;
+}
+.rss:hover {
+  background: rgba(248, 137, 3, .7);
+  opacity: 1;
+}
+.connect a{
+  color: white;
+}
+.connect a:hover{
+  color: #b5cdb7;
+}
+.footer{
+  bottom: 5px;
+  position: absolute;
+  left: 0;
+  margin: 0 auto;
+}
+.right{
+  text-align: right;
+}
+.login_btn{
+  text-align: center;
+}

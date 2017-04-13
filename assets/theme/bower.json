@@ -1,0 +1,22 @@
+{
+  "name": "digisity-theme",
+  "description": "General theme of Digisity Project",
+  "dependencies": {
+    "angular": "^1.5.5",
+    "jfab4": "*",
+    "react": "^15.0.2"
+  },
+  "authors": [
+    "Hodonou SOUNTON <sounton@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "libs",
+    "test",
+    "tests"
+  ],
+  "private": true
+}

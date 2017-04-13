@@ -1,0 +1,24 @@
+/* ---------- IRGIB AFRICA BLOG DESIGN ---------- */
+
+img {
+  max-width: 100%; }
+
+section h4.post-title {
+  color: #00737f; }
+section p.post-abstract {
+  padding-top: 10px;
+  text-align: justify; }
+section .btn-large {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 30px; }
+section div.info i {
+  margin-right: 30px;
+  font-style: italic;
+  color: #00737f; }
+section img.post-img{
+  height: 250px!important;
+  width: 100%!important;
+}
+
+/*# sourceMappingURL=blog.css.map */
