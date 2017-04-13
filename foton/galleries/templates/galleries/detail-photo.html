@@ -17,6 +17,7 @@
       {% autoescape off %}
       	{{ photo.title }}	
       {% endautoescape %}
+      
       </h3>
       {% thumbnail photo.image 1500x900 crop as pic %}
       <img src="{% static pic.url %}" alt="{{ photo.title }}" class="mrs">
