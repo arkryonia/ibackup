@@ -54,6 +54,11 @@ class GalleryCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView)
     success_url = reverse_lazy('galleries:admin-list-galleries')
     template_name = 'galleries/admin/create.html'
 
+    def form_valid(self, form):
+        form.instance = form.save()
+        form.instance.slug = slugify(form.instance.name)
+        return super(GalleryCreateView, self).form_valid(form)
+
 class GalleryAdminListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     permission_required = 'users.is_commercial'
     context_object_name = 'galleries'
