@@ -17,7 +17,11 @@
 				<h3 class="mainTitle">{{ gallery.name }}</h3>
 				<hr class="noSpace">
 				<p>
-					<h4>{{ gallery.description }}</h4>
+					<h4>
+						{% autoescape off %}	
+							{{ gallery.description }}
+					    {% endautoescape %}
+					</h4>
 				</p>
 				<div class="myCarouselControl">					
 					<a class="left" href="#carousel-example-generic" role="button" data-slide="prev">
