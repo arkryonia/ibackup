@@ -57,6 +57,8 @@ class GalleryCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView)
     def form_valid(self, form):
         form.instance = form.save()
         form.instance.slug = slugify(form.instance.name)
+        form.instance.slug_fr = slugify(form.instance.name_fr)
+        form.instance.slug_en = slugify(form.instance.name_en)
         return super(GalleryCreateView, self).form_valid(form)
 
 class GalleryAdminListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
