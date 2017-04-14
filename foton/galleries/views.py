@@ -67,15 +67,15 @@ class GalleryAdminListView(LoginRequiredMixin, PermissionRequiredMixin, ListView
     model = Gallery
     template_name = 'galleries/admin/list.html'
 
-class GalleryAdminDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
+class GalleryPhotoListView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
     permission_required = 'users.is_commercial'
     model = Gallery
     context_object_name = 'gallery'
     template_name = 'galleries/admin/detail.html'
 
     def get_context_data(self, **kwargs):
-        context = super(GalleryAdminDetailView, self).get_context_data(**kwargs)
-        gallery = Gallery.objects.get(slug=self.kwargs['slug'])
+        context = super(GalleryPhotoListView, self).get_context_data(**kwargs)
+        gallery = Gallery.objects.get(pk=self.kwargs['pk'])
         context['photos'] = Photo.objects.filter(gallery = gallery)
         return context
 
