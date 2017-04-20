@@ -37,13 +37,17 @@
 		  <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
 			<!-- li><a href="{% url "students:sign-up" %}">{% trans "Admission" %}</a></li-->
 			<li><a href="{% url "notes:classes-list" %}">{% trans "Results" %}</a></li>
-			<li><a href="{% url "theme:allianza" %}">{% trans "Allianza" %}</a></li>
+			<li><a href="{% url "elearning:program-list" %}">{% trans "Allianza" %}</a></li>
 			<li><a href= {% url 'cicanon:public-list-posts' %} class="">{% trans "IRGIB Blog" %}</a></li>
 			<li><a href="{% url "ejournal:magasines" %}" class="">{% trans "E-Journal" %}</a></li>
 			<li><a href= {% url 'publication:list-new' %} class="">{% trans "irgib news" %}</a></li>
 			<li><a href= {% url 'publication:list-event' %} class="">{% trans "irgib events" %}</a></li>
 			<li><a href={% url 'planning:public-list-planning' %} class="">{% trans "consult planning" %}</a></li>
 			{% if user.is_authenticated %}
+				{% if perms.users.is_allianza %}
+					<li> <a href="{% url 'elearning:student_programs' %}" title=""> {% trans "My Programs" %} </a> </li>
+				{% endif %}
+				<li> <a href={% url "moocs:student_mooc_list_view" %} >{% trans 'My Sepecialities' %}</a> </li>
 			   <li><a href= {% url 'account_logout' %} title="" class="">{% trans "LOGOUT" %}</a></li>
 			{% else %}
 			   <li><a href= {% url 'account_login' %} title="" class="">{% trans "Login" %}</a></li>
@@ -64,10 +68,9 @@
 				{% endif %}
 				{% if perms.users.is_allianza %}
 					<a href= {% url 'elearning:student_programs' %} >{% trans 'My Programs' %}</a>
-					&nbsp;
+					&nbsp;<i>|</i>
 				{% endif %}
-				<a href= {% url 'account_logout' %} >{% trans 'Logout ' %}<i class="fa fa-sign-out"></i></a>
-				</li>
+					<a href="{% url "moocs:student_mooc_list_view" %}" title=""> {% trans "My Sepecialities" %} </a> 
 			</div>
 	  	</div>
 		</div>

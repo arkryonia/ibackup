@@ -1,4 +1,5 @@
-
+from django.conf import settings
+from django.core.mail import EmailMessage
 from django.db.models import Count
 from django.shortcuts import render, get_object_or_404, get_list_or_404, Http404, redirect
 from django.core.urlresolvers import reverse_lazy, reverse
@@ -16,7 +17,13 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 
 from .models import Category, Discipline, Mooc, MoocModule
 from foton.courses.models import Content
-from .forms import ModuleFormSet, MoocEnrollForm
+from foton.users.models import User
+from foton.students.models import Student
+
+from .forms import ModuleFormSet, MoocEnrollForm, MoocStudentForm
+
+from twilio.rest import TwilioRestClient
+# client = TwilioRestClient(settings.ACCOUNT_SID, settings.AUTH_TOKEN)
 
 
 class MoocCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
@@ -185,16 +192,81 @@ class MoocDetailView(DetailView):
         return context
 
 
-class StudentEnrollMoocView(FormView):
+
+# class MoocStudentCreateView(CreateView):
+#     model = Student
+#     template_name = "students/students/create.html"
+#     form_class = MoocStudentForm
+#     success_url = reverse_lazy("presentation:home")
+#     def form_valid(self, form):
+#         mooc = Mooc.objects.get(slug=self.kwargs['slug'])
+#         form.instance.is_active = False
+#         admin_message = "You have new student to register in Allianza \n {0} {1}"\
+#         .format(form.instance.first_name, form.instance.last_name, form.instance.email )
+#         admin_email = EmailMessage("New student in Allianza",
+#                              admin_message,
+#                              settings.EMAIL_HOST_USER,
+#                              settings.ALLIANZA_ADMIN_EMAIL
+#                             )
+#         admin_email.send()
+#         # message = client.messages.create(body="You have new student to register in Allianza \n {0} {1}"\
+#         # .format(form.instance.first_name, form.instance.last_name, form.instance.email ),
+#         #                                           to = settings.ALLIANZA_ADMIN_PHONE,  
+#         #                                           from_= "+16466811807"
+#         #                   )
+#         # print(message.sid)
+#         return super(MoocStudentCreateView, self).form_valid(form)
+
+
+
+
+class MoocStudentByProgram(LoginRequiredMixin, PermissionRequiredMixin, ListView):
+    permission_required = "users.is_allianzadmin"
+    model = User
+    template_name = "moocs/mooc/moocstudent_list.html"
+    context_object_name = "students"
+    def get_context_data(self, **kwargs):
+        context = super(MoocStudentByProgram, self).get_context_data(**kwargs)
+        mooc = Mooc.objects.get(slug=self.kwargs['slug'])
+        registreds = mooc.students.all()
+        context['registreds'] = registreds.order_by('pk')
+        context['mooc'] = Mooc.objects.get(slug=self.kwargs['slug'])
+        return context
+
+
+class ActivateMoocStudentView(LoginRequiredMixin, PermissionRequiredMixin, View):
+    permission_required = "users.is_allianzadmin"
+    def get(self, request, *args, **kwargs):
+        student= get_object_or_404(User, pk=kwargs['pk'])
+        if student.is_active:
+            student.is_active = False
+        else:
+            student.is_active = True
+        student.save()
+        return redirect("moocs:mooc-student", slug=kwargs['slug'])
+
+
+
+class StudentEnrollMoocView(LoginRequiredMixin, FormView):
     course = None
     form_class = MoocEnrollForm
     def form_valid(self, form):
         self.course = form.cleaned_data['course']
         self.course.students.add(self.request.user)
+        user = self.request.user
+        if not user.groups:
+            user.is_active = False
+        elif user.groups != "superadmin":
+            user.is_active = True
+        user.save()
         return super(StudentEnrollMoocView, self).form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy('moocs:student_mooc_list_view')
+        return reverse_lazy('moocs:mooc-succes-registration')
+
+
+class SuccessRegistration(TemplateView):
+    template_name = "moocs/mooc/success.html"
 
 
 class StudentMoocListView(LoginRequiredMixin, ListView):
@@ -222,7 +294,6 @@ class StudentMoocDetailView(LoginRequiredMixin, DetailView):
         else:
             context['module'] = mooc.mooc_modules.all()[0]
         return context
-
 
 
 class DomainDetailView(DetailView):

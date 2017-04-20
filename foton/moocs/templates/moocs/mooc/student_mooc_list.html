@@ -1,10 +1,27 @@
 {% extends "theme/default.html" %}
+{% load i18n thumbnail staticfiles %}
 
 {% block content %}
-	{% for m in student_moocs %}
-		<h4> <a href="{% url "moocs:student_mooc_view" m.pk  %}"> {{m}} </a> </h4>
-		
-	{% empty %}
-	
-	{% endfor %}
+	<h3> {% trans "My MOOCs" %} </h3><hr>
+	<div class="row">
+		{% for m in student_moocs %}
+			<div class="col-md-4 publicList">
+				<div class="wrap">
+					{% thumbnail m.overview_image 500x400 crop as pic %}
+						<img src="{% static pic.url %}" alt="{{ m.title }}" class="mrs">
+						<div class="content">
+	  					<span>{{ m.title }}</span><br>
+	  					{% autoescape off %}
+	  						{{ m.overview|truncatechars_html:50 }}	
+	  					{% endautoescape %} 						
+						</div>
+				</div>
+				<a href="{% url "moocs:student_mooc_view" m.pk  %}" title="" class="btn btn-primary btn-block">
+					{% trans "Go to class" %}
+				</a>
+			</div>
+		{% empty %}
+
+		{% endfor %}
+	</div>
 {% endblock content %}

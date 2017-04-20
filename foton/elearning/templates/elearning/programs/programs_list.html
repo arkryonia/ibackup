@@ -50,4 +50,27 @@
 			{% endfor %}
 		</div>
 	</div>
+	<div class="">
+		<h3> {% trans "MOOCs" %} </h3>
+		<hr>
+		<div class="row">
+			{% for m in moocs %}
+				<div class="col-md-4 publicList">
+					<div class="wrap">
+						{% thumbnail m.overview_image 500x400 crop as pic %}
+	  					<img src="{% static pic.url %}" alt="{{ m.title }}" class="mrs">
+	  					<div class="content">
+		  					<span>{{m.title}}</span><br>
+		  					{% autoescape off %}
+		  						{{m.overview|truncatechars_html:50}}	
+		  					{% endautoescape %} 						
+	  					</div>
+					</div>
+					<a href="{% url "moocs:mooc_detail" m.slug %}" title="" class="btn btn-primary btn-block">
+						{% trans "voir plus" %}
+					</a>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
 {% endblock content %}

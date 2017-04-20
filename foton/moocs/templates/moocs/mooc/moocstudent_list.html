@@ -1,0 +1,30 @@
+{% extends "theme/backend/base.html" %}
+{% load i18n %}
+
+{% block title %} {% trans "Students" %} {% endblock title %}
+{% block content %}
+<div class="dataTable_wrapper">
+ 	<table class="table table-striped table-bordered table-hover" id="dataTables-example">
+		<thead>
+			<tr>
+				<th>{% trans " Students " %}</th>
+				<th class="text-center" >{% trans " Status " %}</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for registred in registreds %}  
+				<tr class="odd gradeX">
+					<td>{{ registred.username }} </td>
+					<td class="text-center">
+						{% if registred.is_active %}
+		                    <a class="text-center" href="{% url "moocs:status-student" mooc.slug registred.pk %}"><i class="fa fa-user fa-fw"></i></a>
+		                {% elif registred.is_active == False %}
+		                  <a class="text-danger text-center" href="{% url "moocs:status-student" mooc.slug registred.pk %}"><i class="fa fa-user-times fa-fw"></i></a>
+		                {% endif %}
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+  	</table>
+</div>
+{% endblock content %}

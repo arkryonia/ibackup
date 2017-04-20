@@ -6,6 +6,7 @@
 
 <p class="text-right" >
 	<a href="{% url "moocs:mooc_module_create" mooc.pk %}" class="btn btn-primary">{% trans "Add or Edit Modules" %}</a>
+  <a href="{% url "moocs:mooc-student" mooc.slug %}" title="" class="btn btn-success" > Students </a>
 	
 </p>
 

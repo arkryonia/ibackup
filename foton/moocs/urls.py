@@ -14,9 +14,26 @@ urlpatterns = [
 	),
 
 	url(
-		regex = r'(?P<pk>[\w-]+)/mooc/$',
+		regex = r'(?P<slug>[\w-]+)/mooc/$',
 		view = views.MoocDetailView.as_view(),
 		name = 'mooc_detail'
+	),
+
+	# url(
+	# 	regex = r'^(?P<slug>[-\w]+)/mooc/registration/$',
+	# 	view = views.MoocStudentCreateView.as_view(),
+	# 	name='mooc-registration'
+	# ),
+
+	url(
+		regex = r'^(?P<slug>[-\w]+)/mooc/students/$',
+		view = views.MoocStudentByProgram.as_view(),
+		name='mooc-student'
+	),
+	url(
+		regex = r'^(?P<slug>[-\w]+)/mooc/students/status/(?P<pk>[-\w]+)/$',
+		view = views.ActivateMoocStudentView.as_view(),
+		name='status-student'
 	),
 
 	url(
@@ -29,6 +46,12 @@ urlpatterns = [
 		regex = r'my-specialities/$',
 		view = views.StudentMoocListView.as_view(),
 		name = 'student_mooc_list_view'
+	),
+
+	url(
+		regex = r'success/registration/$',
+		view = views.SuccessRegistration.as_view(),
+		name = 'mooc-succes-registration'
 	),
 
 	url(

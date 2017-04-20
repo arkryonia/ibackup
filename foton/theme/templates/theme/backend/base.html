@@ -154,16 +154,16 @@
                           </li>
                         {% endif %}
 
-                        {% if perms.users.is_lecturer %}
-                          <ul class="nav" id="side-menu">
-                            <li>
-                              <a href={% url 'elearning:lecture-list-by-owner' %} %}><i class="fa fa-graduation-cap fa-fw"></i> {% trans "Courses" %}<span class="fa arrow"></span></a>
-                            </li>
-                            <li>
-                              <a href={% url "moocs:owner-list" %} ><i class="fa fa-graduation-cap fa-fw"></i> {% trans "Moocs" %}<span class="fa arrow"></span></a>
-                            </li>
-                          </ul>
-                        {% endif %}
+                        
+                        <ul class="nav" id="side-menu">
+                          <li>
+                            <a href={% url 'elearning:lecture-list-by-owner' %} %}><i class="fa fa-graduation-cap fa-fw"></i> {% trans "Courses" %}<span class="fa arrow"></span></a>
+                          </li>
+                          <li>
+                            <a href={% url "moocs:owner-list" %} ><i class="fa fa-graduation-cap fa-fw"></i> {% trans "Moocs" %}<span class="fa arrow"></span></a>
+                          </li>
+                        </ul>
+                        
 
                         {% if perms.users.is_commercial %}
                           <li><a href="{% url "presentation:list-about" %}"><i class="fa fa-bank fa-fw"></i> {% trans "Presentation" %}<span class="fa arrow"></span></a></li>

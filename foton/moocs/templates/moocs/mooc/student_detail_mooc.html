@@ -1,29 +1,33 @@
-{% extends "theme/default.html" %}	
+{% extends "theme/default.html" %}
+{% load staticfiles i18n thumbnail %}
 
 {% block content %}
 	{% with subject=object.discipline %}
-		<h1>{{ object.title }}</h1>
+		<h3>{{ object.title }}</h3><hr>
 		<div class="module">
-		<h2>Overview</h2>
+		<div class="row">
+		    <div class="col-md-12">
+		      {% thumbnail object.overview_image 800x300 crop as pic %}
+		      <img src="{% static pic.url %}" alt="{{ object.title }}" class="mrs">       
+		    </div>
+		</div><br>
+		<h4>Overview</h4><hr>
 		<p>
-			<a href="">{{ object.title }}</a>.
-			{{ object.mooc_modules.count }} modules.
-			Instructor: {{ object.owner.get_full_name }}
+			{% autoescape off %}
+				{{ object.overview|linebreaks }}
+			{% endautoescape %}
 		</p>
-		{% autoescape off %}
-			{{ object.overview|linebreaks }}
-		{% endautoescape %}
 		{% if request.user.is_authenticated %}
 			<form action="{% url "moocs:student_enroll_mooc" %}" method="post">
 			{{ enroll_form }}
 			{% csrf_token %}
-			<input type="submit" class="button" value="Enroll now">
+			<input type="submit" class="btn btn-danger btn-block" value="Enroll now">
 			</form>
 			{% else %}
-			<a href="{% url 'account_signup' %}" class="button">
+			<a href="{% url 'account_signup' %}" class="btn btn-danger btn-block">
 			Register to enroll
-		</a>
-		{% endif %}
+			{% endif %}
+		</a>	
 		</div>
 	{% endwith %}
 {% endblock %}

@@ -30,7 +30,8 @@ from django.contrib.auth.models import Group
 from foton.programs.models import Option, Speciality
 
 from .models import (AllianzaStudent, AllianzaRegistred, ElearningBachelor,
-ElearningMaster, Semester,Lecture, ElearningProgram, LectureModule)  
+ElearningMaster, Semester,Lecture, ElearningProgram, LectureModule)
+from foton.moocs.models import Mooc   
 
 from io import BytesIO
 from reportlab.pdfgen import canvas
@@ -178,6 +179,7 @@ class ProgramListView(ListView):
         context = super(ProgramListView, self).get_context_data(**kwargs)
         context['bachelors']=ElearningBachelor.objects.order_by('name')
         context['masters']=ElearningMaster.objects.order_by('name')
+        context['moocs']=Mooc.objects.order_by('-pk')
         return context
 
 

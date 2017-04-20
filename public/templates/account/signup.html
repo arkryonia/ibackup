@@ -1,11 +1,16 @@
-{% extends "account/base.html" %}
+{% extends "theme/base.html" %}
 
 {% load i18n %}
+{% load account %}
+{% load socialaccount %}
 {% load crispy_forms_tags %}
 
-{% block title %}{% trans "Signup" %}{% endblock title %}
+{% include "theme/inc/head.html" %}
 
-{% block content %}
+{% block title %}LogIn{% endblock title %}
+{% block maintitle %}{% trans " Please Sign In" %}{% endblock maintitle %}
+
+{% block main %}
 
 <div class="container">
   <div class="row">
@@ -27,7 +32,7 @@
 </div>
 
 
-{% endblock content %}
+{% endblock main %}
 
 
 

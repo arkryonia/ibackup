@@ -39,4 +39,3 @@ class MoocModule(Module):
 	class Meta:
 		verbose_name = "Mooc Module"
 		verbose_name_plural = "Mooc Modules"
-
