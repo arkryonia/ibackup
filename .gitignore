@@ -29,6 +29,6 @@ sftp-config.json
 public/media/image/
 public/media/pdf/
 public/media/files/
-mediafiles/
+mediafiles/pdf
 
 .sass-cache/
