@@ -40,14 +40,14 @@ class BachelorListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
 class BachelorCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     permission_required = 'users.is_scolar'
     model = Bachelor
-    fields = ['option','pdf_en','pdf_fr']
+    fields = ['option','pdf']
     success_url = reverse_lazy('degrees:bachelor-list')
     template_name = 'degrees/bachelors/create.html'
 
 class BachelorUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     permission_required = 'users.is_scolar'
     model = Bachelor
-    fields = ('option','pdf_en','pdf_fr')
+    fields = ('option','pdf')
     success_url = reverse_lazy('degrees:bachelor-list')
     template_name = 'degrees/bachelors/update.html'
 
@@ -63,14 +63,14 @@ class MasterListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
 class MasterCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     permission_required = 'users.is_scolar'
     model = Master
-    fields = ['speciality','pdf_en','pdf_fr']
+    fields = ['speciality','pdf']
     success_url = reverse_lazy('degrees:masters-list')
     template_name = 'degrees/masters/create.html'
 
 class MasterUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     permission_required = 'users.is_scolar'
     model = Master
-    fields = ['speciality','pdf_en','pdf_fr']
+    fields = ['speciality','pdf','pdf']
     success_url = reverse_lazy('degrees:masters-list')
     template_name = 'degrees/masters/update.html'
 
