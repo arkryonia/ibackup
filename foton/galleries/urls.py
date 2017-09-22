@@ -70,7 +70,7 @@ urlpatterns = [
 	),
 
     url(
-		regex = r'^backend/(?P<slug>[-\w]+)/photos/(?P<pk>\d+)/update/',
+		regex = r'^backend/(?P<slug>[-\w]+)/photos/(?P<pk>\d+)/',
 		view = views.PhotoUpdateView.as_view(),
 		name='update-photo'
 	),

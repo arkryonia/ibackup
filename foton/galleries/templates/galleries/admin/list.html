@@ -19,7 +19,7 @@
           <tr class="odd gradeX">
               <td>{{ gallery.name }}</td>
               <td class="text-center"><a href={% url 'galleries:admin-list-photo' gallery.pk %} ><i class="fa fa-list fa-fw"></i></a></td>
-              <td class="text-center"><a href={% url 'galleries:update-gallery' gallery.pk %}><i class="fa fa-edit"></i></a></td>
+              <td class="text-center"><a href={% url 'galleries:update-gallery' gallery.slug %}><i class="fa fa-edit"></i></a></td>
           </tr>
         {% endfor %}
       </tbody>
