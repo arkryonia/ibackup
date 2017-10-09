@@ -62,7 +62,7 @@ sitemaps = {
 
 urlpatterns = [
     # Admin site
-    url(r'^reysh/', include(admin.site.urls)),
+    url(r'^admin/', include(admin.site.urls)),
 
     ### User management
     url(r'^users/', include("foton.users.urls", namespace="users")),
