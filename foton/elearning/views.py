@@ -70,14 +70,14 @@ class AllianzaStudentCreateView(CreateView):
 
 class AllianzaRegistredListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     permission_required = 'users.is_allianzadmin'
-    queryset = AllianzaRegistred.objects.order_by('student')
+    # queryset = AllianzaRegistred.objects.order_by('student')
     template_name = "elearning/registration/list.html"
-    # def get_context_data(self, **kwargs):
-    #     context = super(AllianzaRegistredListView, self).get_context_data(**kwargs)
-    #     year = Year.objects.filter(available = True)
-    #     students = AllianzaStudent.objects.filter(year=year, is_active=False, groups=None)
-    #     context["students"] = students.order_by("last_name")
-    #     return context
+    def get_context_data(self, **kwargs):
+        context = super(AllianzaRegistredListView, self).get_context_data(**kwargs)
+        year = Year.objects.filter(available = True)
+        students = AllianzaStudent.objects.filter(year=year, is_active=False, groups=None)
+        context["students"] = students.order_by("last_name")
+        return context
 
 
 class AllianzaStudentUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
