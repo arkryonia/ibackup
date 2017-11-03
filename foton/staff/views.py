@@ -202,6 +202,15 @@ class YearCreateView(PermissionRequiredMixin, LoginRequiredMixin, CreateView):
     fields = "__all__"
     template_name = 'staff/year/create.html'
     success_url = reverse_lazy('staff:list-year')
+    
+    def get_context_data(self, **kwargs):
+        context = super(YearCreateView, self).get_context_data(**kwargs)
+        y = Year.objects.all()
+        for i in y:
+            i.available = False
+            i.save()
+        return context
+    
 
 class YearUpdateView(PermissionRequiredMixin, LoginRequiredMixin, UpdateView):
     permission_required = 'users.is_admin'
