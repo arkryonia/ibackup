@@ -71,6 +71,7 @@ class AllianzaStudentCreateView(CreateView):
 class AllianzaRegistredListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     permission_required = 'users.is_allianzadmin'
     context_object_name = 'students'
+    model = AllianzaRegistred
     # queryset = AllianzaRegistred.objects.order_by('student')
     template_name = "elearning/registration/list.html"
     def get_context_data(self, **kwargs):
