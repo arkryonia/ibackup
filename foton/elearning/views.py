@@ -65,12 +65,6 @@ class AllianzaStudentCreateView(CreateView):
                              settings.ALLIANZA_ADMIN_EMAIL
                             )
         admin_email.send()
-        message = client.messages.create(body="You have new student to register in Allianza \n {0} {1}"\
-        .format(form.instance.first_name, form.instance.last_name, form.instance.email ),
-                                                  to = settings.ALLIANZA_ADMIN_PHONE,  
-                                                  from_= "+16466811807"
-                          )
-        print(message.sid)
         return super(AllianzaStudentCreateView, self).form_valid(form)
 
 
@@ -78,12 +72,12 @@ class AllianzaRegistredListView(LoginRequiredMixin, PermissionRequiredMixin, Lis
     permission_required = 'users.is_allianzadmin'
     queryset = AllianzaRegistred.objects.order_by('student')
     template_name = "elearning/registration/list.html"
-    def get_context_data(self, **kwargs):
-        context = super(AllianzaRegistredListView, self).get_context_data(**kwargs)
-        year = Year.objects.filter(available = True)
-        students = AllianzaStudent.objects.filter(year=year, is_active=False, groups=None)
-        context["students"] = students.order_by("last_name")
-        return context
+    # def get_context_data(self, **kwargs):
+    #     context = super(AllianzaRegistredListView, self).get_context_data(**kwargs)
+    #     year = Year.objects.filter(available = True)
+    #     students = AllianzaStudent.objects.filter(year=year, is_active=False, groups=None)
+    #     context["students"] = students.order_by("last_name")
+    #     return context
 
 
 class AllianzaStudentUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
