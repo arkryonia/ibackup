@@ -409,7 +409,7 @@ class LectureCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView)
     permission_required='users.is_allianzadmin'
     model = Lecture
     # form_class = LectureCreateForm
-    fields = ['title','credits','overview','overview_image']
+    fields = ['title','credits', 'owner', 'overview','overview_image']
     template_name = "elearning/lecture/create.html"
 
     def get_success_url(self):
@@ -421,7 +421,7 @@ class LectureCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView)
         semester = Semester.objects.get(pk=self.kwargs['pk'])
         instance = form.save(False)
         form.instance.semester = semester
-        form.instance.owner = self.request.user
+        # form.instance.owner = self.request.user
         instance.slug = slugify(instance.title)
         return super(LectureCreateView, self).form_valid(form)
 
@@ -448,7 +448,7 @@ class MasterLectureCreateView(LoginRequiredMixin, PermissionRequiredMixin, Creat
 class LectureUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     permission_required='users.is_allianzadmin'
     model = Lecture
-    fields = ['semester','title','credits','overview','overview_image']
+    fields = ['semester','title','credits', 'owner', 'overview','overview_image']
     template_name = "elearning/lecture/update.html"
     
     def get_success_url(self):
